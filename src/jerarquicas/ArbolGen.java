@@ -68,17 +68,17 @@ public class ArbolGen {
                 flag = true;
                 // si el elemento es encontrado mi bandera es verdadera
             } else {
-                if(n.getHijoIzquierdo()!=null){
-                    //si tengo hijo izquierdo lo llamo con la variable aux hijo
-                    NodoGen hijo=n.getHijoIzquierdo();
-                    while(hijo!=null && !flag){
-                    flag = ancestrosAux(elem, hijo, l);
-                    hijo=hijo.getHermanoDerecho();
-                    System.out.println(flag);
-                }
-                if (flag) {
-                    l.insertar(n.getElem(), l.longitud() + 1);
-                } 
+                if (n.getHijoIzquierdo() != null) {
+                    // si tengo hijo izquierdo lo llamo con la variable aux hijo
+                    NodoGen hijo = n.getHijoIzquierdo();
+                    while (hijo != null && !flag) {
+                        flag = ancestrosAux(elem, hijo, l);
+                        hijo = hijo.getHermanoDerecho();
+                        System.out.println(flag);
+                    }
+                    if (flag) {
+                        l.insertar(n.getElem(), l.longitud() + 1);
+                    }
                 }
             }
         }
@@ -99,13 +99,13 @@ public class ArbolGen {
             } else {
                 // si tiene hijo izquierdo que busque en el hijo izquierdo
                 if (nodo.getHijoIzquierdo() != null) {
-                    
-                    NodoGen hijo=nodo.getHijoIzquierdo();
-                    while(hijo!=null && !encontrado){
-                        encontrado=perteneceAux(elemento,hijo);
-                        hijo=hijo.getHermanoDerecho();
+
+                    NodoGen hijo = nodo.getHijoIzquierdo();
+                    while (hijo != null && !encontrado) {
+                        encontrado = perteneceAux(elemento, hijo);
+                        hijo = hijo.getHermanoDerecho();
                     }
-                } 
+                }
             }
         }
         return encontrado;
@@ -119,13 +119,14 @@ public class ArbolGen {
                 // llegue al nodo que busco, se corta el ciclo
                 nodoTemp = n;
             } else {
-                nodoTemp = obtenerNodo(n.getHermanoDerecho(), elem);
-                // avanza por los hermanos derechos del nodo
-                if (nodoTemp == null) {
-                    nodoTemp = obtenerNodo(n.getHijoIzquierdo(), elem);
-                    // si no lo encontre entre todos sus hermanos,avanzo al hijo izquierdo
-
-                }
+                
+                 nodoTemp = obtenerNodo(n.getHermanoDerecho(), elem);
+                 // avanza por los hermanos derechos del nodo
+                  if (nodoTemp == null) {
+                  nodoTemp = obtenerNodo(n.getHijoIzquierdo(), elem);
+                  // si no lo encontre entre todos sus hermanos,avanzo al hijo izquierdo
+                  }
+                
             }
         }
         return nodoTemp;
@@ -299,13 +300,14 @@ public class ArbolGen {
         }
     }
 
-    public Lista listarPorNiveles(){
-        Lista l= new Lista();
-        listarPorNivelesAux(this.raiz,l);
-        //llama a un metodo recursivo
+    public Lista listarPorNiveles() {
+        Lista l = new Lista();
+        listarPorNivelesAux(this.raiz, l);
+        // llama a un metodo recursivo
         return l;
     }
-    private void listarPorNivelesAux(NodoGen n, Lista l){
+
+    private void listarPorNivelesAux(NodoGen n, Lista l) {
 
     }
 
