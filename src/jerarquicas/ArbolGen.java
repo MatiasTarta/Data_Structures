@@ -61,9 +61,7 @@ public class ArbolGen {
     private boolean ancestrosAux(Object elem, NodoGen n, Lista l) {
         boolean flag = false;
         // flag es una variable de tipo booleana que verifica si el elemento que busco
-        // se encuentra en la subrama en la que estoy parado, en el mejor de los casos
-        // el elemento se encuentra en la raiz o en una de las primeras ramas
-        // izquierdas, en el peor de los casos recorro el arbol n^n veces
+        // se encuentra en la subrama en la que estoy parado
         if (n != null && !flag) {
             // siempre que el nodo sea distinto de nulo continuo
             if (n.getElem().equals(elem)) {
@@ -71,11 +69,12 @@ public class ArbolGen {
                 // si el elemento es encontrado mi bandera es verdadera
             } else {
                 if(n.getHijoIzquierdo()!=null){
+                    //si tengo hijo izquierdo lo llamo con la variable aux hijo
                     NodoGen hijo=n.getHijoIzquierdo();
                     while(hijo!=null && !flag){
                     flag = ancestrosAux(elem, hijo, l);
                     hijo=hijo.getHermanoDerecho();
-                    //llamo al hijo izquierdo recursivamente, luego a los hermanos de este
+                    System.out.println(flag);
                 }
                 if (flag) {
                     l.insertar(n.getElem(), l.longitud() + 1);
@@ -100,10 +99,13 @@ public class ArbolGen {
             } else {
                 // si tiene hijo izquierdo que busque en el hijo izquierdo
                 if (nodo.getHijoIzquierdo() != null) {
-                    perteneceAux(elemento, nodo.getHijoIzquierdo());
-                } else {
-                    perteneceAux(elemento, nodo.getHermanoDerecho());
-                }
+                    
+                    NodoGen hijo=nodo.getHijoIzquierdo();
+                    while(hijo!=null && !encontrado){
+                        encontrado=perteneceAux(elemento,hijo);
+                        hijo=hijo.getHermanoDerecho();
+                    }
+                } 
             }
         }
         return encontrado;

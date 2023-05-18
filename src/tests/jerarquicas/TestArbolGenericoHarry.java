@@ -20,8 +20,12 @@ public class TestArbolGenericoHarry {
             arbol1.insertar('W', 'Z');
             arbol1.insertar('X', 'Z');
             System.out.println(arbol1.toString());
-            Lista l= arbol1.ancestros('X');
+            /*
+             * Lista l= arbol1.ancestros('X');
             System.out.println(l.toString());
+             */
+
+            System.out.println(arbol1.pertenece('H'));
         
     }
 }
