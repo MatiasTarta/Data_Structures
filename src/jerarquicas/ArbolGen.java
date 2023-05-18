@@ -8,9 +8,6 @@ public class ArbolGen {
     public ArbolGen() {
         raiz = null;
     }
-    
-
-
 
     public boolean insertar(Object hijo, Object elemPadre) {
         boolean exito = false;
@@ -230,13 +227,11 @@ public class ArbolGen {
         return nivel;
     }
 
-    
-      public Lista listarPreorden() {
+    public Lista listarPreorden() {
         Lista l = new Lista();
         listarPreordenAux(this.raiz, l);
         return l;
     }
-
 
     private void listarPreordenAux(NodoGen n, Lista ls) {
         if (n != null) {
@@ -302,10 +297,7 @@ public class ArbolGen {
         }
     }
 
-    
-
-    /*
-     * public String toString() {
+    public String toString() {
         return toStringAux(this.raiz);
     }
 
@@ -326,6 +318,5 @@ public class ArbolGen {
         }
         return s;
     }
-    */
+
 }
-     
