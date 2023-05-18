@@ -20,7 +20,8 @@ public class TestArbolGenericoHarry {
             arbol1.insertar('W', 'Z');
             arbol1.insertar('X', 'Z');
             System.out.println(arbol1.toString());
-            System.out.println("Nivel de X debe retornar 5: "+ arbol1.nivel('X'));
+            Lista l= arbol1.ancestros('X');
+            System.out.println(l.toString());
         
     }
 }

@@ -64,23 +64,21 @@ public class ArbolGen {
         // se encuentra en la subrama en la que estoy parado, en el mejor de los casos
         // el elemento se encuentra en la raiz o en una de las primeras ramas
         // izquierdas, en el peor de los casos recorro el arbol n^n veces
-        if (n != null) {
+        if (n != null && !flag) {
             // siempre que el nodo sea distinto de nulo continuo
             if (n.getElem().equals(elem)) {
                 flag = true;
                 // si el elemento es encontrado mi bandera es verdadera
             } else {
-                flag = ancestrosAux(elem, n.getHijoIzquierdo(), l);
-                // llamo recursivamente a los hijos izquierdos(despues de haber llamado a cada
-                // hermano de estos)
+                NodoGen hijo=n.getHijoIzquierdo();
+                while(hijo!=null && !flag){
+                    flag = ancestrosAux(elem, n.getHijoIzquierdo(), l);
+                    hijo=hijo.getHermanoDerecho();
+                    //llamo al hijo izquierdo recursivamente, luego a los hermanos de este
+                }
                 if (flag) {
                     l.insertar(n.getElem(), l.longitud() + 1);
-                    // si estaba en el hijo izquierdo,inserto el elemento de n en la lista
-                } else {
-                    flag = ancestrosAux(elem, n.getHermanoDerecho(), l);
-                    // si no estaba en mi hijo izquierdo llamo recursivamente a los hermanos
-                    // derechos de este
-                }
+                } 
             }
         }
         return flag;
