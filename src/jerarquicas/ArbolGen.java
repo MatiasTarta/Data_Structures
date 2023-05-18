@@ -297,6 +297,15 @@ public class ArbolGen {
         }
     }
 
+    public Lista listarPorNiveles(){
+        Lista l= new Lista();
+        listarPorNivelesAux(this.raiz,l);
+        return l;
+    }
+    private void listarPorNivelesAux(NodoGen n, Lista l){
+        
+    }
+
     public String toString() {
         return toStringAux(this.raiz);
     }
