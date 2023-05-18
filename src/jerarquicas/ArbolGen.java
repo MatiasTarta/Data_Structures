@@ -300,10 +300,11 @@ public class ArbolGen {
     public Lista listarPorNiveles(){
         Lista l= new Lista();
         listarPorNivelesAux(this.raiz,l);
+        //llama a un metodo recursivo
         return l;
     }
     private void listarPorNivelesAux(NodoGen n, Lista l){
-        
+
     }
 
     public String toString() {
