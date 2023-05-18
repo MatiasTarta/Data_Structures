@@ -70,15 +70,17 @@ public class ArbolGen {
                 flag = true;
                 // si el elemento es encontrado mi bandera es verdadera
             } else {
-                NodoGen hijo=n.getHijoIzquierdo();
-                while(hijo!=null && !flag){
-                    flag = ancestrosAux(elem, n.getHijoIzquierdo(), l);
+                if(n.getHijoIzquierdo()!=null){
+                    NodoGen hijo=n.getHijoIzquierdo();
+                    while(hijo!=null && !flag){
+                    flag = ancestrosAux(elem, hijo, l);
                     hijo=hijo.getHermanoDerecho();
                     //llamo al hijo izquierdo recursivamente, luego a los hermanos de este
                 }
                 if (flag) {
                     l.insertar(n.getElem(), l.longitud() + 1);
                 } 
+                }
             }
         }
         return flag;
