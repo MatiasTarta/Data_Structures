@@ -8,6 +8,9 @@ public class ArbolGen {
     public ArbolGen() {
         raiz = null;
     }
+    
+
+
 
     public boolean insertar(Object hijo, Object elemPadre) {
         boolean exito = false;
@@ -299,16 +302,10 @@ public class ArbolGen {
         }
     }
 
-    public Lista listarPorNiveles(){
-        Lista l=new Lista();
-        listarPorNivelesAux(this.raiz,l);
-        return l;
-    }
-    private void listarPorNivelesAux(NodoGen n,Lista ls){
+    
 
-    }
-
-    public String toString() {
+    /*
+     * public String toString() {
         return toStringAux(this.raiz);
     }
 
@@ -329,4 +326,6 @@ public class ArbolGen {
         }
         return s;
     }
+    */
 }
+     
