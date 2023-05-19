@@ -164,39 +164,24 @@ public class ArbolGen {
         }
         return resultado;
     }
-
     public int altura() {
-        int aux = 0;
-        // si es vacio, su altura es 0
-        if (!esVacio()) {
-            aux = alturaAux(raiz);
-        }
-        return aux;
+        return alturaAux(this.raiz);
     }
-
     private int alturaAux(NodoGen nodo) {
-        int alt, altHermano = 0, altHijo = 0;
-        // si el nodo es hoja, empieza la cuenta para arriba
-        if (nodo == null) {
-            alt = 1;
-        } else {
-            // si tiene hijo busco en el hijo
-            if (nodo.getHijoIzquierdo() != null) {
-                altHijo = alturaAux(nodo.getHijoIzquierdo()) + 1;
+        int aux=-1,resultado=-1;
+        if(nodo!=null){
+            NodoGen hijo= nodo.getHijoIzquierdo();
+            while(hijo!=null){
+                aux=alturaAux(hijo);
+                if(aux>resultado){
+                    resultado=aux;
+                   
+                }
+                hijo=hijo.getHermanoDerecho();
             }
-            // sino busco en el hermano
-            if (nodo.getHermanoDerecho() != null) {
-                altHermano = alturaAux(nodo.getHermanoDerecho()) + 1;
-            }
-            // si la altura del hijo es mayor a la del hermano, me quedo con la del hijo
-            if (altHijo > altHermano) {
-                alt = altHijo;
-            } else {
-                // sino, con la altura del subarbol del hermano
-                alt = altHermano;
-            }
+            resultado++;
         }
-        return alt;
+        return resultado;
     }
 
     public int nivel(Object buscado) {
@@ -238,13 +223,10 @@ public class ArbolGen {
     private void listarPreordenAux(NodoGen n, Lista ls) {
         if (n != null) {
             ls.insertar(n.getElem(), ls.longitud() + 1);
-            listarPreordenAux(n.getHijoIzquierdo(), ls);
-            if (n.getHijoIzquierdo() != null) {
-                NodoGen hijo = n.getHijoIzquierdo().getHermanoDerecho();
-                while (hijo != null) {
-                    listarPreordenAux(hijo, ls);
-                    hijo = hijo.getHermanoDerecho();
-                }
+            NodoGen hijo=n.getHijoIzquierdo();
+            while(hijo!=null){
+                listarPreordenAux(hijo, ls);
+                hijo=hijo.getHermanoDerecho();
             }
         }
     }
