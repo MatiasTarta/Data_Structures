@@ -25,7 +25,7 @@ public class TestArbolGenericoHarry {
             System.out.println(l.toString());
              */
 
-            System.out.println(arbol1.pertenece('H'));
+            System.out.println(arbol1.padre('X'));
         
     }
 }

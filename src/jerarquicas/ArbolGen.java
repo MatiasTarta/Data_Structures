@@ -133,37 +133,36 @@ public class ArbolGen {
     }
 
     public Object padre(Object elemento) {
-        Object resultado;
-        NodoGen aux;
-        // caso especial: la primer aparicion del elem es la raiz (no tiene padre)
-        if (raiz.getElem().equals(elemento) || esVacio()) {
-            resultado = null;
-        } else {
-            aux = padreAux(elemento, this.raiz);
-            resultado = aux.getElem();
+        Object elemPadre=null;
+        if(!this.raiz.equals(elemento)){
+            elemPadre=padreAux(this.raiz,elemento);
         }
-        return resultado;
+        return elemPadre;
     }
 
-    private NodoGen padreAux(Object elemento, NodoGen nodo) {
-        NodoGen pos = null;
+    private Object padreAux(NodoGen n, Object elem) {
+        Object resultado = null;
         // si no es vacio
-        if (nodo != null) {
-            // si esta justo en el hijo izquierdo, guardo el nodo padre
-            if (nodo.getHijoIzquierdo().getElem().equals(elemento)) {
-                pos = nodo;
-            } else {
-                // sino busca en los demas hijos izquierdos
-                pos = padreAux(elemento, nodo.getHijoIzquierdo());
+        if (n != null) {
+            NodoGen hijo = n.getHijoIzquierdo();
+            while(hijo!=null && resultado==null){
+                //visitahijos de n
+                if(hijo.getElem().equals(elem)){
+                    resultado=n.getElem();
+                }else{
+                    hijo=hijo.getHermanoDerecho();
+                }
             }
-            if (pos == null) {
-                // si pos e
-                pos = padreAux(elemento, nodo.getHermanoDerecho());
+            if (resultado == null) {
+                //
+                hijo=n.getHijoIzquierdo();
+                while(hijo!=null && resultado==null){
+                    resultado=padreAux(hijo, elem);
+                    hijo=hijo.getHermanoDerecho();
+                }
             }
         }
-
-        return pos;
-
+        return resultado;
     }
 
     public int altura() {
