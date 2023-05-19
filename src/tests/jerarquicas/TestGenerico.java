@@ -210,7 +210,9 @@ public class TestGenerico {
                 + "\n OP2 (si inserta al ppio)   [ 10 - 15 - 9 - 30 - 22 - 20 - 12 - 3 - 7 - 55 - 45 - 40 - 10]  "
                 + "\n --> " + a.listarPorNiveles().toString());
         System.out.println("\n");
-        System.out.println("Pruebas de métodos GRADO");
+
+        /*
+         * System.out.println("Pruebas de métodos GRADO");
         System.out.println("------------------------");
         ArbolGen vacio = new ArbolGen();
         System.out.println("Grado de árbol completo: Tiene que dar 4: " + sOk + " --> " + (((int) a.grado() == 4) ? sOk : sErr));
@@ -220,6 +222,8 @@ public class TestGenerico {
         System.out.println("Grado de subarbol con raiz 45: Tiene que dar 0: " + sOk + " --> " + (((int) a.gradoSubarbol(45) == 0) ? sOk : sErr));
         System.out.println("Grado de subarbol con raiz inexistente 90: Tiene que dar -1: " + sOk + " --> " + (((int) a.gradoSubarbol(90) == -1) ? sOk : sErr));
         System.out.println("Grado de árbol vacío: Tiene que dar -1: " + sOk + " --> " + (((int) vacio.grado() == -1) ? sOk : sErr));
+         */
+        //No estaba en el pdf ni en el tda los metodos GRADO
     }
 
 }

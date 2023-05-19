@@ -19,29 +19,18 @@ public class TestArbolGenericoHarry {
           arbol1.insertar(9,18);
          
         
-         /*
-          * 
-        arbol1.insertar('A', null);
-        arbol1.insertar('B', 'A');
-        arbol1.insertar('C', 'A');
-        arbol1.insertar('D', 'A');
-        arbol1.insertar('E', 'B');
-        arbol1.insertar('F', 'B');
-        arbol1.insertar('G', 'B');
-        arbol1.insertar('H', 'D');
-        arbol1.insertar('Z', 'E');
-        arbol1.insertar('Y', 'E');
-        arbol1.insertar('W', 'Z');
-        arbol1.insertar('X', 'Z');
-          */
+        
         System.out.println(arbol1.toString());
+        Lista l= new Lista();
 
-        ArbolGen arbolClon= arbol1.clone();
-
-        Lista l1= arbol1.listarPorNiveles();
-        Lista l2= arbolClon.listarPorNiveles();
-        System.out.println(l1.toString());
-        System.out.println(l2.toString());
+        l.insertar(15, 1);
+        l.insertar(47, 2);
+        l.insertar(9, 3);
+        l.insertar(63, 4);
+        l.insertar(54, 5);
+        l.insertar(19, 6);
+        System.out.println(l.toString());
+        System.out.println("Son frontera debe retornar true: "+ arbol1.sonFrontera(l));
          
         
 

@@ -169,7 +169,7 @@ public class Lista {
         }
     }
     
-        
+    
 
     public Lista obtenerMultiplos(int x) {
         Lista lis = new Lista();
