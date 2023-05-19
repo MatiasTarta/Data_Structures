@@ -6,18 +6,21 @@ import lineales.dinamicas.Lista;
 public class TestArbolGenericoHarry {
     public static void main(String[] arg) {
         ArbolGen arbol1 = new ArbolGen();
-        /*
-         * 
-         * arbol1.insertar(10,null);
-         * arbol1.insertar(25,10);
-         * arbol1.insertar(33,10);
-         * arbol1.insertar(54,10);
-         * arbol1.insertar(15,25);
-         * arbol1.insertar(47,33);
-         * arbol1.insertar(18,33);
-         * arbol1.insertar(63,33);
-         * arbol1.insertar(9,18);
-         */
+        
+         
+          arbol1.insertar(10,null);
+          arbol1.insertar(25,10);
+          arbol1.insertar(33,10);
+          arbol1.insertar(54,10);
+          arbol1.insertar(15,25);
+          arbol1.insertar(47,33);
+          arbol1.insertar(18,33);
+          arbol1.insertar(63,33);
+          arbol1.insertar(9,18);
+         
+        
+         /*
+          * 
         arbol1.insertar('A', null);
         arbol1.insertar('B', 'A');
         arbol1.insertar('C', 'A');
@@ -30,10 +33,17 @@ public class TestArbolGenericoHarry {
         arbol1.insertar('Y', 'E');
         arbol1.insertar('W', 'Z');
         arbol1.insertar('X', 'Z');
+          */
         System.out.println(arbol1.toString());
 
-        Lista l2 = arbol1.listarPreorden();
-        System.out.println("Lista Preorden(Devuelve A|B|E|Z|W|X|Y|F|G|C|D|H): " + l2.toString());
+        ArbolGen arbolClon= arbol1.clone();
+
+        Lista l1= arbol1.listarPorNiveles();
+        Lista l2= arbolClon.listarPorNiveles();
+        System.out.println(l1.toString());
+        System.out.println(l2.toString());
+         
+        
 
     }
 }
