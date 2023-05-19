@@ -119,23 +119,23 @@ public class ArbolGen {
                 // llegue al nodo que busco, se corta el ciclo
                 nodoTemp = n;
             } else {
-                
-                 nodoTemp = obtenerNodo(n.getHermanoDerecho(), elem);
-                 // avanza por los hermanos derechos del nodo
-                  if (nodoTemp == null) {
-                  nodoTemp = obtenerNodo(n.getHijoIzquierdo(), elem);
-                  // si no lo encontre entre todos sus hermanos,avanzo al hijo izquierdo
-                  }
-                
+
+                nodoTemp = obtenerNodo(n.getHermanoDerecho(), elem);
+                // avanza por los hermanos derechos del nodo
+                if (nodoTemp == null) {
+                    nodoTemp = obtenerNodo(n.getHijoIzquierdo(), elem);
+                    // si no lo encontre entre todos sus hermanos,avanzo al hijo izquierdo
+                }
+
             }
         }
         return nodoTemp;
     }
 
     public Object padre(Object elemento) {
-        Object elemPadre=null;
-        if(!this.raiz.equals(elemento)){
-            elemPadre=padreAux(this.raiz,elemento);
+        Object elemPadre = null;
+        if (!this.raiz.equals(elemento)) {
+            elemPadre = padreAux(this.raiz, elemento);
         }
         return elemPadre;
     }
@@ -145,20 +145,20 @@ public class ArbolGen {
         // si no es vacio
         if (n != null) {
             NodoGen hijo = n.getHijoIzquierdo();
-            while(hijo!=null && resultado==null){
-                //visitahijos de n
-                if(hijo.getElem().equals(elem)){
-                    resultado=n.getElem();
-                }else{
-                    hijo=hijo.getHermanoDerecho();
+            while (hijo != null && resultado == null) {
+                // visitahijos de n
+                if (hijo.getElem().equals(elem)) {
+                    resultado = n.getElem();
+                } else {
+                    hijo = hijo.getHermanoDerecho();
                 }
             }
             if (resultado == null) {
-                //
-                hijo=n.getHijoIzquierdo();
-                while(hijo!=null && resultado==null){
-                    resultado=padreAux(hijo, elem);
-                    hijo=hijo.getHermanoDerecho();
+
+                hijo = n.getHijoIzquierdo();
+                while (hijo != null && resultado == null) {
+                    resultado = padreAux(hijo, elem);
+                    hijo = hijo.getHermanoDerecho();
                 }
             }
         }
@@ -238,19 +238,33 @@ public class ArbolGen {
     private void listarPreordenAux(NodoGen n, Lista ls) {
         if (n != null) {
             ls.insertar(n.getElem(), ls.longitud() + 1);
-            if (n.getHijoIzquierdo() != null) {
-                listarInordenAux(n.getHijoIzquierdo(), ls);
-            }
-
+            listarPreordenAux(n.getHijoIzquierdo(), ls);
             if (n.getHijoIzquierdo() != null) {
                 NodoGen hijo = n.getHijoIzquierdo().getHermanoDerecho();
                 while (hijo != null) {
-                    listarInordenAux(hijo, ls);
+                    listarPreordenAux(hijo, ls);
                     hijo = hijo.getHermanoDerecho();
                 }
             }
         }
     }
+
+    /*
+     * private void listarPreordenAux(Lista l,NodoGen nodo){
+     * if(nodo!=null){
+     * l.insertar(nodo.getElem(), l.longitud()+1);
+     * listarPreordenAux(l, nodo.getHijoIzquierdo());
+     * if(nodo.getHijoIzquierdo()!=null){
+     * NodoGen temp=nodo.getHijoIzquierdo().getHermanoDerecho();
+     * while(temp!=null){
+     * listarPreordenAux(l, temp);
+     * temp=temp.getHermanoDerecho();
+     * }
+     * }
+     * 
+     * }
+     * }
+     */
 
     public Lista listarPosorden() {
         Lista l = new Lista();
@@ -261,13 +275,13 @@ public class ArbolGen {
     private void listarPosordenAux(NodoGen n, Lista ls) {
         if (n != null) {
             if (n.getHijoIzquierdo() != null) {
-                listarInordenAux(n.getHijoIzquierdo(), ls);
+                listarPosordenAux(n.getHijoIzquierdo(), ls);
             }
 
             if (n.getHijoIzquierdo() != null) {
                 NodoGen hijo = n.getHijoIzquierdo().getHermanoDerecho();
                 while (hijo != null) {
-                    listarInordenAux(hijo, ls);
+                    listarPosordenAux(hijo, ls);
                     hijo = hijo.getHermanoDerecho();
                 }
             }

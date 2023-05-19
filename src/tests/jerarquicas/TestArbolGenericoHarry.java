@@ -20,12 +20,19 @@ public class TestArbolGenericoHarry {
             arbol1.insertar('W', 'Z');
             arbol1.insertar('X', 'Z');
             System.out.println(arbol1.toString());
-            /*
-             * Lista l= arbol1.ancestros('X');
-            System.out.println(l.toString());
-             */
-
             System.out.println(arbol1.padre('X'));
+           /*
+            *  Lista lista1= arbol1.listarInorden();
+            System.out.println("Lista Inorden: "+ lista1.toString() );
+            Lista l2=arbol1.listarPreorden();
+            System.out.println("Lista Preorden(Devuelve A|B|E|Z|W|X|Y|F|G|C|D|H): "+l2.toString());
+            Lista l3=arbol1.listarPosorden();
+            System.out.println("Lista PosOrden: "+l3.toString());
+
+            */
+
+
+            
         
     }
 }
