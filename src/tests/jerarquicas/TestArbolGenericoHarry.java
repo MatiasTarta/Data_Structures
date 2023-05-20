@@ -8,31 +8,36 @@ public class TestArbolGenericoHarry {
         ArbolGen arbol1 = new ArbolGen();
         
          
-          arbol1.insertar(10,null);
-          arbol1.insertar(25,10);
-          arbol1.insertar(33,10);
-          arbol1.insertar(54,10);
-          arbol1.insertar(15,25);
-          arbol1.insertar(47,33);
-          arbol1.insertar(18,33);
-          arbol1.insertar(63,33);
-          arbol1.insertar(9,18);
-         
+          arbol1.insertar('A',null);
+          arbol1.insertar('B','A');
+          arbol1.insertar('C','A');
+          arbol1.insertar('D','A');
+          arbol1.insertar('E','B');
+          arbol1.insertar('F','B');
+          arbol1.insertar('G','B');
+          arbol1.insertar('H','D');
+          arbol1.insertar('I','G');
+          arbol1.insertar('J','I');
+          arbol1.insertar('K','E');
+          arbol1.insertar('L','E');
+          arbol1.insertar('M','L');
+          
+          
+        
         
         
         System.out.println(arbol1.toString());
-        Lista l= new Lista();
-
-        l.insertar(15, 1);
-        l.insertar(47, 2);
-        l.insertar(9, 3);
-        l.insertar(63, 4);
-        l.insertar(54, 5);
-        l.insertar(19, 6);
-        System.out.println(l.toString());
-        System.out.println("Son frontera debe retornar true: "+ arbol1.sonFrontera(l));
-         
+        /*
+         * System.out.println("Inserto B como hijo de A "+ ((a.insertar('B','A')) ? sOk : sErr) );
+         */
+         ArbolGen a2= arbol1.clone();
+         //a2.insertar('W', 'A');
+        Lista l1= arbol1.listarPorNiveles();
+        Lista l2= a2.listarPorNiveles();
+        System.out.println(l1.toString());
+        System.out.println(l2.toString());
         
+        System.out.println(arbol1.equals(a2));
 
     }
 }

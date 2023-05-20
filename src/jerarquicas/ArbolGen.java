@@ -329,17 +329,53 @@ public class ArbolGen {
 
         while (i <= unaLista.longitud() && son) {
             NodoGen n = obtenerNodo(raiz, unaLista.recuperar(i));
-            
-            
              if (n==null ||n.getHijoIzquierdo() != null) {
                 son = false;
 
             }
-             
-
             i++;
         }
         return son;
+    }
+
+    public boolean equals(ArbolGen unArbol){
+        boolean igual;
+
+        igual=equalsAux(this.raiz, unArbol.raiz);
+
+        return igual;
+    }
+
+
+    private boolean equalsAux(NodoGen nodo, NodoGen nodo2) {
+        boolean igual = true;
+
+        if (nodo == null && nodo2 == null) {
+            igual = true; // Ambos nodos son nulos, considerados iguales
+        } 
+        else if (nodo == null || nodo2 == null) {
+            igual = false; // Uno de los nodos es nulo y el otro no, considerados diferentes
+        } 
+        else if (!nodo.getElem().equals(nodo2.getElem())) {
+            igual = false; // Los elementos de los nodos son diferentes
+        } 
+        else{
+            NodoGen hijo = nodo.getHijoIzquierdo();
+            NodoGen hijo2 = nodo2.getHijoIzquierdo();
+
+            // Recursión para comparar los hijos de los nodos
+            while (hijo != null || hijo2 != null) {
+                if (!equalsAux(hijo, hijo2)) {
+                    igual = false; // Los hijos son diferentes
+                    break;
+                }
+                
+                hijo = hijo.getHermanoDerecho();
+                hijo2 = hijo2.getHermanoDerecho();
+            }
+        }
+
+        return igual; // Devuelve el resultado almacenado en la variable 'igual'
     }
 
 }
