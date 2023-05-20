@@ -325,12 +325,14 @@ public class ArbolGen {
         boolean son = true;
         if (raiz == null || unaLista.esVacia()) {
             son = false;
+            //si la lista es vacia o el arbol es vacio devuelve falso
         }
-
         while (i <= unaLista.longitud() && son) {
             NodoGen n = obtenerNodo(raiz, unaLista.recuperar(i));
+            //para cada elemento de la lista, lo asigno a un nodo y llamo a obtener Nodo para localizarlo
              if (n==null ||n.getHijoIzquierdo() != null) {
                 son = false;
+                //Si el nodo tiene hijos o no pertenece al arbol es falso
 
             }
             i++;
@@ -351,10 +353,10 @@ public class ArbolGen {
         boolean igual = true;
 
         if (nodo == null && nodo2 == null) {
-            igual = true; // Ambos nodos son nulos, considerados iguales
+            igual = true; // Ambos nodos son nulos
         } 
         else if (nodo == null || nodo2 == null) {
-            igual = false; // Uno de los nodos es nulo y el otro no, considerados diferentes
+            igual = false; // Uno de los nodos es nulo y el otro no
         } 
         else if (!nodo.getElem().equals(nodo2.getElem())) {
             igual = false; // Los elementos de los nodos son diferentes
@@ -363,10 +365,11 @@ public class ArbolGen {
             NodoGen hijo = nodo.getHijoIzquierdo();
             NodoGen hijo2 = nodo2.getHijoIzquierdo();
 
-            // Recursión para comparar los hijos de los nodos
+            // Llamado Recursivo para comparar los hijos de los nodos
             while (hijo != null || hijo2 != null) {
                 if (!equalsAux(hijo, hijo2)) {
-                    igual = false; // Los hijos son diferentes
+                    igual = false; 
+                    // Si los hijos son diferentes retorna falso
                     break;
                 }
                 
@@ -375,7 +378,7 @@ public class ArbolGen {
             }
         }
 
-        return igual; // Devuelve el resultado almacenado en la variable 'igual'
+        return igual;
     }
 
 }

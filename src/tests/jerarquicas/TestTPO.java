@@ -52,13 +52,12 @@ public class TestTPO {
         System.out.println(
                 "-------------------------------------------------------------------------------------------------------"
                         + "---------------------------------------------------------------------------");
-        ArbolGen arbol1 = arbol;
-        ArbolGen arbol2 = arbol1.clone();
-        ArbolGen arbol3 = arbol1.clone();
+        ArbolGen arbol2 = arbol.clone();
+        ArbolGen arbol3 = arbol.clone();
         arbol3.insertar('X', 'K');
         arbol3.insertar('Y', 'X');
         ArbolGen arbol4 = arbolPrueba4();
-        ArbolGen arbol5 = arbol1.clone();
+        ArbolGen arbol5 = arbol.clone();
         ArbolGen arbol6 = new ArbolGen();
         ArbolGen arbol7 = arbolPrueba7();
 
@@ -69,15 +68,15 @@ public class TestTPO {
 
         // Comparación entre arboles iguales
         System.out.println("Resultado equals (arboles iguales). Tiene que dar " + sOk + " --> "
-                + ((arbol1.equals(arbol2)) ? sOk : sErr));
+                + ((arbol.equals(arbol2)) ? sOk : sErr));
 
         // Comparación entre arboles de diferente longitud
         System.out.println("Resultado equals (arboles de diferente longitud). Tiene que dar " + sErr + " --> "
-                + ((arbol1.equals(arbol3)) ? sOk : sErr));
+                + ((arbol.equals(arbol3)) ? sOk : sErr));
 
         // Comparación entre arboles con diferente estructura pero mismo contenido
         System.out.println("Resultado equals (arboles con diferente estructura pero mismo contenido). Tiene que dar "
-                + sErr + " --> " + ((arbol1.equals(arbol4)) ? sOk : sErr));
+                + sErr + " --> " + ((arbol.equals(arbol4)) ? sOk : sErr));
 
         arbol5.vaciar();
         // Comparación entre arboles vacíos
@@ -86,7 +85,7 @@ public class TestTPO {
 
         // Comparación entre arboles con mismo tamaño pero diferentes valores
         System.out.println("Resultado equals (arboles con mismo tamaño pero diferentes valores). Tiene que dar " + sErr
-                + " --> " + ((arbol1.equals(arbol7)) ? sOk : sErr));
+                + " --> " + ((arbol.equals(arbol7)) ? sOk : sErr));
 
     }
 
@@ -121,7 +120,6 @@ public class TestTPO {
         System.out.println("\n");
         return a;
     }
-
     public static Lista listaPrueba1() {
         Lista l1 = new Lista();
         l1.insertar('C', 1);
@@ -133,7 +131,6 @@ public class TestTPO {
         l1.insertar('J', 7);
         return l1;
     }
-
     public static Lista listaPrueba2() {
         Lista l2 = new Lista();
         l2.insertar('C', 1);
@@ -146,7 +143,6 @@ public class TestTPO {
         l2.insertar('J', 8);
         return l2;
     }
-
     public static Lista listaPrueba3() {
         Lista l3 = new Lista();
         l3.insertar('C', 1);
@@ -157,7 +153,6 @@ public class TestTPO {
         l3.insertar('J', 6);
         return l3;
     }
-
     public static Lista listaPrueba4() {
         Lista l4 = new Lista();
         l4.insertar('C', 1);
@@ -167,7 +162,6 @@ public class TestTPO {
         l4.insertar('M', 5);
         return l4;
     }
-
     public static ArbolGen arbolPrueba4() {
         ArbolGen a = new ArbolGen();
         a.insertar('A', null);
@@ -181,10 +175,8 @@ public class TestTPO {
         a.insertar('J', 'D');
         a.insertar('K', 'E');
         a.insertar('L', 'K');
-
         return a;
     }
-
     public static ArbolGen arbolPrueba7() {
         ArbolGen a = new ArbolGen();
         a.insertar('X', null);
@@ -199,7 +191,6 @@ public class TestTPO {
         a.insertar('9', 'W');
         a.insertar('A', '1');
         a.insertar('6', '1');
-
         return a;
     }
 }
