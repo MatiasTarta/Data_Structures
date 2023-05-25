@@ -168,45 +168,82 @@ public class Lista {
             return nodoAux; // devuelve el último nodo
         }
     }
-    
-    
 
     public Lista obtenerMultiplos(int x) {
         Lista lis = new Lista();
-        if(this.cabecera!=null){
-            lis.cabecera=obtenerMultiplosAux(this.cabecera,x,1);
+        if (this.cabecera != null) {
+            lis.cabecera = obtenerMultiplosAux(this.cabecera, x, 1);
         }
         return lis;
     }
-    private Nodo obtenerMultiplosAux(Nodo nodo, int x, int pos){
-        Nodo nuevo=null;
-        if(nodo!=null){
-            if(pos%x==0){
-                //si es multiplo creo un nuevo nodo con el elemento
-                nuevo= new Nodo(nodo.getElem(), null);
-                nuevo.setEnlace(obtenerMultiplosAux(nodo.getEnlace(), x, pos+1));
-                //enlazo el nuevo nodo con el siguiente nodo que cumpla, avanzo 1 la posicion
-            }else{
-                nuevo=obtenerMultiplosAux(nodo.getEnlace(), x, pos+1);
-                //si no se cumplia la posicion avanzo en la lista
+
+    private Nodo obtenerMultiplosAux(Nodo nodo, int x, int pos) {
+        Nodo nuevo = null;
+        if (nodo != null) {
+            if (pos % x == 0) {
+                // si es multiplo creo un nuevo nodo con el elemento
+                nuevo = new Nodo(nodo.getElem(), null);
+                nuevo.setEnlace(obtenerMultiplosAux(nodo.getEnlace(), x, pos + 1));
+                // enlazo el nuevo nodo con el siguiente nodo que cumpla, avanzo 1 la posicion
+            } else {
+                nuevo = obtenerMultiplosAux(nodo.getEnlace(), x, pos + 1);
+                // si no se cumplia la posicion avanzo en la lista
             }
         }
         return nuevo;
     }
-    
 
     public void eliminarApariciones(Object x) {
         Nodo aux = this.cabecera;
-        Nodo enlace=aux;
-        //usamos un nodo  para recorrer la listaq y otro para setear los enclaces
-        int i=1;
-        while(i<=this.longitud && aux.getEnlace()!=null){
-            if((aux.getEnlace()).getElem().equals(x)){
-                enlace.setEnlace(aux.getEnlace().getEnlace());    
+        Nodo enlace = aux;
+        // usamos un nodo para recorrer la listaq y otro para setear los enclaces
+        int i = 1;
+        while (i <= this.longitud && aux.getEnlace() != null) {
+            if ((aux.getEnlace()).getElem().equals(x)) {
+                enlace.setEnlace(aux.getEnlace().getEnlace());
             }
-            aux=aux.getEnlace();
+            aux = aux.getEnlace();
             i++;
         }
     }
+
+    public void cambiarPosicion(int pos1, int pos2) {
+        if (!(pos1 == pos2) && pos1 > 0 && pos2 > 0) {
+            Nodo aux = this.cabecera;
+            if (pos1 == 1 && pos2 != 1) {
+                cambiarCabeceraAux(pos1, pos2, aux);
+            } else if (pos2 == 1 && pos1 != 1) {
+                cambiarCabeceraAux(pos2, pos1, aux);
+            } else if (pos2 > pos1 && pos2 <= this.longitud && pos1 != 1 && pos2 != 1) {
+                cambiarPosicionAux(pos1, pos2, aux);
+            } else if (pos1 > pos2 && pos1 <= this.longitud && pos1 != 1 && pos2 != 1) {
+                cambiarPosicionAux(pos2, pos1, aux);
+            }
+
+        }
+
+    }
+
+    private void cambiarPosicionAux(int pos1, int pos2, Nodo aux) {
+        for (int i = 1; i < pos1 - 1; i++) {
+            aux = aux.getEnlace();
+        }
+        Object x = aux.getEnlace().getElem();
+        Nodo aux2 = aux.getEnlace();
+        for (int j = pos1; j < pos2 - 1; j++) {
+            aux2 = aux2.getEnlace();
+        }
+        Object y = aux2.getEnlace().getElem();
+        aux2.setEnlace(new Nodo(x, aux2.getEnlace().getEnlace()));
+        aux.setEnlace(new Nodo(y, aux.getEnlace().getEnlace()));
+    }
+
+    private void cambiarCabeceraAux(int pos1, int pos2, Nodo aux) {
+        for (int i = 1; i < pos2 - 1; i++) {
+            aux = aux.getEnlace();
+        }
+        Object x = aux.getEnlace().getElem();
+        aux.setEnlace(new Nodo(this.cabecera.getElem(), aux.getEnlace().getEnlace()));
+        this.cabecera = new Nodo(x, this.cabecera.getEnlace());
+    }
 }
- 

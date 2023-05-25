@@ -244,6 +244,21 @@ public class ArbolBin {
         public void vaciar(){
             this.raiz=null;
         }
+        public boolean menorCantApariciones(Object elem,int cant){
+            return(contarAparciones(elem,this.raiz,cant,0)<cant);
+        }
+        private int contarAparciones(Object x,NodoArbol aux, int cant, int contador){
+            int contadorI=0, contadorD=0;
+            if(aux!=null && contador<cant){
+                if(aux.getElem().equals(x)){
+                    contador++;
+                }
+                contadorI= contarAparciones(x, aux.getIzquierdo(), cant, 0);
+                contadorD= contarAparciones(x, aux.getDerecho(), cant, 0);
+                contador=contadorD+contadorI;
+            }
+            return contador;
+        }
   
 
 }

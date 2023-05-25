@@ -75,19 +75,8 @@ public class Pila {
         cadena = "[|"+cadena;
         return cadena;
       }
-    /*
-     *   public String toString () {
-    String cadena;
-    cadena = "]";
-    Nodo nodoTemp = this.tope;
-    while (nodoTemp !=null) {
-        cadena = nodoTemp.getElem() + "|" + cadena  ; 
-        nodoTemp = nodoTemp.getEnlace();
-    }
-    cadena = "[|"+cadena;
-    return cadena;
-  }
-     */
+      
+    
     public boolean equals(Pila p){
         boolean rta=true;
         Nodo aux=this.tope;
