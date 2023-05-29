@@ -16,14 +16,33 @@ public class HeapMin {
     // Padre , n/2
     public boolean insertar(Comparable aux) {
         boolean exito = false;
-        if(ultimo+1<tamanio){
+        if(esLLeno()){
+            aumentarArreglo();
+        }
+        exito=true;
+            ultimo++;
+            heap[ultimo]=aux;
+            hacerSubir(ultimo);
+        /*
+         * if(ultimo+1<tamanio){
             exito=true;
             ultimo++;
             heap[ultimo]=aux;
             hacerSubir(ultimo);
         }
+         */
         return exito;
     }
+    private void aumentarArreglo() {
+        tamanio = tamanio + 10;
+        Comparable[] temp = new Comparable[tamanio];
+        int longi = heap.length;
+        for (int i = 0; i < longi; i++) {
+            temp[i] = heap[i];
+        }
+        heap = temp;
+    }
+
 
     private void hacerSubir(int posHijo) {
         int posPadre;
