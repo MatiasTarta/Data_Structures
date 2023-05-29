@@ -1,64 +1,56 @@
-import java.beans.PropertyChangeListenerProxy;
+package conjuntistas;
 
 public class HeapMin {
-    private int tamanio = 10;
+    private int tamanio = 20;
     private Comparable[] heap;
     private int ultimo;
-    //en un Heap la posicion del Padre es K, la del HI es 2k y la del HD es 2k+1
-    public HeapMin(){
-        this.heap= Comparable[] heap;
-        this.ultimo=0;
+
+    // minimo
+    public HeapMin() {
+        this.heap = new Comparable[tamanio];
+        this.ultimo = 0;
     }
 
-    public boolean insertar(int num) {
-        boolean puesto;
-        boolean esVacio = this.esVacio();
-        puesto = poner(num);
-        if (!esVacio()) {
-            ordenarUltimo();
+    // Arreglo hijo izquierdo , posicion 2n
+    // Arreglo hijo derecho , posicion 2n + 1
+    // Padre , n/2
+    public boolean insertar(Comparable aux) {
+        boolean exito = false;
+        if(ultimo+1<tamanio){
+            exito=true;
+            ultimo++;
+            heap[ultimo]=aux;
+            hacerSubir(ultimo);
         }
-        return puesto;
+        return exito;
     }
 
-    boolean poner(int num) {
-        if (esLLeno()) {
-            aumentarArreglo();
-        }
-        // si el heap ya esta lleno aumenta su tamanio
-        heap[ultimo + 1] = num;
-        // coloca el numero en el ultimo lugar
-        ultimo = ultimo + 1;
-        // corre el ultimo lugar
-        return true;
-    }
-
-    private void aumentarArreglo() {
-        this.tamanio = tamanio + 10;
-        Comparable[] temp = new Comparable[tamanio];
-        // crea un arreglo auxiliar mas grande q el anterior
-        int longi = heap.length;
-        for (int i = 0; i < longi; i++) {
-            temp[i] = heap[i];
-            // clona el arreglo anterior
-        }
-        heap = temp;
-        // el nuevo arreglo es mas grande que el anterior pero mas largo;
-
-    }
-
-    private void ordenarUltimo() {
-        int posicion = ultimo; // Guarda la posición del último elemento en el hep
-
-        while ((heap[posicion].compareTo(heap[posicion / 2])) < 0) {
-            Comparable padre = heap[posicion / 2]; // Guarda el elemento padre
-            heap[posicion / 2] = heap[posicion]; // Reemplaza el padre con el elemento actual
-            heap[posicion] = padre; // Reemplaza el elemento actual con el padre
-            posicion = posicion / 2; // Mueve la posición al padre en el siguiente nivel
+    private void hacerSubir(int posHijo) {
+        int posPadre;
+        Comparable temp = this.heap[posHijo];
+        boolean salir = false;
+        while (!salir) {
+            posPadre = posHijo / 2;
+            if (posPadre >= 1) {
+                if ((this.heap[posPadre].compareTo(temp)) > 0) {
+                    // intercambio
+                    this.heap[posHijo] = this.heap[posPadre];
+                    this.heap[posPadre] = temp;
+                    posHijo = posPadre;
+                } else {
+                    salir = true;
+                }
+            } else {
+                salir = true;
+            }
         }
     }
+
+    
+    
 
     public boolean eliminarCima() {
-        boolean exito;
+        boolean exito=true;
         if (this.ultimo == 0) {
             // estructura vacia
             exito = false;
@@ -73,35 +65,35 @@ public class HeapMin {
         return exito;
     }
 
-    private void hacerBajar(int posPadre){
+    private void hacerBajar(int posPadre) {
         int posH;
-        Comparable temp= this.heap[posPadre];
-        boolean salir=false;
-        while(!salir){
-            posH=posPadre*2;
-            //se calcula posicion del hijo izquierdo
-            if(posH<=this.ultimo){
-                //temp tiene al menos un hijo izq y lo considera menor
-                if(posH<this.ultimo){
-                    //hijo menor tiene hermano derecho
-                    if((this.heap[posH+1].compareTo(this.heap[posH]))<0){
-                        //el hijo derecho es el menor de los dos
+        Comparable temp = this.heap[posPadre];
+        boolean salir = false;
+        while (!salir) {
+            posH = posPadre * 2;
+            // se calcula posicion del hijo izquierdo
+            if (posH <= this.ultimo) {
+                // temp tiene al menos un hijo izq y lo considera menor
+                if (posH < this.ultimo) {
+                    // hijo menor tiene hermano derecho
+                    if ((this.heap[posH + 1].compareTo(this.heap[posH])) < 0) {
+                        // el hijo derecho es el menor de los dos
                         posH++;
                     }
                 }
-                //compara al hijo menor con el padre
-                if((this.heap[posH].compareTo(temp))<0){
-                    //el hijo es menjor que el padre, los intercambia
-                    this.heap[posPadre]=this.heap[posH];
-                    this.heap[posH]=temp;
-                    posPadre=posH;
-                }else{
-                    //el padre es menor q sus hijos, esta bien ubicado
-                    salir=true;
+                // compara al hijo menor con el padre
+                if ((this.heap[posH].compareTo(temp)) < 0) {
+                    // el hijo es menjor que el padre, los intercambia
+                    this.heap[posPadre] = this.heap[posH];
+                    this.heap[posH] = temp;
+                    posPadre = posH;
+                } else {
+                    // el padre es menor q sus hijos, esta bien ubicado
+                    salir = true;
                 }
-            }else{
-                //el temp es hoja, esta bien ubicado
-                salir=true;
+            } else {
+                // el temp es hoja, esta bien ubicado
+                salir = true;
             }
         }
     }
@@ -113,15 +105,12 @@ public class HeapMin {
     public boolean esLLeno() {
         return ultimo == heap.length - 1;
     }
+
     public String toString() {
-        String salida = "[";
-        for (int i = 0; i < tamanio; i++) {
-            salida = salida + this.heap[i];
-            if (i < tamanio - 1) {
-                salida = salida + ", ";
-            }
+        String cadena = "";
+        for (int i = 1; i <= ultimo; i++) {
+            cadena = cadena + "[" + heap[i] + "]";
         }
-        salida = salida + "]";
-        return salida;
+        return cadena;
     }
 }

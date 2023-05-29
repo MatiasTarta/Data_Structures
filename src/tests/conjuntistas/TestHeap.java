@@ -12,18 +12,6 @@ public class TestHeap {
         heap.insertar(1);
         heap.insertar(10);
 
-        /*
-         * // Imprimir el heap antes de la eliminación
-        System.out.println("Heap antes de la eliminación:");
-        heap.toString();
-
-        // Eliminar el elemento mínimo del heap
-         heap.eliminarCima();
-        System.out.println("Elemento mínimo eliminado: ");
-
-        // Imprimir el heap después de la eliminación
-        System.out.println("Heap después de la eliminación:");
-         */
-        heap.toString();
+        System.out.println(heap.toString());
     }
 }
