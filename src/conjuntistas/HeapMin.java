@@ -16,23 +16,17 @@ public class HeapMin {
     // Padre , n/2
     public boolean insertar(Comparable aux) {
         boolean exito = false;
-        if(esLLeno()){
+        if (esLLeno()) {
             aumentarArreglo();
         }
-        exito=true;
-            ultimo++;
-            heap[ultimo]=aux;
-            hacerSubir(ultimo);
-        /*
-         * if(ultimo+1<tamanio){
-            exito=true;
-            ultimo++;
-            heap[ultimo]=aux;
-            hacerSubir(ultimo);
-        }
-         */
+        exito = true;
+        ultimo++;
+        heap[ultimo] = aux;
+        hacerSubir(ultimo);
+
         return exito;
     }
+
     private void aumentarArreglo() {
         tamanio = tamanio + 10;
         Comparable[] temp = new Comparable[tamanio];
@@ -42,7 +36,6 @@ public class HeapMin {
         }
         heap = temp;
     }
-
 
     private void hacerSubir(int posHijo) {
         int posPadre;
@@ -65,11 +58,8 @@ public class HeapMin {
         }
     }
 
-    
-    
-
     public boolean eliminarCima() {
-        boolean exito=true;
+        boolean exito = true;
         if (this.ultimo == 0) {
             // estructura vacia
             exito = false;
@@ -116,6 +106,20 @@ public class HeapMin {
             }
         }
     }
+
+    public Comparable recuperarCima(){
+        Comparable aux=null;
+        if(!esVacio()){
+            aux=this.heap[1];
+        }
+        return aux;
+    }
+    public void vaciar() {
+        this.heap = new Comparable[TAM];
+        this.ultimo = 0;
+    }
+    
+    
 
     public boolean esVacio() {
         return ultimo == 0;
