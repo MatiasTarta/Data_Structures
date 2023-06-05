@@ -51,7 +51,7 @@ public class ArbolABB {
         return exito;
     }
 
-    public boolean eliminar(Comparable elem) {
+    public boolean eliminar(Comparable elem){
         boolean exito = false;
         if (!esVacio()) {
             exito = eliminarAux(elem, this.raiz);

@@ -7,7 +7,7 @@ public class TestArbolGenericoHarry {
     public static void main(String[] arg) {
         ArbolGen arbol1 = new ArbolGen();
         
-         
+
           arbol1.insertar('A',null);
           arbol1.insertar('B','A');
           arbol1.insertar('C','A');
@@ -21,23 +21,11 @@ public class TestArbolGenericoHarry {
           arbol1.insertar('K','E');
           arbol1.insertar('L','E');
           arbol1.insertar('M','L');
-          
-          
-        
-        
-        
         System.out.println(arbol1.toString());
-        /*
-         * System.out.println("Inserto B como hijo de A "+ ((a.insertar('B','A')) ? sOk : sErr) );
-         */
-         ArbolGen a2= arbol1.clone();
-         //a2.insertar('W', 'A');
-        Lista l1= arbol1.listarPorNiveles();
-        Lista l2= a2.listarPorNiveles();
-        System.out.println(l1.toString());
-        System.out.println(l2.toString());
+        Lista l= arbol1.ancestros('M');
+        System.out.println(l.toString());
+
         
-        System.out.println(arbol1.equals(a2));
 
     }
 }
