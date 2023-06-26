@@ -169,25 +169,21 @@ public class Lista {
         }
     }
 
-    public Lista obtenerMultiplos(int x) {
-        Lista lis = new Lista();
+    public Lista obtenerMultiplos(int n) {
+        Lista nueva = new Lista();
         if (this.cabecera != null) {
-            lis.cabecera = obtenerMultiplosAux(this.cabecera, x, 1);
+            nueva.cabecera = obtenerMultiplosAux(n, this.cabecera, 1);
         }
-        return lis;
+        return nueva;
     }
 
-    private Nodo obtenerMultiplosAux(Nodo nodo, int x, int pos) {
+    private Nodo obtenerMultiplosAux(int num, Nodo n, int pos) {
         Nodo nuevo = null;
-        if (nodo != null) {
-            if (pos % x == 0) {
-                // si es multiplo creo un nuevo nodo con el elemento
-                nuevo = new Nodo(nodo.getElem(), null);
-                nuevo.setEnlace(obtenerMultiplosAux(nodo.getEnlace(), x, pos + 1));
-                // enlazo el nuevo nodo con el siguiente nodo que cumpla, avanzo 1 la posicion
-            } else {
-                nuevo = obtenerMultiplosAux(nodo.getEnlace(), x, pos + 1);
-                // si no se cumplia la posicion avanzo en la lista
+        if (n != null) {
+            if (pos % num == 0) {
+                nuevo = new Nodo(n.getElem(), obtenerMultiplosAux(num, n.getEnlace(), pos+1));
+            }else{
+                nuevo=obtenerMultiplosAux(num, n.getEnlace(), pos+1);
             }
         }
         return nuevo;

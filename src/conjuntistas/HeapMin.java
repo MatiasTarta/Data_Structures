@@ -115,7 +115,7 @@ public class HeapMin {
         return aux;
     }
     public void vaciar() {
-        this.heap = new Comparable[TAM];
+        this.heap = new Comparable[tamanio];
         this.ultimo = 0;
     }
     
