@@ -176,7 +176,6 @@ public class Lista {
         }
         return nueva;
     }
-
     private Nodo obtenerMultiplosAux(int num, Nodo n, int pos) {
         Nodo nuevo = null;
         if (n != null) {

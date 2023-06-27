@@ -65,13 +65,13 @@ public class Cola {
     }
 
     public String toString() {
-        String cadena = "[|";
+        String cadena = " ";
         Nodo temp = this.frente;
         while (temp != null) {
-            cadena = cadena + temp.getElem() + "|";
+            cadena = cadena + temp.getElem() ;
             temp = temp.getEnlace();
         }
-        cadena = cadena + "]";
+        cadena = cadena + " ";
         return cadena;
     }
     //cambio
