@@ -51,7 +51,8 @@ public class ArbolABB {
         return exito;
     }
 
-    public boolean eliminar(Comparable elem){
+    /*
+     * public boolean eliminar(Comparable elem){
         boolean exito = false;
         if (!esVacio()) {
             exito = eliminarAux(elem, this.raiz);
@@ -70,6 +71,7 @@ public class ArbolABB {
 
         return exito;
     }
+     */
 
     public Lista listar() {
         Lista lista = new Lista();
@@ -86,5 +88,94 @@ public class ArbolABB {
             listarAux(node.getIzquierdo(), lista);
         }
     }
+
+    public boolean eliminarelemanterior(Comparable elem){
+        boolean exito= false;
+        NodoArbol n= obtenerNodo(this.raiz,elem);
+        exito= eliminarelemanteriorAux(n);
+        return exito;
+    }
+    private boolean eliminarelemanteriorAux(NodoArbol n){
+        //Metodo privado para evauar ciertos casos trabajando con nodos
+        boolean exito= false;
+        if(n.getIzquierdo()!=null){
+            if(esHojaDerecha(n.getIzquierdo())){
+                n.setIzquierdo(n.getIzquierdo().getIzquierdo());
+                exito=true; //si el mayor elemento del subArbol es hijo inmdiat de n
+            }else{
+                exito=eliminarAux(n.getIzquierdo());
+            }
+        }
+        return exito;
+    }
+    private boolean esHojaDerecha(NodoArbol n){
+        return (n.getDerecho()==null);
+    }
+    private NodoArbol obtenerNodo(NodoArbol n,Comparable elem){
+        NodoArbol aux= null;
+        if(n!=null){
+            if(n.getElem().compareTo(elem)==0){
+                aux=n;
+            }else{
+                aux=obtenerNodo(n.getIzquierdo(),elem);//busco recursivamente por I
+                if(aux==null){
+                    aux=obtenerNodo(n.getDerecho(),elem);//busco recursivamente por D
+                }
+            }
+        }
+        return aux;
+    }
+    private boolean eliminarAux(NodoArbol n){
+        boolean exito=false;
+        if(n!=null){
+            NodoArbol hijoD= n.getDerecho();
+            if(hijoD.getDerecho()!=null){
+                exito= eliminarAux(hijoD);
+            }else{
+                n.setDerecho(null);
+                exito=true;
+            }
+        }
+        return exito;
+    }
+
+
+
+
+
+    public String toString() {
+        String cadena;
+        cadena = imprimir(this.raiz);
+        return cadena;
+    }
+
+    private String imprimir(NodoArbol nodo) {
+        String cadena = "";
+        if (nodo != null) {
+            if (nodo.getDerecho() != null || nodo.getIzquierdo() != null) {
+                cadena += "Nodo: " + nodo.getElem();
+                if (nodo.getIzquierdo() != null) {
+                    cadena += "[ HI: " + nodo.getIzquierdo().getElem() + " ]";
+                } else {
+                    cadena += "[ HI: null ]";
+                }
+                if (nodo.getDerecho() != null) {
+                    cadena += "[ HD: " + nodo.getDerecho().getElem() + " ]" + "\n";
+                } else {
+                    cadena += "[ HD: null ] \n";
+                }
+                cadena += imprimir(nodo.getIzquierdo());
+                cadena += imprimir(nodo.getDerecho());
+            } else {
+                cadena += "[ Hoja: " + nodo.getElem() + "]" + "\n";
+            }
+        }
+        return cadena;
+    }
+
+    /**
+     * Reutilizo el clone de Arbol Binario Orden O(n)
+     */
+
 
 }
