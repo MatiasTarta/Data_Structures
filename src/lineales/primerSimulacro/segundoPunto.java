@@ -43,7 +43,6 @@ public class segundoPunto {
         q.poner('1');
         q.poner('}');
         System.out.println(q.toString());
-
     }
 
     public static Cola generar(Cola c1) {

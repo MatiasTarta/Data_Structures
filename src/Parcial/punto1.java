@@ -59,7 +59,6 @@ public class punto1{
         return ls;
     }
     public static Pila acomodar (Pila p){
-
         Pila p2= p.clone();
         boolean vocal=false;
         while(!(p2.esVacia()) && !vocal){
@@ -85,9 +84,6 @@ public class punto1{
         }
 
     public static boolean esVocal(Object caracter) {
-        
-        
-        
         return caracter.equals('a') || caracter.equals('e') || caracter.equals('i') || caracter.equals('o') || caracter.equals('u');
     }
 }
