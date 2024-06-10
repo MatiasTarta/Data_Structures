@@ -95,8 +95,6 @@ public class ArbolGen {
         return si;
     }
 
-    
-
     public Object padre(Object elemento) {
         Object elemPadre = null;
         if (this.raiz != null && !this.raiz.equals(elemento)) {
@@ -251,29 +249,60 @@ public class ArbolGen {
         }
     }
 
-    public Lista listarPorNiveles() {
+    public Lista listarPorNiveles(int niv) {
         Lista lista = new Lista();
-        listarPorNivelesAux(this.raiz, lista);
+        listarPorNivelesAux(this.raiz, lista, niv);
         return lista;
     }
+    /*
+     * private void listarPorNivelesAux(NodoGen n, Lista lista, int niv) {
+     * int contador = 0;
+     * Cola c = new Cola();
+     * c.poner(n);
+     * if (this.raiz != null) {
+     * while (!c.esVacia() && niv >= contador) {
+     * NodoGen nodo = (NodoGen) c.obtenerFrente();
+     * c.sacar();
+     * lista.insertar(nodo.getElem(), lista.longitud() + 1);
+     * if (nodo.getHijoIzquierdo() != null) {
+     * NodoGen hijo = nodo.getHijoIzquierdo();
+     * contador++;
+     * while (hijo != null) {
+     * c.poner(hijo);
+     * hijo = hijo.getHermanoDerecho();
+     * }
+     * 
+     * }
+     * }
+     * }
+     * }
+     */
 
-    private void listarPorNivelesAux(NodoGen n, Lista lista) {
-        Cola c = new Cola();
-        c.poner(n);
-        if (this.raiz != null) {
-            while (!c.esVacia()) {
-                NodoGen nodo = (NodoGen) c.obtenerFrente();
-                c.sacar();
-                lista.insertar(nodo.getElem(), lista.longitud() + 1);
-                if (nodo.getHijoIzquierdo() != null) {
+    private Lista listarPorNivelesAux(NodoGen n, Lista lista, int niv) {
+        if (n != null && niv > 0) {
+            Cola c = new Cola();
+            c.poner(n);
+            int contador = 0;
+            int elementosNivelActual = 1;
+            while (!c.esVacia() && contador <= niv) {
+                int elementosSiguienteNivel = 0;
+                for (int i = 0; i < elementosNivelActual; i++) {
+                    //Inserta en la cola todos los hermanos
+                    NodoGen nodo = (NodoGen) c.obtenerFrente();
+                    c.sacar();
+                    lista.insertar(nodo.getElem(), lista.longitud() + 1);
                     NodoGen hijo = nodo.getHijoIzquierdo();
                     while (hijo != null) {
                         c.poner(hijo);
                         hijo = hijo.getHermanoDerecho();
+                        elementosSiguienteNivel++;
                     }
                 }
+                elementosNivelActual = elementosSiguienteNivel;
+                contador++;
             }
         }
+        return lista;
     }
 
     public String toString() {
@@ -297,6 +326,7 @@ public class ArbolGen {
         }
         return s;
     }
+
     private NodoGen obtenerNodo(NodoGen n, Object elem) {
         NodoGen nodoTemp = null;
         if (n != null) {
@@ -325,14 +355,15 @@ public class ArbolGen {
         boolean son = true;
         if (raiz == null || unaLista.esVacia()) {
             son = false;
-            //si la lista es vacia o el arbol es vacio devuelve falso
+            // si la lista es vacia o el arbol es vacio devuelve falso
         }
         while (i <= unaLista.longitud() && son) {
             NodoGen n = obtenerNodo(raiz, unaLista.recuperar(i));
-            //para cada elemento de la lista, lo asigno a un nodo y llamo a obtener Nodo para localizarlo
-             if (n==null ||n.getHijoIzquierdo() != null) {
+            // para cada elemento de la lista, lo asigno a un nodo y llamo a obtener Nodo
+            // para localizarlo
+            if (n == null || n.getHijoIzquierdo() != null) {
                 son = false;
-                //Si el nodo tiene hijos o no pertenece al arbol es falso
+                // Si el nodo tiene hijos o no pertenece al arbol es falso
 
             }
             i++;
@@ -340,39 +371,35 @@ public class ArbolGen {
         return son;
     }
 
-    public boolean equals(ArbolGen unArbol){
+    public boolean equals(ArbolGen unArbol) {
         boolean igual;
 
-        igual=equalsAux(this.raiz, unArbol.raiz);
+        igual = equalsAux(this.raiz, unArbol.raiz);
 
         return igual;
     }
-
 
     private boolean equalsAux(NodoGen nodo, NodoGen nodo2) {
         boolean igual = true;
 
         if (nodo == null && nodo2 == null) {
             igual = true; // Ambos nodos son nulos
-        } 
-        else if (nodo == null || nodo2 == null) {
+        } else if (nodo == null || nodo2 == null) {
             igual = false; // Uno de los nodos es nulo y el otro no
-        } 
-        else if (!nodo.getElem().equals(nodo2.getElem())) {
+        } else if (!nodo.getElem().equals(nodo2.getElem())) {
             igual = false; // Los elementos de los nodos son diferentes
-        } 
-        else{
+        } else {
             NodoGen hijo = nodo.getHijoIzquierdo();
             NodoGen hijo2 = nodo2.getHijoIzquierdo();
 
             // Llamado Recursivo para comparar los hijos de los nodos
             while (hijo != null || hijo2 != null) {
                 if (!equalsAux(hijo, hijo2)) {
-                    igual = false; 
+                    igual = false;
                     // Si los hijos son diferentes retorna falso
                     break;
                 }
-                
+
                 hijo = hijo.getHermanoDerecho();
                 hijo2 = hijo2.getHermanoDerecho();
             }

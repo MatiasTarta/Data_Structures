@@ -1,4 +1,5 @@
 package conjuntistas;
+
 import lineales.dinamicas.*;
 
 public class ArbolABB {
@@ -53,24 +54,24 @@ public class ArbolABB {
 
     /*
      * public boolean eliminar(Comparable elem){
-        boolean exito = false;
-        if (!esVacio()) {
-            exito = eliminarAux(elem, this.raiz);
-        }
-        return exito;
-    }
-
-    private boolean eliminarAux(Comparable elem, NodoArbol n){
-        boolean exito=false;
-        if(n!=null){
-            if(elem.compareTo(n)==0){
-
-            }
-        }
-
-
-        return exito;
-    }
+     * boolean exito = false;
+     * if (!esVacio()) {
+     * exito = eliminarAux(elem, this.raiz);
+     * }
+     * return exito;
+     * }
+     * 
+     * private boolean eliminarAux(Comparable elem, NodoArbol n){
+     * boolean exito=false;
+     * if(n!=null){
+     * if(elem.compareTo(n)==0){
+     * 
+     * }
+     * }
+     * 
+     * 
+     * return exito;
+     * }
      */
 
     public Lista listar() {
@@ -89,59 +90,65 @@ public class ArbolABB {
         }
     }
 
-    public boolean eliminarelemanterior(Comparable elem){
-        boolean exito= false;
-        NodoArbol n= obtenerNodo(this.raiz,elem);
-        exito= eliminarelemanteriorAux(n);
+    public boolean eliminarelemanterior(Comparable elem) {
+        boolean exito = false;
+        NodoArbol n = obtenerNodo(this.raiz, elem);
+        exito = eliminarelemanteriorAux(n);
         return exito;
     }
-    private boolean eliminarelemanteriorAux(NodoArbol n){
-        //Metodo privado para evauar ciertos casos trabajando con nodos
-        boolean exito= false;
-        if(n.getIzquierdo()!=null){
-            if(esHojaDerecha(n.getIzquierdo())){
+
+    private boolean eliminarelemanteriorAux(NodoArbol n) {
+        // Metodo privado para evauar ciertos casos trabajando con nodos
+        boolean exito = false;
+        if (n.getIzquierdo() != null) {
+            if (esHojaDerecha(n.getIzquierdo())) {
                 n.setIzquierdo(n.getIzquierdo().getIzquierdo());
-                exito=true; //si el mayor elemento del subArbol es hijo inmdiat de n
-            }else{
-                exito=eliminarAux(n.getIzquierdo());
+                exito = true; // si el mayor elemento del subArbol es hijo inmdiat de n
+            } else {
+                exito = eliminar(n.getIzquierdo());
             }
         }
         return exito;
     }
-    private boolean esHojaDerecha(NodoArbol n){
-        return (n.getDerecho()==null);
+
+    private boolean esHojaDerecha(NodoArbol n) {
+        return (n.getDerecho() == null);
     }
-    private NodoArbol obtenerNodo(NodoArbol n,Comparable elem){
-        NodoArbol aux= null;
-        if(n!=null){
-            if(n.getElem().compareTo(elem)==0){
-                aux=n;
-            }else{
-                aux=obtenerNodo(n.getIzquierdo(),elem);//busco recursivamente por I
-                if(aux==null){
-                    aux=obtenerNodo(n.getDerecho(),elem);//busco recursivamente por D
-                }
+
+    private NodoArbol obtenerNodo(NodoArbol n, Comparable elem) {
+        NodoArbol aux = null;
+        if (n != null) {
+            if (n.getElem().compareTo(elem) == 0) {
+                aux = n;
+            }
+            if (n.getElem().compareTo(elem) < 0) {
+                aux = obtenerNodo(n.getIzquierdo(), elem);
+                // busco recursivamente por I
+            }
+            if (n.getElem().compareTo(elem) > 0) {
+                aux = obtenerNodo(n.getDerecho(), elem);// busco recursivamente por D
             }
         }
         return aux;
     }
-    private boolean eliminarAux(NodoArbol n){
-        boolean exito=false;
-        if(n!=null){
-            NodoArbol hijoD= n.getDerecho();
-            if(hijoD.getDerecho()!=null){
-                exito= eliminarAux(hijoD);
-            }else{
-                n.setDerecho(null);
-                exito=true;
+
+    private boolean eliminar(NodoArbol n) {
+        boolean exito = false;
+        if (n != null) {
+            NodoArbol hijoD = n.getDerecho();
+            if (hijoD.getDerecho() != null) {
+                exito = eliminar(hijoD);
+            } else {
+                if (n.getDerecho().getIzquierdo() != null) {
+                    n.setDerecho(n.getDerecho().getIzquierdo());
+                } else {
+                    n.setDerecho(null);
+                    exito = true;
+                }
             }
         }
         return exito;
     }
-
-
-
-
 
     public String toString() {
         String cadena;
@@ -176,6 +183,5 @@ public class ArbolABB {
     /**
      * Reutilizo el clone de Arbol Binario Orden O(n)
      */
-
 
 }

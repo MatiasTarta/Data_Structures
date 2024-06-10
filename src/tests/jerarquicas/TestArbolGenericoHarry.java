@@ -22,7 +22,7 @@ public class TestArbolGenericoHarry {
           arbol1.insertar('L','E');
           arbol1.insertar('M','L');
         System.out.println(arbol1.toString());
-        Lista l= arbol1.ancestros('M');
+        Lista l= arbol1.listarPorNiveles(2);
         System.out.println(l.toString());
 
         
