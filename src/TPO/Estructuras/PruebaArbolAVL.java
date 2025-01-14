@@ -9,18 +9,18 @@ public class PruebaArbolAVL {
         arbol.insertar(30, "Dato30");
         arbol.insertar(20, "Dato20");
         arbol.insertar(40, "Dato40");
-        
-        // Imprimir el árbol
-        System.out.println("\nEstructura del árbol AVL:");
-        System.out.println(arbol.toString());
+    
+      
 
         // Caso adicional: probar rotaciones
         System.out.println("\nInsertando nodo que causa rotación...");
-        arbol.insertar(10, arbol);
-        arbol.insertar(5, arbol);
+        arbol.insertar(10, "Dato");
+        arbol.insertar(5, "Dato");
+        arbol.insertar(7, "Dato");
+        arbol.insertar(9, "Dato");
         arbol.insertar(2, "Dato2");  // Esto debería desencadenar una rotación en el árbol
         arbol.insertar(1, "Dato1");
-        arbol.balancear(arbol.getRaiz());
-        System.out.println(arbol.toString());
+        System.out.println("Balance del Arbol: "+arbol.getBalance(arbol.getRaiz()));
+         System.out.println(arbol.toString());
     }
 }

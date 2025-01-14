@@ -72,49 +72,42 @@ public class ArbolAVL {
             return exito;
         }
         
-        private int getBalance(NodoAVL nodo) {
-            int alturaIzquierda = -1;
-            int alturaDerecha = -1;
-        
-            if (nodo != null) {
-                if (nodo.getIzquierdo() != null) {
-                    alturaIzquierda = nodo.getIzquierdo().getAltura();
-                }
-        
-                if (nodo.getDerecho() != null) {
-                    alturaDerecha = nodo.getDerecho().getAltura();
-                }
+        public int getBalance(NodoAVL nodo) {
+            if (nodo == null) {
+                return 0;  // O -1, según la lógica que prefieras manejar en caso de un árbol vacío
             }
+            
+            int alturaIzquierda = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo().getAltura() : -1;
+            int alturaDerecha = (nodo.getDerecho() != null) ? nodo.getDerecho().getAltura() : -1;
+            
             return alturaDerecha - alturaIzquierda;
         }
         
     
-    
-    
         public NodoAVL balancear(NodoAVL nodo) {
             if (nodo != null) {
                 int balance = getBalance(nodo);
-                if (balance > 1) {// Desbalanceado a la derecha
+                if (balance > 1) {  // Desbalanceado a la derecha
                     int balanceDerecho = getBalance(nodo.getDerecho());
-                    if (balanceDerecho >= 0) { // Caso de rotación simple izquierda
+                    if (balanceDerecho >= 0) {  // Caso de rotación simple izquierda
                         nodo = rotacionSimpleIzquierda(nodo);
-                    } else { // Caso de rotación doble derecha-izquierda
+                    } else {  // Caso de rotación doble derecha-izquierda
                         nodo = rotacionDobleDerechaIzquierda(nodo);
                     }
-                }
-                if (balance < -1) {// Desbalanceado a la izquierda
+                } else if (balance < -1) {  // Desbalanceado a la izquierda
                     int balanceIzquierdo = getBalance(nodo.getIzquierdo());
-                    if (balanceIzquierdo <= 0) { // Caso de rotación simple derecha
+                    if (balanceIzquierdo <= 0) {  // Caso de rotación simple derecha
                         nodo = rotacionSimpleDerecha(nodo);
-                    } else { // Caso de rotación doble izquierda-derecha
+                    } else {  // Caso de rotación doble izquierda-derecha
                         nodo = rotacionDobleIzquierdaDerecha(nodo);
                     }
                 }
-        
-                nodo.recalcularAltura(); // Recalcula la altura después de balancear
+
+                nodo.recalcularAltura();  // Recalcula la altura después de balancear
             }
-            return nodo; // Devuelve la nueva raíz del subárbol balanceado
+            return nodo;  // Devuelve el nodo original o el nuevo raíz si hubo cambio
         }
+        
         
     
 
