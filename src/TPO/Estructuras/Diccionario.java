@@ -92,14 +92,14 @@ public class Diccionario {
         if (balance>1) {//desbalanceado a la derecha
             int balanceDerecho= getBalance(nodo.getDerecho());
             if(balanceDerecho==1 || balanceDerecho ==0){
-                //rotacion simple derecha
+                nodo= rotacionSimpleDerecha(nodo);
             }else if (balanceDerecho==-1) {
                 //rotacion doble izquierda-derecha
             }
         }else if( balance<-1){ //desbalanceado a la izqueirda
             int balanceIzquierdo= getBalance(nodo.getIzquierdo());
           if (balanceIzquierdo==-1 || balanceIzquierdo==0) {
-            nodo= rotacionSimpleIzquierda(nodo);//o nodo.getIzquierdo()
+            nodo= rotacionSimpleIzquierda(nodo);
           }else if(balanceIzquierdo==1){
             //rotacion doble derecha izquierda
           }
@@ -115,6 +115,14 @@ public class Diccionario {
         pivote.setDerecho(hijo.getIzquierdo());
         hijo.setIzquierdo(pivote);
         return hijo;  // nueva raíz del subárbol
+    }
+
+    public NodoAVL rotacionSimpleDerecha(NodoAVL pivote){
+        NodoAVL hijo= pivote.getIzquierdo();
+        NodoAVL temporal= hijo.getDerecho();
+        hijo.setDerecho(pivote);
+        pivote.setIzquierdo(temporal);
+        return hijo;
     }
     
 }
