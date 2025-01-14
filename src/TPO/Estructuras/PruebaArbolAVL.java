@@ -20,7 +20,10 @@ public class PruebaArbolAVL {
         arbol.insertar(9, "Dato");
         arbol.insertar(2, "Dato2");  // Esto debería desencadenar una rotación en el árbol
         arbol.insertar(1, "Dato1");
+
+        arbol.balancear(arbol.getRaiz());
+
         System.out.println("Balance del Arbol: "+arbol.getBalance(arbol.getRaiz()));
-         System.out.println(arbol.toString());
+        System.out.println(arbol.toString());
     }
 }

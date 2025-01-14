@@ -89,6 +89,7 @@ public class ArbolAVL {
                 int balance = getBalance(nodo);
                 if (balance > 1) {  // Desbalanceado a la derecha
                     int balanceDerecho = getBalance(nodo.getDerecho());
+                    
                     if (balanceDerecho >= 0) {  // Caso de rotación simple izquierda
                         nodo = rotacionSimpleIzquierda(nodo);
                     } else {  // Caso de rotación doble derecha-izquierda
