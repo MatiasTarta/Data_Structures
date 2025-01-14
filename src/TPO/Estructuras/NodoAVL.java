@@ -1,26 +1,29 @@
 package TPO.Estructuras;
 
+
 public class NodoAVL {
-    private Comparable elemento;
+
+    private Comparable clave;//codigo postal de la ciudad
     private Object dato;
     private int altura;
-    private NodoAVL izquierdo,derecho;
+    private NodoAVL izquierdo;
+    private NodoAVL derecho;
 
-    public NodoAVL(Comparable elemento, int altura, NodoAVL izquierdo, NodoAVL derecho,Object dato){
-        this.elemento=elemento;
-        this.dato=dato;
+    public NodoAVL(Comparable clave, Object dato, NodoAVL izquierdo, NodoAVL derecho) {
+        this.clave = clave;
+        this.dato = dato;
+        this.izquierdo = izquierdo;
+        this.derecho = derecho;
         this.altura=0;
-        this.izquierdo=izquierdo;
-        this.derecho=derecho;
-        recalcularAltura();//por si entran como parametro los izq o derechos
+        recalcularAltura();//por si ingresan por parametro los hijos debe recalcular las alturas
     }
 
-    public Comparable  getElemento(){
-        return elemento;
+    public Comparable getClave() {
+        return clave;
     }
 
-    public void setElemento(Comparable elem){
-        elemento=elem;
+    public void setClave(Comparable clave) {
+        this.clave = clave;
     }
 
     public Object getDato() {
@@ -34,23 +37,8 @@ public class NodoAVL {
     public int getAltura() {
         return altura;
     }
-    
-    public NodoAVL getIzquierdo(){
-        return izquierdo;
-    }
-
-    public NodoAVL getDerecho(){
-        return derecho;
-    }
-    public void setIzquierdo(NodoAVL izq){
-        izquierdo=izq;
-    }
-    public void setDerecho(NodoAVL der){
-        derecho=der;
-    }
 
     public void recalcularAltura() {
-        //actualiza la altura para ver si es nescesario rebalancear o no
         int izq = -1, der = -1;
         if (this.izquierdo != null) {
             izq = this.izquierdo.altura;
@@ -61,4 +49,21 @@ public class NodoAVL {
         this.altura = (Math.max(izq, der)) + 1;
     }
 
+    public NodoAVL getIzquierdo() {
+        return izquierdo;
+    }
+
+    public void setIzquierdo(NodoAVL izquierdo) {
+        this.izquierdo = izquierdo;
+        recalcularAltura();
+    }
+
+    public NodoAVL getDerecho() {
+        return derecho;
+    }
+
+    public void setDerecho(NodoAVL derecho) {
+        this.derecho = derecho;
+        recalcularAltura();
+    }
 }

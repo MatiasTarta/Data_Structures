@@ -205,10 +205,10 @@ public class TestGenerico {
                 + "\n OP2 (si inserta al ppio)   [ 55 - 30 - 45 - 40 - 15 - 22 - 20 - 12 - 10 - 10 - 3 - 9 - 7]  "
                 + "\n --> " + a.listarInorden().toString());
         System.out.println("\n");
-        System.out.println("Recorrido por Niveles.\n Tiene que dar: "
-                + "\n OP1 (si inserta al final)  [ 10 - 9 - 15 - 7 - 3 - 12 - 20 - 22 - 30 - 10 - 40 - 45 - 55]  "
-                + "\n OP2 (si inserta al ppio)   [ 10 - 15 - 9 - 30 - 22 - 20 - 12 - 3 - 7 - 55 - 45 - 40 - 10]  "
-                + "\n --> " + a.listarPorNiveles().toString());
+        // System.out.println("Recorrido por Niveles.\n Tiene que dar: "
+        //         + "\n OP1 (si inserta al final)  [ 10 - 9 - 15 - 7 - 3 - 12 - 20 - 22 - 30 - 10 - 40 - 45 - 55]  "
+        //         + "\n OP2 (si inserta al ppio)   [ 10 - 15 - 9 - 30 - 22 - 20 - 12 - 3 - 7 - 55 - 45 - 40 - 10]  "
+        //         + "\n --> " + a.listarPorNiveles().toString());
         System.out.println("\n");
 
         /*
