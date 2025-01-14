@@ -73,14 +73,11 @@ public class Diccionario {
 
     private int getBalance(NodoAVL nodo) {
         if (nodo == null) return 0;
-        int alturaIzquierda =  nodo.getIzquierdo().getAltura();
-        int alturaDerecha =  nodo.getDerecho().getAltura();
-        //factor de equilibrio: alturaDerecha - alturaIzquierda
-        return alturaDerecha - alturaIzquierda;
+        return ( nodo.getDerecho().getAltura()) - (nodo.getIzquierdo().getAltura());
     }
     
     
-    public void balancear(NodoAVL nodo, NodoAVL padre){
+    public void balancear(NodoAVL nodo){
 
     }
 
