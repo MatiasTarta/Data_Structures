@@ -38,15 +38,19 @@ public class NodoAVL {
         return altura;
     }
 
-    public void recalcularAltura() {
-        int izq = -1, der = -1;
-        if (this.izquierdo != null) {
-            izq = this.izquierdo.altura;
+    public void recalcularAltura(){
+        int alturaIzq,alturaDer;
+        if(izquierdo==null){
+            alturaIzq=-1;
+        } else {
+            alturaIzq = izquierdo.getAltura();
         }
-        if (this.derecho != null) {
-            der = this.derecho.altura;
+        if(derecho==null){
+            alturaDer = -1;
+        } else {
+            alturaDer = derecho.getAltura();
         }
-        this.altura = (Math.max(izq, der)) + 1;
+            altura = Math.max(alturaIzq, alturaDer)+1;
     }
 
     public NodoAVL getIzquierdo() {

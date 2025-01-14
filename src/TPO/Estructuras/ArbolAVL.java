@@ -72,49 +72,60 @@ public class ArbolAVL {
             return exito;
         }
         
-    private int getBalance(NodoAVL nodo) {
-        int resultado = 0;
-        if (nodo != null) {
-            int alturaIzquierda = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo().getAltura() : -1;
-            int alturaDerecha = (nodo.getDerecho() != null) ? nodo.getDerecho().getAltura() : -1;
-            resultado = alturaDerecha - alturaIzquierda;
-        }
-        return resultado;
-    }
-    
-    
-    
-    public void balancear(NodoAVL nodo) {
-        if (nodo != null) {  // Añadimos esta condición para evitar NPE
-            int balance = getBalance(nodo);
-    
-            if (balance > 1) {  // Desbalanceado a la derecha
-                int balanceDerecho = getBalance(nodo.getDerecho());
-                if (balanceDerecho == 1 || balanceDerecho == 0) {
-                    nodo = rotacionSimpleDerecha(nodo);
-                } else if (balanceDerecho == -1) {
-                    nodo = rotacionDobleIzquierdaDerecha(nodo);
+        private int getBalance(NodoAVL nodo) {
+            int alturaIzquierda = -1;
+            int alturaDerecha = -1;
+        
+            if (nodo != null) {
+                if (nodo.getIzquierdo() != null) {
+                    alturaIzquierda = nodo.getIzquierdo().getAltura();
                 }
-            } else if (balance < -1) {  // Desbalanceado a la izquierda
-                int balanceIzquierdo = getBalance(nodo.getIzquierdo());
-                if (balanceIzquierdo == -1 || balanceIzquierdo == 0) {
-                    nodo = rotacionSimpleIzquierda(nodo);
-                } else if (balanceIzquierdo == 1) {
-                    nodo = rotacionDobleDerechaIzquierda(nodo);
+        
+                if (nodo.getDerecho() != null) {
+                    alturaDerecha = nodo.getDerecho().getAltura();
                 }
             }
-    
-            nodo.recalcularAltura();
-            balancear(nodo.getDerecho());
-            balancear(nodo.getIzquierdo());
+            return alturaDerecha - alturaIzquierda;
         }
-    }
+        
+    
+    
+    
+        public NodoAVL balancear(NodoAVL nodo) {
+            if (nodo != null) {
+                int balance = getBalance(nodo);
+                if (balance > 1) {// Desbalanceado a la derecha
+                    int balanceDerecho = getBalance(nodo.getDerecho());
+                    if (balanceDerecho >= 0) { // Caso de rotación simple izquierda
+                        nodo = rotacionSimpleIzquierda(nodo);
+                    } else { // Caso de rotación doble derecha-izquierda
+                        nodo = rotacionDobleDerechaIzquierda(nodo);
+                    }
+                }
+                if (balance < -1) {// Desbalanceado a la izquierda
+                    int balanceIzquierdo = getBalance(nodo.getIzquierdo());
+                    if (balanceIzquierdo <= 0) { // Caso de rotación simple derecha
+                        nodo = rotacionSimpleDerecha(nodo);
+                    } else { // Caso de rotación doble izquierda-derecha
+                        nodo = rotacionDobleIzquierdaDerecha(nodo);
+                    }
+                }
+        
+                nodo.recalcularAltura(); // Recalcula la altura después de balancear
+            }
+            return nodo; // Devuelve la nueva raíz del subárbol balanceado
+        }
+        
     
 
     public NodoAVL rotacionSimpleIzquierda(NodoAVL pivote) {
         NodoAVL hijo = pivote.getDerecho();
+        NodoAVL temporal= hijo.getIzquierdo();
         pivote.setDerecho(hijo.getIzquierdo());
         hijo.setIzquierdo(pivote);
+        pivote.setDato(temporal);
+        hijo.recalcularAltura();
+        pivote.recalcularAltura();
         return hijo;  // nueva raíz del subárbol
     }
 
@@ -123,6 +134,8 @@ public class ArbolAVL {
         NodoAVL temporal= hijo.getDerecho();
         hijo.setDerecho(pivote);
         pivote.setIzquierdo(temporal);
+        hijo.recalcularAltura();
+        pivote.recalcularAltura();
         return hijo;
     }
 
@@ -147,29 +160,29 @@ public class ArbolAVL {
     
 
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        if (raiz != null) {
-            toStringAux(raiz, sb, "", true);
-        } else {
-            sb.append("Árbol vacío");
+        if (raiz == null) {
+            return "Árbol vacío";
         }
+        StringBuilder sb = new StringBuilder();
+        toStringTree(raiz, sb, 0, true, "");
         return sb.toString();
     }
     
-    private void toStringAux(NodoAVL nodo, StringBuilder sb, String prefix, boolean isLeft) {
+    private void toStringTree(NodoAVL nodo, StringBuilder sb, int depth, boolean isLeft, String prefix) {
         if (nodo != null) {
             sb.append(prefix);
-            sb.append(isLeft ? "├── " : "└── ");
+            sb.append(isLeft ? "└── " : "├── ");
             sb.append(nodo.getClave()).append("\n");
     
-            if (nodo.getIzquierdo() != null) {
-                toStringAux(nodo.getIzquierdo(), sb, prefix + (isLeft ? "│   " : "    "), true);
-            }
-            if (nodo.getDerecho() != null) {
-                toStringAux(nodo.getDerecho(), sb, prefix + (isLeft ? "│   " : "    "), false);
-            }
+            String childPrefix = prefix + (isLeft ? "    " : "│   ");
+            toStringTree(nodo.getIzquierdo(), sb, depth + 1, false, childPrefix);
+            toStringTree(nodo.getDerecho(), sb, depth + 1, true, childPrefix);
         }
     }
+
+    
+
+    
     
     
 }
