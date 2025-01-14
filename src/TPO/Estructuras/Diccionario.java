@@ -65,21 +65,56 @@ public class Diccionario {
 
         if (exito) {
             nodo.recalcularAltura();
-            
+            balancear(raiz);
+            nodo.recalcularAltura();
         }
     
         return exito;
     }
 
     private int getBalance(NodoAVL nodo) {
-        if (nodo == null) return 0;
-        return ( nodo.getDerecho().getAltura()) - (nodo.getIzquierdo().getAltura());
+        int resultado=0;
+        if (nodo!=null) {
+            int alturaIzquierda =  nodo.getIzquierdo().getAltura();
+        int alturaDerecha =  nodo.getDerecho().getAltura();
+        //factor de equilibrio: alturaDerecha - alturaIzquierda
+        resultado= alturaDerecha - alturaIzquierda;
+        }
+        return resultado;
     }
     
     
     public void balancear(NodoAVL nodo){
+        //precondicion nodo distinto de null
 
+        int balance= getBalance(nodo);
+
+        if (balance>1) {//desbalanceado a la derecha
+            int balanceDerecho= getBalance(nodo.getDerecho());
+            if(balanceDerecho==1 || balanceDerecho ==0){
+                //rotacion simple derecha
+            }else if (balanceDerecho==-1) {
+                //rotacion doble izquierda-derecha
+            }
+        }else if( balance<-1){ //desbalanceado a la izqueirda
+            int balanceIzquierdo= getBalance(nodo.getIzquierdo());
+          if (balanceIzquierdo==-1 || balanceIzquierdo==0) {
+            nodo= rotacionSimpleIzquierda(nodo);//o nodo.getIzquierdo()
+          }else if(balanceIzquierdo==1){
+            //rotacion doble derecha izquierda
+          }
+        }
+
+        nodo.recalcularAltura();
+        balancear(nodo.getDerecho());
+        balancear(nodo.getIzquierdo());
     }
 
-
+    public NodoAVL rotacionSimpleIzquierda(NodoAVL pivote) {
+        NodoAVL hijo = pivote.getDerecho();
+        pivote.setDerecho(hijo.getIzquierdo());
+        hijo.setIzquierdo(pivote);
+        return hijo;  // nueva raíz del subárbol
+    }
+    
 }
