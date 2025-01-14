@@ -124,5 +124,17 @@ public class Diccionario {
         pivote.setIzquierdo(temporal);
         return hijo;
     }
+
+    public NodoAVL rotacionDobleIzquierdaDerecha(NodoAVL pivote) {
+        pivote.setIzquierdo(rotacionSimpleIzquierda(pivote.getIzquierdo()));
+        return rotacionSimpleDerecha(pivote);
+    }
+    
+    public NodoAVL rotacionDobleDerechaIzquierda(NodoAVL pivote) {
+        pivote.setDerecho(rotacionSimpleDerecha(pivote.getDerecho()));
+        return rotacionSimpleIzquierda(pivote);
+    }
+    
+    
     
 }
