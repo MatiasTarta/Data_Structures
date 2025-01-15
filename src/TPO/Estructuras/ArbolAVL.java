@@ -183,6 +183,214 @@ public class ArbolAVL {
 
 
 
+        public boolean eliminar(Comparable elem) {
+            boolean exito = false;
+            if (this.raiz != null) {
+                exito = eliminarAux(this.raiz, null, elem);
+            }
+            return exito;
+        }
+        
+        private boolean eliminarAux(NodoAVL n, NodoAVL padre, Comparable elem) {
+            boolean exito = false;
+            if (n != null) {
+                if ((elem.compareTo(n.getClave())) == 0) {
+        
+                    if (n.getIzquierdo() == null && n.getDerecho() == null) {
+                        // si n no tiene hijos
+                        noTieneHijos(padre, elem);
+                        exito = true;
+        
+                    } else if ((n.getIzquierdo() != null ^ n.getDerecho() != null)) {
+                        // si n tiene UN hijo
+                        tieneUnHijo(n, padre, elem); //CASO3
+                        exito = true;
+        
+                    } else {
+                        // si n tiene ambos hijos
+                        if (n.getIzquierdo().getDerecho() != null) {
+                            // caso candidato
+                            tieneAmbosCandidato(n.getIzquierdo(), null, n);
+                        } else {
+                            // caso HI
+                            tieneAmbosHI(n);
+                        }
+                        exito = true;
+                    }
+        
+                } else {
+                    if (elem.compareTo(n.getClave()) < 0) {
+                        exito = eliminarAux(n.getIzquierdo(), n, elem);
+                    }
+                    if (elem.compareTo(n.getClave()) > 0) {
+                        exito = eliminarAux(n.getDerecho(), n, elem);
+                    }
+                }
+        
+                if (exito) {
+                    n.recalcularAltura();
+                    balancear(n, padre);
+                    n.recalcularAltura();
+                }
+            }
+        
+            return exito;
+        
+        }
+        
+        // CASOS DE ELIMINAR
+        
+        private void noTieneHijos(NodoAVL padre, Comparable elem) {
+        
+            // si no tiene hijos
+            if (padre == null) {
+                // caso especial si el padre es nulo (raíz)
+                this.raiz = null;
+            } else {
+                if (padre.getIzquierdo() != null) {
+                    if (padre.getIzquierdo().getClave().compareTo(elem) == 0) {
+                        // si n es el HI de padre
+                        padre.setIzquierdo(null);
+                    } else {
+                        // si n es HD de padre
+                        padre.setDerecho(null);
+                    }
+                } else {
+                    // si HI es nulo entonces es el HD
+                    padre.setDerecho(null);
+                }
+            }
+        
+        }
+        
+        private void tieneUnHijo(NodoAVL n, NodoAVL padre, Comparable elem) {
+        
+            if (n.getIzquierdo() != null) {
+                // si n tiene HI
+                if (padre == null) {
+                    // caso especial si el padre es nulo
+                    this.raiz = n.getIzquierdo();
+                } else {
+                    if (padre.getIzquierdo().getClave().compareTo(elem) == 0) {
+                        // si n es el HI de padre
+                        padre.setIzquierdo(n.getIzquierdo());
+                    } else {
+                        // si n es el HD de padre
+                        padre.setDerecho(n.getIzquierdo());
+                    }
+                }
+            }
+            if (n.getDerecho() != null) {
+                // si n tiene HD
+                if (padre == null) {
+                    // caso especial si el padre es nulo
+                    this.raiz.setDerecho(n.getDerecho());
+                } else {
+                    if (padre.getIzquierdo().getClave().compareTo(elem) == 0) {
+                        // si n es el HI de padre
+                        padre.setIzquierdo(n.getDerecho());
+                    } else {
+                        // si n es el HD de padre
+                        padre.setDerecho(n.getDerecho());
+                    }
+                }
+            }
+        
+        }
+        
+        private void tieneAmbosCandidato(NodoAVL n, NodoAVL anterior, NodoAVL raiz) {
+        
+            if (n.getDerecho() != null) {
+        
+                tieneAmbosCandidato(n.getDerecho(), n, raiz);
+        
+            } else {
+                System.out.println("encontro candidato: "+n.getClave().toString());
+                // encontro el candidato, setea los elementos del nodo a modificar(raíz)
+                raiz.setClave(n.getClave());
+                raiz.setDato(n.getDato());
+                anterior.setDerecho(n.getIzquierdo());
+            }
+        
+            n.recalcularAltura();
+            balancear(n, anterior);
+            n.recalcularAltura();
+        
+        }
+        
+        private void tieneAmbosHI(NodoAVL n) {
+            n.setClave(n.getIzquierdo().getClave());
+            n.setDato(n.getIzquierdo().getDato());
+            n.setIzquierdo(n.getIzquierdo().getIzquierdo());
+        }
+        
+        public Object obtenerDato(Comparable clave) {
+            /* Si en la estructura se encuentra almacenado un elemento con la clave 
+            recibida por parametro, devuelve la informacion asociada a ella.
+            Precondicion: si no existe un elemento con esa clave no se puede asegurar
+            el funcionamiento de la operacion */
+            Object resultado = null;
+            if (this.raiz != null) {
+                resultado = buscarDato(this.raiz, clave);
+                if (resultado == null) {
+                    resultado = "La clave no existe";
+                }
+            }
+            return resultado;
+        }
+        
+        private Object buscarDato(NodoAVL nodo, Comparable clave) {
+            Object retorno = null;
+            if (nodo != null) {
+                // Si la clave buscada coincide con la clave del nodo
+                if (clave.compareTo(nodo.getClave()) == 0) {
+                    retorno = nodo.getDato();
+                } 
+                // Si la clave buscada es menor, sigue buscando en el hijo izquierdo
+                else if (clave.compareTo(nodo.getClave()) < 0) {
+                    retorno = buscarDato(nodo.getIzquierdo(), clave);
+                } 
+                // Si la clave buscada es mayor, sigue buscando en el hijo derecho
+                else if (clave.compareTo(nodo.getClave()) > 0) {
+                    retorno = buscarDato(nodo.getDerecho(), clave);
+                }
+            }
+            return retorno;
+        }
+        
+        public boolean existeClave(Comparable clave) {
+            /* Devuelve verdadero si el elemento con la clave dada está almacenado en la estructura,
+               devuelve falso si no está */
+            boolean resultado = false;
+            if (this.raiz != null) {
+                resultado = existeClaveAux(this.raiz, clave);
+            }
+            return resultado;
+        }
+        
+        private boolean existeClaveAux(NodoAVL nodo, Comparable clave) {
+            boolean exito = false;
+            if (nodo != null) {
+                // Si la clave buscada coincide con la clave del nodo
+                if (clave.compareTo(nodo.getClave()) == 0) {
+                    exito = true;
+                } 
+                // Si la clave buscada es menor, sigue buscando en el hijo izquierdo
+                else if (clave.compareTo(nodo.getClave()) < 0) {
+                    exito = existeClaveAux(nodo.getIzquierdo(), clave);
+                } 
+                // Si la clave buscada es mayor, sigue buscando en el hijo derecho
+                else if (clave.compareTo(nodo.getClave()) > 0) {
+                    exito = existeClaveAux(nodo.getDerecho(), clave);
+                }
+            }
+            return exito;
+        }
+        
+        
+
+
+
         public String toString() {
             if (raiz == null) {
                 return "Árbol vacío";
@@ -202,6 +410,9 @@ public class ArbolAVL {
                 toStringTree(nodo.getIzquierdo(), sb, depth + 1, false, childPrefix, "I-");
                 toStringTree(nodo.getDerecho(), sb, depth + 1, true, childPrefix, "D-");
             }
+        }
+        public void vaciar() {
+            this.raiz = null;
         }
         
 }
