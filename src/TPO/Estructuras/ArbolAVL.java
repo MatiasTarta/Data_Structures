@@ -36,6 +36,7 @@ public class ArbolAVL {
             exito= insertarAux(raiz,clave,dato,null);
         }else{
             raiz= new NodoAVL(clave, dato, null, null);
+            exito=true;
         }
         return exito;
     }
@@ -43,29 +44,31 @@ public class ArbolAVL {
         public boolean insertarAux(NodoAVL nodo, Comparable clave, Object dato, NodoAVL padre) {
             //nodo no es nulo
             boolean exito=false;
-            if (nodo == null) {
-                //si llego aqui es que estoy en la posicion de insercion
-                nodo = new NodoAVL(clave, dato, null, null);
-                if (clave.compareTo(padre.getClave()) > 0) {
-                    padre.setDerecho(nodo);
-                } else if (clave.compareTo(padre.getClave()) < 0) {
-                    padre.setIzquierdo(nodo);
-                }
-                exito=true;
+            if (nodo != null) {
+                int comparado=nodo.getClave().compareTo(clave);
+                      if (comparado==0) {
+                        //elemento repetido
+                        exito=false;
+                      }else if(comparado<0){
+                        if (nodo.getDerecho() !=null) {
+                            exito= insertarAux(nodo.getDerecho(), clave, dato, nodo);
+                        }else{
+                            nodo.setDerecho(new NodoAVL(clave, dato, null, null));
+                            exito=true;
+                        }
+                      }else if( comparado>0){
+                        if (nodo.getIzquierdo()!=null) {
+                            exito=insertarAux(nodo.getIzquierdo(), clave, dato, nodo);
+                        }else{
+                            nodo.setIzquierdo(new NodoAVL(clave, dato, null, null));
+                            exito=true;
+                        }
+                      }
+                      if (exito) {
+                        nodo.recalcularAltura();
+                        balancear(nodo, padre);
+                    }
             }
-            if (clave.compareTo(nodo.getClave()) == 0) {
-                exito= false;  // El elemento ya esta en el árbol
-            } else if (clave.compareTo(nodo.getClave()) > 0) {
-                exito= insertarAux(nodo.getDerecho(), clave, dato, nodo);
-            } else {
-                exito=  insertarAux(nodo.getIzquierdo(), clave, dato, nodo);
-            }
-            if (exito) {
-                nodo.recalcularAltura();
-                balancear(nodo,raiz);
-                nodo.recalcularAltura();
-            }
-            
             return exito;
         }
         
@@ -128,6 +131,7 @@ public class ArbolAVL {
                     balancear(nodo, padre);
                 }
             }
+            nodo.recalcularAltura();
         }
         
         

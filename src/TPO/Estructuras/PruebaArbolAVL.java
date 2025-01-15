@@ -11,10 +11,6 @@ public class PruebaArbolAVL {
         arbol.insertar(6, "Dato6");
         arbol.insertar(7, "Dato7");
         arbol.insertar(9, "Dato9");
-      
-
-        arbol.balancear(arbol.getRaiz(),null);
-
         System.out.println(arbol.toString());
     }
 }
