@@ -32,7 +32,6 @@ public class ArbolAVL {
 
     public boolean insertar(Comparable clave, Object dato){
         boolean exito=true;
-       
         if(this.raiz==null){
             raiz= new NodoAVL(clave, dato, null, null);
         }else{
@@ -87,47 +86,51 @@ public class ArbolAVL {
         }
         
     
-        public NodoAVL balancear(NodoAVL nodo,NodoAVL padre) {
-            //if padre==null o ==raiz entonces el nodo que retorna es la nueva raiz
-            if ( padre==null || nodo.getClave()==padre.getClave()) {
-                padre=null;
-                //si balanceo desde la raiz seteo a padre en null para que cuando retorne el nodo lo setee como nueva raiz
-            }
-            if (nodo != null) {
-                
-                int balance = getBalance(nodo);
-                
-                if (balance >= 1) {  // Desbalanceado a la derecha
-                    int balanceDerecho = getBalance(nodo.getDerecho());
-                    
-                    if (balanceDerecho >= 0) {  // Caso de rotación simple izquierda
-                        nodo = rotacionSimpleIzquierda(nodo);
-                    } else {  // Caso de rotación doble derecha-izquierda
-                        nodo = rotacionDobleDerechaIzquierda(nodo);
-                    }
+        public void balancear(NodoAVL nodo,NodoAVL padre) {
+            int balanceNodo= getBalance(nodo);
+            int balanceHijo;
+            if (balanceNodo>1) {//desbalance a la derecha
+                balanceHijo= getBalance(nodo.getIzquierdo());
+                if (balanceHijo==1 || balanceHijo==0) {
                     if (padre==null) {
-                        raiz=nodo;
+                        this.raiz=rotacionSimpleDerecha(nodo);
                     }else{
-                        padre.setDerecho(nodo);
+                        padre.setIzquierdo(rotacionSimpleDerecha(nodo));
                     }
-                } else if (balance <= -1) {  // Desbalanceado a la izquierda
-                    System.out.println("DESBALANCE A LA IZQUIERDA");
-                    int balanceIzquierdo = getBalance(nodo.getIzquierdo());
-                    if (balanceIzquierdo <= 0) {  // Caso de rotación simple derecha
-                        nodo = rotacionSimpleDerecha(nodo);
-                    } else {  // Caso de rotación doble izquierda-derecha
-                        nodo = rotacionDobleIzquierdaDerecha(nodo);
-                    }
+                }else if(balanceHijo==-1){
+                    //rotacio doble izquierda derecha
                     if (padre==null) {
-                        raiz=nodo;
+                        this.raiz=rotacionDobleIzquierdaDerecha(nodo);
                     }else{
-                        padre.setIzquierdo(nodo);
+                        padre.setIzquierdo(rotacionDobleIzquierdaDerecha(nodo));
                     }
+                }else{
+                    //si no cumple con ninguno de los casos tengo que balancear todo el subArbol.
+                    balancear(nodo.getIzquierdo(), nodo);
+                    balancear(nodo, padre);
                 }
-
-                nodo.recalcularAltura();  // Recalcula la altura después de balancear
+            }else if(balanceNodo<-1){//desbalance a la izquierda
+                balanceHijo=getBalance(nodo.getDerecho());
+                if (balanceHijo==-1 || balanceHijo==0) {
+                    //RSI
+                    if (padre==null) {
+                        this.raiz=rotacionSimpleIzquierda(nodo);
+                    }else{
+                        padre.setDerecho(rotacionSimpleIzquierda(nodo));
+                    }
+                }else if(balanceHijo==1){
+                    //rotacion doble DI
+                    if (padre==null) {
+                        this.raiz=rotacionDobleDerechaIzquierda(nodo);
+                    }else{
+                        padre.setDerecho(rotacionDobleDerechaIzquierda(nodo));
+                    }
+                }else{
+                    //si no cumple todo el subarbol derecho esta desbalanceado
+                    balancear(nodo.getDerecho(), nodo);
+                    balancear(nodo, padre);
+                }
             }
-            return nodo;  // Devuelve el nodo original o el nuevo raíz si hubo cambio
         }
         
         

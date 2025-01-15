@@ -3,7 +3,7 @@ package TPO.Estructuras;
 
 public class NodoAVL {
 
-    private Comparable clave;//codigo postal de la ciudad
+    private Comparable clave;
     private Object dato;
     private int altura;
     private NodoAVL izquierdo;
@@ -14,8 +14,6 @@ public class NodoAVL {
         this.dato = dato;
         this.izquierdo = izquierdo;
         this.derecho = derecho;
-        this.altura=0;
-        recalcularAltura();//por si ingresan por parametro los hijos debe recalcular las alturas
     }
 
     public Comparable getClave() {
@@ -38,19 +36,15 @@ public class NodoAVL {
         return altura;
     }
 
-    public void recalcularAltura(){
-        int alturaIzq,alturaDer;
-        if(izquierdo==null){
-            alturaIzq=-1;
-        } else {
-            alturaIzq = izquierdo.getAltura();
+    public void recalcularAltura() {
+        int izq = -1, der = -1;
+        if (this.izquierdo != null) {
+            izq = this.izquierdo.altura;
         }
-        if(derecho==null){
-            alturaDer = -1;
-        } else {
-            alturaDer = derecho.getAltura();
+        if (this.derecho != null) {
+            der = this.derecho.altura;
         }
-            altura = Math.max(alturaIzq, alturaDer)+1;
+        this.altura = (Math.max(izq, der)) + 1;
     }
 
     public NodoAVL getIzquierdo() {
