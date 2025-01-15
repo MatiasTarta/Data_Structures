@@ -65,7 +65,7 @@ public class ArbolAVL {
             }
             if (exito) {
                 nodo.recalcularAltura();
-                balancear(nodo);
+                balancear(nodo,raiz);
                 nodo.recalcularAltura();
             }
             
@@ -84,7 +84,12 @@ public class ArbolAVL {
         }
         
     
-        public NodoAVL balancear(NodoAVL nodo) {
+        public NodoAVL balancear(NodoAVL nodo,NodoAVL padre) {
+            //if padre==null o ==raiz entonces el nodo que retorna es la nueva raiz
+            if ( padre==null || nodo.getClave()==padre.getClave()) {
+                padre=null;
+                //si balanceo desde la raiz seteo a padre en null para que cuando retorne el nodo lo setee como nueva raiz
+            }
             if (nodo != null) {
                 int balance = getBalance(nodo);
                 if (balance > 1) {  // Desbalanceado a la derecha
@@ -95,12 +100,22 @@ public class ArbolAVL {
                     } else {  // Caso de rotación doble derecha-izquierda
                         nodo = rotacionDobleDerechaIzquierda(nodo);
                     }
+                    if (padre==null) {
+                        raiz=nodo;
+                    }else{
+                        padre.setDerecho(nodo);
+                    }
                 } else if (balance < -1) {  // Desbalanceado a la izquierda
                     int balanceIzquierdo = getBalance(nodo.getIzquierdo());
                     if (balanceIzquierdo <= 0) {  // Caso de rotación simple derecha
                         nodo = rotacionSimpleDerecha(nodo);
                     } else {  // Caso de rotación doble izquierda-derecha
                         nodo = rotacionDobleIzquierdaDerecha(nodo);
+                    }
+                    if (padre==null) {
+                        raiz=nodo;
+                    }else{
+                        padre.setIzquierdo(nodo);
                     }
                 }
 
