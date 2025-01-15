@@ -1,14 +1,15 @@
 package TPO.Estructuras;
-
+import lineales.dinamicas.Lista;
 public class ArbolAVL {
     NodoAVL raiz;
-
+    
     public ArbolAVL(){
         raiz=null;
     }
     public NodoAVL getRaiz() {
         return raiz;
     }
+
 
     public boolean pertenece(NodoAVL nodo,Comparable clave){
         if (nodo==null) {
@@ -31,12 +32,10 @@ public class ArbolAVL {
     }
 
     public boolean insertar(Comparable clave, Object dato) {
-        /* Recibe un elemento y lo agrega en el arbol de manera ordenada. Si el 
-        elemento ya se encuentra en el árbol no se realiza la inserción. Devuelve 
-        verdadero si el elemento se agrega a la estructura y falso en caso contrario */
         boolean exito = true;
         if (this.raiz == null) {
             this.raiz = new NodoAVL(clave, dato, null, null);
+            //si el arbol esta vacio pongo el elemento como raiz
         } else {
             exito = insertarAux(this.raiz, null, clave, dato);
             this.raiz.recalcularAltura();
@@ -51,21 +50,18 @@ public class ArbolAVL {
             // Elemento repetido
             exito = false;
         } else if (clave.compareTo(nodo.getClave()) < 0) {
-            // elemento es menor a nodo.getElem()
-            // Si tiene HI baja a la izquierda, sino lo setea
+            // Si el HI existe, busco la posicion de insercion en el subarbol izquierdo, si no seteo el elemento
             if (nodo.getIzquierdo() != null) {
                 exito = insertarAux(nodo.getIzquierdo(), nodo, clave, dato);
-               //NO VA balancear(nodo.getIzquierdo(), nodo);
             } else {
                 nodo.setIzquierdo(new NodoAVL(clave, dato, null, null));
             }
             nodo.recalcularAltura();
         } else if (clave.compareTo(nodo.getClave()) > 0) {
-            // elemento es mayor a nodo.getElem()
-            // Si tiene HD baja a la derecha, sino lo setea
+            //mismo caso de arriba 
             if (nodo.getDerecho() != null) {
                 exito = insertarAux(nodo.getDerecho(), nodo, clave, dato);
-               //NO VA balancear(nodo.getDerecho(), nodo);
+              
             } else {
                 nodo.setDerecho(new NodoAVL(clave, dato, null, null));
             }
@@ -145,6 +141,7 @@ public class ArbolAVL {
         
     }
     private int balance(NodoAVL nodo) {
+        //retorna el balance
         int balanceNodo;
         int alturaHijoIzquierdo = -1;
         int alturaHijoDerecho = -1;
@@ -195,7 +192,7 @@ public class ArbolAVL {
             boolean exito = false;
             if (n != null) {
                 if ((elem.compareTo(n.getClave())) == 0) {
-        
+                    //estoy en el elemento que quiero borrar
                     if (n.getIzquierdo() == null && n.getDerecho() == null) {
                         // si n no tiene hijos
                         noTieneHijos(padre, elem);
@@ -325,10 +322,7 @@ public class ArbolAVL {
         }
         
         public Object obtenerDato(Comparable clave) {
-            /* Si en la estructura se encuentra almacenado un elemento con la clave 
-            recibida por parametro, devuelve la informacion asociada a ella.
-            Precondicion: si no existe un elemento con esa clave no se puede asegurar
-            el funcionamiento de la operacion */
+            //busca en el arbol el elemento con la clave y retorna el dato
             Object resultado = null;
             if (this.raiz != null) {
                 resultado = buscarDato(this.raiz, clave);
@@ -344,7 +338,7 @@ public class ArbolAVL {
             if (nodo != null) {
                 // Si la clave buscada coincide con la clave del nodo
                 if (clave.compareTo(nodo.getClave()) == 0) {
-                    retorno = nodo.getDato();
+                    retorno = nodo.getDato();//caso base
                 } 
                 // Si la clave buscada es menor, sigue buscando en el hijo izquierdo
                 else if (clave.compareTo(nodo.getClave()) < 0) {
@@ -386,6 +380,42 @@ public class ArbolAVL {
             }
             return exito;
         }
+
+
+        public Comparable maximoElemento() {
+            /* Devuelve la clave mayor del árbol. Si el árbol está vacío, retorna null */
+            if (this.raiz == null) {
+                return null; // Árbol vacío
+            }
+            return buscarMaximo(this.raiz);
+        }
+        
+        private Comparable buscarMaximo(NodoAVL nodo) {
+            // Sigue moviéndose hacia la derecha hasta encontrar el nodo más a la derecha
+            if (nodo.getDerecho() == null) {
+                return nodo.getClave(); // El nodo actual es el mayor
+            }
+            return buscarMaximo(nodo.getDerecho());
+        }
+
+        public Comparable minimoElemento() {
+            /* Devuelve la clave menor del árbol. Si el árbol está vacío, retorna null */
+            if (this.raiz == null) {
+                return null; // Árbol vacío
+            }
+            return buscarMinimo(this.raiz);
+        }
+        
+        private Comparable buscarMinimo(NodoAVL nodo) {
+            // Sigue moviéndose hacia la izquierda hasta encontrar el nodo más a la izquierda
+            if (nodo.getIzquierdo() == null) {
+                return nodo.getClave(); // El nodo actual es el menor
+            }
+            return buscarMinimo(nodo.getIzquierdo());
+        }
+        
+        
+
         
         
 
