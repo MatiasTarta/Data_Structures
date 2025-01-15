@@ -136,37 +136,36 @@ public class ArbolAVL {
         
         
     
+        public NodoAVL rotacionSimpleIzquierda(NodoAVL pivote) {
+            NodoAVL hijo = pivote.getDerecho();
+            pivote.setDerecho(hijo.getIzquierdo());
+            hijo.setIzquierdo(pivote);
+            pivote.recalcularAltura();
+            hijo.recalcularAltura();
+            return hijo;
+        }
+        
 
-    public NodoAVL rotacionSimpleIzquierda(NodoAVL pivote) {
+        public NodoAVL rotacionSimpleDerecha(NodoAVL pivote) {
+            NodoAVL hijo = pivote.getIzquierdo();
+            pivote.setIzquierdo(hijo.getDerecho());
+            hijo.setDerecho(pivote);
+            pivote.recalcularAltura();
+            hijo.recalcularAltura();
+            return hijo;
+        }
+        
+        public NodoAVL rotacionDobleIzquierdaDerecha(NodoAVL pivote) {
+            pivote.setIzquierdo(rotacionSimpleIzquierda(pivote.getIzquierdo()));
+            return rotacionSimpleDerecha(pivote);
+        }
+        
 
-        NodoAVL hijo = pivote.getDerecho();
-        NodoAVL temporal= hijo.getIzquierdo();
-        hijo.setIzquierdo(pivote);
-        pivote.setDerecho(temporal);
-        hijo.recalcularAltura();
-        pivote.recalcularAltura();
-        return hijo;  // nueva raíz del subárbol
-    }
-
-    public NodoAVL rotacionSimpleDerecha(NodoAVL pivote){
-        NodoAVL hijo= pivote.getIzquierdo();
-        NodoAVL temporal= hijo.getDerecho();
-        hijo.setDerecho(pivote);
-        pivote.setIzquierdo(temporal);
-        hijo.recalcularAltura();
-        pivote.recalcularAltura();
-        return hijo;
-    }
-
-    public NodoAVL rotacionDobleIzquierdaDerecha(NodoAVL pivote) {
-        pivote.setIzquierdo(rotacionSimpleIzquierda(pivote.getIzquierdo()));
-        return rotacionSimpleDerecha(pivote);
-    }
-
-    public NodoAVL rotacionDobleDerechaIzquierda(NodoAVL pivote) {
-        pivote.setDerecho(rotacionSimpleDerecha(pivote.getDerecho()));
-        return rotacionSimpleIzquierda(pivote);
-    }
+        public NodoAVL rotacionDobleDerechaIzquierda(NodoAVL pivote) {
+            pivote.setDerecho(rotacionSimpleDerecha(pivote.getDerecho()));
+            return rotacionSimpleIzquierda(pivote);
+        }
+        
 
     public boolean eliminar(Comparable clave,NodoAVL nodo){
         //nodo ingresa como raiz
