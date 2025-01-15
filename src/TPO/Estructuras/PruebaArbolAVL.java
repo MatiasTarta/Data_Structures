@@ -9,11 +9,6 @@ public class PruebaArbolAVL {
         arbol.insertar(30, "Dato30");
         arbol.insertar(20, "Dato20");
         arbol.insertar(40, "Dato40");
-    
-      
-
-        // Caso adicional: probar rotaciones
-        System.out.println("\nInsertando nodo que causa rotación...");
         arbol.insertar(10, "Dato");
         arbol.insertar(5, "Dato");
         arbol.insertar(7, "Dato");
@@ -23,7 +18,6 @@ public class PruebaArbolAVL {
 
         arbol.balancear(arbol.getRaiz(),null);
 
-        System.out.println("Balance del Arbol: "+arbol.getBalance(arbol.getRaiz()));
         System.out.println(arbol.toString());
     }
 }

@@ -73,14 +73,17 @@ public class ArbolAVL {
         }
         
         public int getBalance(NodoAVL nodo) {
-            if (nodo == null) {
-                return 0;  // O -1, según la lógica que prefieras manejar en caso de un árbol vacío
+            int balanceNodo;
+            int alturaHijoIzquierdo = -1;
+            int alturaHijoDerecho = -1;
+            if (nodo.getIzquierdo() != null) {
+                alturaHijoIzquierdo = nodo.getIzquierdo().getAltura();
             }
-            
-            int alturaIzquierda = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo().getAltura() : -1;
-            int alturaDerecha = (nodo.getDerecho() != null) ? nodo.getDerecho().getAltura() : -1;
-            
-            return alturaDerecha - alturaIzquierda;
+            if (nodo.getDerecho() != null) {
+                alturaHijoDerecho = nodo.getDerecho().getAltura();
+            }
+            balanceNodo = alturaHijoIzquierdo - alturaHijoDerecho;
+            return balanceNodo;
         }
         
     
@@ -91,8 +94,10 @@ public class ArbolAVL {
                 //si balanceo desde la raiz seteo a padre en null para que cuando retorne el nodo lo setee como nueva raiz
             }
             if (nodo != null) {
+                
                 int balance = getBalance(nodo);
-                if (balance > 1) {  // Desbalanceado a la derecha
+                
+                if (balance >= 1) {  // Desbalanceado a la derecha
                     int balanceDerecho = getBalance(nodo.getDerecho());
                     
                     if (balanceDerecho >= 0) {  // Caso de rotación simple izquierda
@@ -105,7 +110,8 @@ public class ArbolAVL {
                     }else{
                         padre.setDerecho(nodo);
                     }
-                } else if (balance < -1) {  // Desbalanceado a la izquierda
+                } else if (balance <= -1) {  // Desbalanceado a la izquierda
+                    System.out.println("DESBALANCE A LA IZQUIERDA");
                     int balanceIzquierdo = getBalance(nodo.getIzquierdo());
                     if (balanceIzquierdo <= 0) {  // Caso de rotación simple derecha
                         nodo = rotacionSimpleDerecha(nodo);
@@ -128,6 +134,7 @@ public class ArbolAVL {
     
 
     public NodoAVL rotacionSimpleIzquierda(NodoAVL pivote) {
+        System.out.println("ESTOY ROTANDO A LA IZQUIERDA");
         NodoAVL hijo = pivote.getDerecho();
         NodoAVL temporal= hijo.getIzquierdo();
         pivote.setDerecho(hijo.getIzquierdo());
@@ -139,6 +146,7 @@ public class ArbolAVL {
     }
 
     public NodoAVL rotacionSimpleDerecha(NodoAVL pivote){
+        System.out.println("ESTOY ROTANDO A LA DERECHA");
         NodoAVL hijo= pivote.getIzquierdo();
         NodoAVL temporal= hijo.getDerecho();
         hijo.setDerecho(pivote);
