@@ -31,19 +31,18 @@ public class ArbolAVL {
     }
 
     public boolean insertar(Comparable clave, Object dato){
-        boolean exito=true;
-        if(this.raiz==null){
-            raiz= new NodoAVL(clave, dato, null, null);
-        }else{
+        boolean exito=false;
+        if(this.raiz!=null){
             exito= insertarAux(raiz,clave,dato,null);
-            raiz.recalcularAltura();
+        }else{
+            raiz= new NodoAVL(clave, dato, null, null);
         }
         return exito;
     }
 
         public boolean insertarAux(NodoAVL nodo, Comparable clave, Object dato, NodoAVL padre) {
             //nodo no es nulo
-            boolean exito=true;
+            boolean exito=false;
             if (nodo == null) {
                 //si llego aqui es que estoy en la posicion de insercion
                 nodo = new NodoAVL(clave, dato, null, null);
@@ -54,7 +53,6 @@ public class ArbolAVL {
                 }
                 exito=true;
             }
-            
             if (clave.compareTo(nodo.getClave()) == 0) {
                 exito= false;  // El elemento ya esta en el árbol
             } else if (clave.compareTo(nodo.getClave()) > 0) {
@@ -112,7 +110,6 @@ public class ArbolAVL {
             }else if(balanceNodo<-1){//desbalance a la izquierda
                 balanceHijo=getBalance(nodo.getDerecho());
                 if (balanceHijo==-1 || balanceHijo==0) {
-                    //RSI
                     if (padre==null) {
                         this.raiz=rotacionSimpleIzquierda(nodo);
                     }else{
@@ -137,19 +134,17 @@ public class ArbolAVL {
     
 
     public NodoAVL rotacionSimpleIzquierda(NodoAVL pivote) {
-        System.out.println("ESTOY ROTANDO A LA IZQUIERDA");
+
         NodoAVL hijo = pivote.getDerecho();
         NodoAVL temporal= hijo.getIzquierdo();
-        pivote.setDerecho(hijo.getIzquierdo());
         hijo.setIzquierdo(pivote);
-        pivote.setDato(temporal);
+        pivote.setDerecho(temporal);
         hijo.recalcularAltura();
         pivote.recalcularAltura();
         return hijo;  // nueva raíz del subárbol
     }
 
     public NodoAVL rotacionSimpleDerecha(NodoAVL pivote){
-        System.out.println("ESTOY ROTANDO A LA DERECHA");
         NodoAVL hijo= pivote.getIzquierdo();
         NodoAVL temporal= hijo.getDerecho();
         hijo.setDerecho(pivote);
