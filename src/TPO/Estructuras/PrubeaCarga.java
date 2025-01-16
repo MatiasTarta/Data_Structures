@@ -8,7 +8,6 @@ import TPO.SistemaMudanzas.Ciudad;
 import lineales.dinamicas.Lista;
 public class PrubeaCarga {
     public static void main(String[] args) {
-        
         Diccionario diccionarioCiudades= new Diccionario();
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         leerCiudades(archivo,diccionarioCiudades);
@@ -28,7 +27,7 @@ public class PrubeaCarga {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } 
     }
     
 
