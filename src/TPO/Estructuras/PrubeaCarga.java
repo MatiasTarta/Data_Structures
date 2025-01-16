@@ -11,7 +11,6 @@ public class PrubeaCarga {
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         Lista nuevaLista= leerCiudades(archivo);
         System.out.println(nuevaLista.toStringSaltoLinea());
-
     }
 
     public static Lista leerCiudades(String archivo){
