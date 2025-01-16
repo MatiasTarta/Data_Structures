@@ -8,30 +8,29 @@ import TPO.SistemaMudanzas.Ciudad;
 import lineales.dinamicas.Lista;
 public class PrubeaCarga {
     public static void main(String[] args) {
+        
+        Diccionario diccionarioCiudades= new Diccionario();
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
-        Lista nuevaLista= leerCiudades(archivo);
-        System.out.println(nuevaLista.toStringSaltoLinea());
+        leerCiudades(archivo,diccionarioCiudades);
+        System.out.println(diccionarioCiudades.toString());
     }
 
-    public static Lista leerCiudades(String archivo){
-        Lista listaCiudades= new Lista();
-        int i=1;
+    public static void leerCiudades(String archivo, Diccionario diccionario) {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                if (linea.startsWith("C")) {  // Verifica que el primer caracter sea 'C'
-                    Ciudad ciudadAux= stringACiudad(linea);
-                    listaCiudades.insertar(ciudadAux, i);
-                    i++;
+                if (linea.startsWith("C")) {  
+                    Ciudad ciudadAux = stringACiudad(linea);
+                    diccionario.insertar((Comparable) ciudadAux.getCodigoPostal(), ciudadAux);
                 } else {
-                    break;  // Sale del bucle si la línea no empieza con 'C'
+                    break;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return listaCiudades;
     }
+    
 
     public static Ciudad stringACiudad(String ciudadString){
          String[] partes = ciudadString.split(";");
