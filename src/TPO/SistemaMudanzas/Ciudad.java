@@ -6,9 +6,10 @@ public class Ciudad {
 
     public Ciudad(int cp, String n, String p) {
         codigoPostal = cp;
-        nombre = n;
-        provincia = p;
+        nombre = n.trim();
+        provincia = p.trim();
     }
+    
 
     // sets y gets
     public int getCodigoPostal() {
@@ -36,7 +37,7 @@ public class Ciudad {
     }
     
     public String toString() {
-        return "Ciudad de " + this.nombre + " de la Provincia de " + this.provincia + " con codigo postal: " + this.codigoPostal;
+        return  "||"+this.nombre + "||" + this.provincia + "||" + this.codigoPostal;
     }
     
 }

@@ -106,9 +106,22 @@ public class Lista {
         while (aux != null) {
             s = s + aux.getElem() + "|";
             aux = aux.getEnlace();
+           
         }
         return s + "]";
     }
+
+    public String toStringSaltoLinea() {
+        StringBuilder sb = new StringBuilder();
+        Nodo aux = this.cabecera;
+        while (aux != null) {
+            sb.append(aux.getElem().toString()).append("\n");
+            aux = aux.getEnlace();
+        }
+        return sb.toString();
+    }
+
+ 
 
     public Lista invertir(Lista l1) {
         Lista listaInvertida = new Lista();
