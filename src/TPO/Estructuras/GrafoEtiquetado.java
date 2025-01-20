@@ -89,4 +89,37 @@ public class GrafoEtiquetado {
         }
         return exito;
     }
+
+    public boolean eliminarArco(Object origen,Object destino){
+        boolean exito=false;
+        if (this.inicio!=null) {
+            NodoVert origenAuxiliar= buscarVertice(origen);
+            NodoVert destinoAuxiliar = buscarVertice(destino);
+                      
+          if (origenAuxiliar!=null && destinoAuxiliar!=null &&!origen.equals(destino)) {
+            exito= eliminarArcoAux(origenAuxiliar,destino) && eliminarArcoAux(destinoAuxiliar,origen);
+         }
+        }
+        return exito;
+    }
+
+    private boolean eliminarArcoAux(NodoVert origen,Object destino){
+        boolean exito=false;
+            if (origen.getPrimerAdy().getVertice().getElemento().equals(destino)) {
+                origen.setPrimerAdy(origen.getPrimerAdy().getSigAdyacente());
+                exito=true;
+            }else{
+                NodoAdy aux = origen.getPrimerAdy();
+                while (aux.getSigAdyacente()!=null && !exito) {
+                    if (aux.getSigAdyacente().getVertice().getElemento().equals(destino)) {
+                        aux.setSigAdyacente(aux.getSigAdyacente().getSigAdyacente());
+                        exito=true;
+                    }else{
+                        aux=aux.getSigAdyacente();
+                    }
+                }
+            }
+
+        return exito;
+    }
 }
