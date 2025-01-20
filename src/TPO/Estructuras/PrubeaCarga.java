@@ -18,7 +18,7 @@ public class PrubeaCarga {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                if (linea.startsWith("C")) {  
+                if (linea.startsWith("C")) {
                     Ciudad ciudadAux = stringACiudad(linea);
                     diccionario.insertar((Comparable) ciudadAux.getCodigoPostal(), ciudadAux);
                 } else {
@@ -27,7 +27,7 @@ public class PrubeaCarga {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } 
+        }
     }
     
 
