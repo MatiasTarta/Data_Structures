@@ -217,9 +217,10 @@ public class GrafoEtiquetado {
     }
     
     private Lista caminoMenorDistanciaAux(NodoVert vertice, Object destino, double kmAux, double[] menosKM, Lista visitados, Lista res) {
+        //Comienza en el vértice origen y explora recursivamente cada vértice adyacente, calculando la distancia acumulada.
         if (vertice != null) {
             double km = menosKM[0];
-            if (km == 0 || km > kmAux) {
+            if (km == 0 || km > kmAux) {//Se realiza una comparación entre las distancias acumuladas (kmAux) para mantener la mejor distancia
                 visitados.insertar(vertice.getElemento(), visitados.longitud() + 1);
                 if (vertice.getElemento().equals(destino)) {
                     menosKM[0] = kmAux;
@@ -240,6 +241,44 @@ public class GrafoEtiquetado {
         }
         return res;
     }
+
+    public Lista calcularMayorDistancia(Object origen, Object destino) {
+        Lista visitados = new Lista();
+        Lista actual = new Lista();
+        Lista res = new Lista();
+        if (this.inicio != null) {
+            NodoVert origenAux = buscarVertice(origen);
+            NodoVert destinoAux = buscarVertice(destino);
+            if (origenAux != null && destinoAux != null) {
+                res = calcularMayorDistanciaAux(origenAux, destino, visitados, actual, res);
+            }
+        }
+        return res;
+    }
+    
+    private Lista calcularMayorDistanciaAux(NodoVert vertice, Object destino, Lista visitados, Lista actual, Lista res) {
+        if (vertice != null) {
+            visitados.insertar(vertice.getElemento(), visitados.longitud() + 1);
+            actual.insertar(vertice.getElemento(), actual.longitud() + 1);
+            if (vertice.getElemento().equals(destino)) {
+                if ((actual.longitud() > res.longitud()) || res.esVacia()) {
+                    res = actual.clone();
+                }
+            } else {
+                NodoAdy ady = vertice.getPrimerAdy();
+                while (ady != null) {
+                    if (visitados.localizar(ady.getVertice().getElemento()) < 0) {
+                        res = calcularMayorDistanciaAux(ady.getVertice(), destino, visitados, actual, res);
+                    }
+                    ady = ady.getSigAdyacente();
+                }
+            }
+            actual.eliminar(actual.longitud()); // ya lo visité, lo elimino del camino
+            visitados.eliminar(visitados.longitud());
+        }
+        return res;
+    }
+    
     
     
 
