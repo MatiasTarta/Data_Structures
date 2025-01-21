@@ -1,5 +1,5 @@
 package TPO.Estructuras;
-
+import lineales.dinamicas.Lista;
 public class GrafoEtiquetado {
     private NodoVert inicio;
 
@@ -120,6 +120,49 @@ public class GrafoEtiquetado {
                 }
             }
 
+        return exito;
+    }
+
+    public boolean existeCamino(Object origen,Object destino){
+        boolean exito=false;
+        //verifica si ambos vertices existen
+        NodoVert aux0=null;
+        NodoVert auxD=null;
+        NodoVert aux=this.inicio;
+
+        while ((aux0==null || auxD==null)&& aux!=null) {
+            if (aux.getElemento().equals(origen)) {
+                aux0=aux;
+            }
+            if (aux.getElemento().equals(destino)) {
+                auxD=aux;
+            }
+            aux=aux.getSigVertice();
+        }
+        if (aux0!=null && auxD!=null) {
+            //si ambos vertices existen busca si existe camino entre ambos
+            Lista visitados=new Lista();
+            exito=existeCaminoAux(aux0, destino, visitados);
+        }
+        return exito;
+    }
+
+    private boolean existeCaminoAux(NodoVert nodo,Object destino,Lista visitados){
+        boolean exito=false;
+        if (nodo!=null) {
+            if (nodo.getElemento().equals(destino)) {//caso base
+                exito=true;
+            }else{
+                //si no es el destino verifica si hay camino entre n y destino
+                visitados.insertar(nodo.getElemento(), visitados.longitud()+1);//marca el nodo actual
+                NodoAdy ady = nodo.getPrimerAdy();//primer nodo adyacente a chequear
+                while (!exito && ady!=null) {
+                    if (visitados.localizar(ady.getVertice().getElemento())<0) {//si un nodo adyacente no fue visitado
+                        exito= existeCaminoAux(ady.getVertice(), destino, visitados);
+                    }
+                }
+            }
+        }
         return exito;
     }
 }
