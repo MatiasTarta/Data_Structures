@@ -165,4 +165,83 @@ public class GrafoEtiquetado {
         }
         return exito;
     }
+
+    public Lista caminoMasCorto(Object origen, Object destino) {
+        Lista visitados = new Lista();
+        Lista res = new Lista();
+        if (this.inicio != null) {
+            NodoVert origenAux = buscarVertice(origen);
+            NodoVert destinoAux = buscarVertice(destino);
+            if (origenAux != null && destinoAux != null) {
+                res = caminoMasCortoAux(origenAux, destino, visitados, res);
+            }
+        }
+        return res;
+    }
+    private Lista caminoMasCortoAux(NodoVert vertice, Object destino, Lista visitados, Lista res) {
+        if (vertice != null) {
+            visitados.insertar(vertice.getElemento(), visitados.longitud() + 1);
+            System.out.println("Visitando nodo: " + vertice.getElemento() + " | Lista de visitados: " + visitados.toString());
+            if (vertice.getElemento().equals(destino)) { // si vert es el destino, encontró un camino
+                res = visitados.clone();
+                System.out.println("¡Camino encontrado! Detalles: " + res.toString());
+            } else {
+                NodoAdy ady = vertice.getPrimerAdy();
+                while (ady != null) {
+                    if (visitados.localizar(ady.getVertice().getElemento()) < 0) {
+                        if (res.esVacia() || res.longitud() > visitados.longitud()) { // que para seguir buscando un camino, no supere la longitud del anterior
+                            res = caminoMasCortoAux(ady.getVertice(), destino, visitados, res); // llamado recursivo con el vecino
+                        }
+                    }
+                    ady = ady.getSigAdyacente();
+                }
+            }
+            visitados.eliminar(visitados.longitud()); // a la vuelta lo elimina
+        }
+        return res;
+    }
+
+    public Lista caminoMenorDistancia(Object origen, Object destino) {
+        Lista visitados = new Lista();
+        Lista res = new Lista();
+        double[] menosKM = new double[1];
+        menosKM[0] = 0;
+        if (this.inicio != null) {
+            NodoVert origenAux = buscarVertice(origen);
+            NodoVert destinoAux = buscarVertice(destino);
+            if (origenAux != null && destinoAux != null) {
+                res = caminoMenorDistanciaAux(origenAux, destino, 0, menosKM, visitados, res);
+            }
+        }
+        return res;
+    }
+    
+    private Lista caminoMenorDistanciaAux(NodoVert vertice, Object destino, double kmAux, double[] menosKM, Lista visitados, Lista res) {
+        if (vertice != null) {
+            double km = menosKM[0];
+            if (km == 0 || km > kmAux) {
+                visitados.insertar(vertice.getElemento(), visitados.longitud() + 1);
+                if (vertice.getElemento().equals(destino)) {
+                    menosKM[0] = kmAux;
+                    res = visitados.clone();
+                    System.out.println("Camino encontrado: " + res.toString() + " | Distancia total: " + menosKM[0] + " km");
+                } else {
+                    NodoAdy ady = vertice.getPrimerAdy();
+                    while (ady != null) {
+                        if (visitados.localizar(ady.getVertice().getElemento()) < 0) {
+                            double aux = kmAux + ady.getEtiqueta();
+                            res = caminoMenorDistanciaAux(ady.getVertice(), destino, aux, menosKM, visitados, res);
+                        }
+                        ady = ady.getSigAdyacente();
+                    }
+                }
+                visitados.eliminar(visitados.longitud());
+            }
+        }
+        return res;
+    }
+    
+    
+
+
 }

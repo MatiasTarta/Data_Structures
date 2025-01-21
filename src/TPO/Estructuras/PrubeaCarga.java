@@ -8,13 +8,13 @@ import TPO.SistemaMudanzas.Ciudad;
 import lineales.dinamicas.Lista;
 public class PrubeaCarga {
     public static void main(String[] args) {
-        Diccionario diccionarioCiudades= new Diccionario();
+        ArbolAVL diccionarioCiudades= new ArbolAVL();
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         leerCiudades(archivo,diccionarioCiudades);
         System.out.println(diccionarioCiudades.toString());
     }
 
-    public static void leerCiudades(String archivo, Diccionario diccionario) {
+    public static void leerCiudades(String archivo, ArbolAVL diccionario) {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
