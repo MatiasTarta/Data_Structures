@@ -321,6 +321,11 @@ public class GrafoEtiquetado {
     }
 
     public String toString() {
+        /*
+         * Con fines de debugging, este metodo genera y devuelve una cadena String
+         * que muestra los vertices almacenados en el grafo y que adyacentes tiene cada
+         * uno de ellos
+         */
         String resultado;
         if (this.inicio != null) {
             resultado = toStringAux(this.inicio);
@@ -333,7 +338,7 @@ public class GrafoEtiquetado {
     private String toStringAux(NodoVert vertice) {
         String cadena = "";
         if (vertice != null) {
-            cadena = cadena + vertice.getElemento().toString() + "<--------->";
+            cadena = cadena + vertice.getElemento().toString() + "<------>";
             NodoAdy ady = vertice.getPrimerAdy();
             while (ady != null) {
                 if (ady.getSigAdyacente() != null) {
@@ -347,7 +352,6 @@ public class GrafoEtiquetado {
         }
         return cadena;
     }
-    
 
 
 }
