@@ -1,4 +1,9 @@
 package TPO.Estructuras;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import lineales.dinamicas.Lista;
 public class GrafoEtiquetado {
     private NodoVert inicio;
@@ -315,7 +320,33 @@ public class GrafoEtiquetado {
         }
     }
 
+    public String toString() {
+        String resultado;
+        if (this.inicio != null) {
+            resultado = toStringAux(this.inicio);
+        } else {
+            resultado = "El grafo esta vacio ¿?";
+        }
+        return resultado;
+    }
 
+    private String toStringAux(NodoVert vertice) {
+        String cadena = "";
+        if (vertice != null) {
+            cadena = cadena + vertice.getElemento().toString() + "<--------->";
+            NodoAdy ady = vertice.getPrimerAdy();
+            while (ady != null) {
+                if (ady.getSigAdyacente() != null) {
+                    cadena = cadena + ady.getVertice().getElemento().toString() + "(" + ady.getEtiqueta() + ")" + ", ";
+                } else {
+                    cadena = cadena + ady.getVertice().getElemento().toString() + "(" + ady.getEtiqueta() + ")";
+                }
+                ady = ady.getSigAdyacente();
+            }
+            cadena = cadena + "\n" + toStringAux(vertice.getSigVertice());
+        }
+        return cadena;
+    }
     
 
 

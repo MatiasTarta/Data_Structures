@@ -23,8 +23,7 @@ C;2222;San Luis;San Luis
 C;2323;Catamarca;Catamarca  
 C;2424;Villa María;Córdoba  
 C;2525;Concordia;Entre Ríos  
-
-R;1001;2002;299.5  
+R;1001;2002;299.5
 R;2002;3003;160.8  
 R;3003;4004;540.2  
 R;4004;5005;125.6  
