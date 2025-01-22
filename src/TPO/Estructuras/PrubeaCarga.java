@@ -30,7 +30,6 @@ public class PrubeaCarga {
         }
     }
     
-
     public static Ciudad stringACiudad(String ciudadString){
          String[] partes = ciudadString.split(";");
          int codigoPostal = Integer.parseInt(partes[1]);

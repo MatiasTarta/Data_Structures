@@ -279,7 +279,43 @@ public class GrafoEtiquetado {
         return res;
     }
     
-    
+    public Lista caminoSinRepetir(Object origen,Object destino,Object ciudadC){
+        Lista camino= new Lista();
+        Lista visitados= new Lista();
+        if (this.inicio!=null) {
+            NodoVert origenAux= buscarVertice(origen);
+            NodoVert destinoAux = buscarVertice(destino);
+            NodoVert ciudad= buscarVertice(ciudadC);
+            if (origenAux!=null && destinoAux!=null && ciudad!=null) {
+                caminoSinRepetirAux(origenAux,destino,ciudadC,camino,visitados);
+            }
+        }
+        return camino;
+    }
+
+    private void caminoSinRepetirAux(NodoVert vertice,Object destino, Object ciudadC,Lista camino,Lista visitados){
+        if (vertice!=null) {
+            visitados.insertar(vertice.getElemento(), visitados.longitud()+1);
+            if (vertice.getElemento().equals(destino) && visitados.contiene(ciudadC)) {
+                //si ya llegue al destino y pase por la ciudad requerida
+                camino.insertar(visitados.clone(), visitados.longitud()+1);
+            }else{
+                //exploro ciudades adyacentes
+                NodoAdy ady= vertice.getPrimerAdy();
+                while (ady!=null) {
+                    if (!visitados.contiene(ady.getVertice().getElemento())) {
+                        //si todavia no visitamos esa ciudad
+                        caminoSinRepetirAux(ady.getVertice(), destino, ciudadC, camino, visitados);
+                    }
+                    ady=ady.getSigAdyacente();
+                }
+            }
+            //elimina el vertice actual de la lista de visitados al retroceder
+            visitados.eliminar(visitados.longitud());
+        }
+    }
+
+
     
 
 

@@ -254,4 +254,15 @@ public class Lista {
         aux.setEnlace(new Nodo(this.cabecera.getElem(), aux.getEnlace().getEnlace()));
         this.cabecera = new Nodo(x, this.cabecera.getEnlace());
     }
+
+    public boolean contiene(Object elemento) {
+        Nodo aux = this.cabecera;
+        while (aux != null) {
+            if (aux.getElem().equals(elemento)) {
+                return true;
+            }
+            aux = aux.getEnlace();
+        }
+        return false;
+    }
 }
