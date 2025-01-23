@@ -6,33 +6,37 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import TPO.SistemaMudanzas.Ciudad;
-
+import TPO.Estructuras.ArbolAVL;
 public class TestGrafo {
     public static void main(String[] args) {
         GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
+        ArbolAVL diccionario = new ArbolAVL();
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
-        cargarMapa(archivo,mapaRutas);
-        System.out.println(mapaRutas.toString());
-        System.out.println(mapaRutas.cantidadNodos());
+        cargarDatos(archivo,mapaRutas,diccionario);
+       // System.out.println(mapaRutas.toString());
+        System.out.println(diccionario.toString());
         
     }
 
-    public static void cargarMapa(String archivo,GrafoEtiquetado mapa){
+    public static void cargarDatos(String archivo,GrafoEtiquetado mapa,ArbolAVL diccionario){
+        int i=1;
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(";");
                 switch (partes[0]) {
                     case "C":
-                        //
+                        
+                    cargarCiudad(Integer.parseInt(partes[1]), partes[2], partes[3],diccionario);
                         break;
                     case "R":
                         insertarRuta(partes, mapa);
                         break;
                     default:
-                        System.out.println("Formato desconocido en la línea: " + linea);
+                        System.out.println("Formato desconocido en la línea: " + linea+" "+i);
                         break;
                 }
+                i++;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,7 +47,6 @@ public class TestGrafo {
         int codigoOrigen = Integer.parseInt(partes[1]);
         int codigoDestino = Integer.parseInt(partes[2]);
         double distancia = Double.parseDouble(partes[3]);
-    
         if (!mapa.existeVertice(codigoOrigen)) {
             mapa.insertarVertice(codigoOrigen);
         }
@@ -57,5 +60,14 @@ public class TestGrafo {
             mapa.insertarArco(codigoOrigen, codigoDestino, distancia);
         }
     }
+
+    public static void cargarCiudad(int codigo,String nombre,String provincia,ArbolAVL diccionario){
+        Ciudad ciudad= new Ciudad(codigo, nombre, provincia);
+        boolean exito= diccionario.insertar(provincia, ciudad);
+        if (exito) {
+            
+        }
+    }
+
     
 }

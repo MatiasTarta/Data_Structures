@@ -1,3 +1,33 @@
+C;5000;Córdoba;Córdoba
+C;8300;Neuquén;Neuquén
+C;8324;Cipolletti;Río Negro
+C;2000;Rosario;Santa Fe
+C;1000;Buenos Aires; Ciudad Autónoma de Buenos Aires
+C;4000;San Miguel de Tucumán; Tucumán
+C;3300;Posadas;Misiones
+C;5152;Villa Carlos Paz;Córdoba
+C;3000;Santa Fe;Santa Fe
+C;5700;San Luis;San Luis
+C;8332;General Roca;Río Negro
+C;4200;Santiago del Estero;Santiago del Estero
+C;3400;Corrientes;Corrientes
+C;9100;Trelew;Chubut
+C;8303;Cinco Saltos;Rio Negro
+C;8316;Plottier;Neuquén
+C;9000;Comodoro Rivadavia;Chubut
+C;8400;San Carlos de Bariloche;Río Negro
+C;3560;Reconquista;Santa Fe
+C;5710;La Punta;San Luis
+C;8307;Catriel; Río Negro
+C;5400;San Juan; San Juan
+C;3500;Resistencia;Chaco
+C;8500;Viedma;Río Negro
+C;3450;Goya;Corrientes
+C;9103;Rawson;Chubut
+C;9410;Ushuaia;Tierra del Fuego
+C;3561;Avellaneda;Santa Fe
+C;2820;Gualeguaychú;Entre Ríos
+C;8364;Chimpay;Río Negro
 R;8324;8300;6.7
 R;3400;4200;634.2
 R;5000;2000;401.0
@@ -40,33 +70,3 @@ R;8500;1000;913.4
 R;3450;3500;243.3
 R;3450;4200;869.0
 R;2820;1000;849.0
-C;5000;Córdoba;Córdoba
-C;8300;Neuquén;Neuquén
-C;8324;Cipolletti;Río Negro
-C;2000;Rosario;Santa Fe
-C;1000;Buenos Aires; Ciudad Autónoma de Buenos Aires
-C;4000;San Miguel de Tucumán; Tucumán
-C;3300;Posadas;Misiones
-C;5152;Villa Carlos Paz;Córdoba
-C;3000;Santa Fe;Santa Fe
-C;5700;San Luis;San Luis
-C;8332;General Roca;Río Negro
-C;4200;Santiago del Estero;Santiago del Estero
-C;3400;Corrientes;Corrientes
-C;9100;Trelew;Chubut
-C;8303;Cinco Saltos;Rio Negro
-C;8316;Plottier;Neuquén
-C;9000;Comodoro Rivadavia;Chubut
-C;8400;San Carlos de Bariloche;Río Negro
-C;3560;Reconquista;Santa Fe
-C;5710;La Punta;San Luis
-C;8307;Catriel; Río Negro
-C;5400;San Juan; San Juan
-C;3500;Resistencia;Chaco
-C;8500;Viedma;Río Negro
-C;3450;Goya;Corrientes
-C;9103;Rawson;Chubut
-C;9410;Ushuaia;Tierra del Fuego
-C;3561;Avellaneda;Santa Fe
-C;2820;Gualeguaychú;Entre Ríos
-C;8364;Chimpay;Río Negro

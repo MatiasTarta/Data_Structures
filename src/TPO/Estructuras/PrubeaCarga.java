@@ -19,6 +19,8 @@ public class PrubeaCarga {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (linea.startsWith("C")) {
+                    
+            System.out.println(linea);
                     Ciudad ciudadAux = stringACiudad(linea);
                     diccionario.insertar((Comparable) ciudadAux.getCodigoPostal(), ciudadAux);
                 } else {
