@@ -26,7 +26,6 @@ public class TestGrafo {
                 String[] partes = linea.split(";");
                 switch (partes[0]) {
                     case "C":
-                    System.out.println(linea);
                         cargarCiudad(Integer.parseInt(partes[1]), partes[2], partes[3],diccionario);
                         break;
                     case "R":
@@ -60,7 +59,7 @@ public class TestGrafo {
 
     public static void cargarCiudad(int codigo,String nombre,String provincia,ArbolAVL diccionario){
         Ciudad ciudad= new Ciudad(codigo, nombre, provincia);
-        boolean exito= diccionario.insertar(provincia, ciudad);
+        boolean exito= diccionario.insertar(codigo, ciudad);
         if (exito) {
             
         }
