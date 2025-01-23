@@ -1,50 +1,49 @@
 C;1001;Buenos Aires;Buenos Aires  
-C;2002;Rosario;Santa Fe  
-C;3003;Santa Fe;Santa Fe  
-C;4004;San Miguel de Tucumán;Tucumán  
-C;5005;La Plata;Buenos Aires  
-C;6006;Mar del Plata;Buenos Aires  
-C;7007;Mendoza;Mendoza  
-C;8008;Salta;Salta  
-C;9009;San Juan;San Juan  
-C;1010;Posadas;Misiones  
-C;1111;Resistencia;Chaco  
-C;1212;Corrientes;Corrientes  
-C;1313;Bahía Blanca;Buenos Aires  
-C;1414;Paraná;Entre Ríos  
-C;1515;Formosa;Formosa  
-C;1616;Santiago del Estero;Santiago del Estero  
-C;1717;San Salvador de Jujuy;Jujuy  
-C;1818;Neuquén;Neuquén  
-C;1919;Rawson;Chubut  
-C;2020;Río Gallegos;Santa Cruz  
-C;2121;Ushuaia;Tierra del Fuego  
-C;2222;San Luis;San Luis  
-C;2323;Catamarca;Catamarca  
-C;2424;Villa María;Córdoba  
-C;2525;Concordia;Entre Ríos  
-R;1001;2002;299.5
-R;2002;3003;160.8  
-R;3003;4004;540.2  
-R;4004;5005;125.6  
-R;5005;6006;398.4  
-R;6006;7007;715.7  
-R;7007;8008;375.3  
-R;8008;9009;245.1  
-R;9009;1010;460.7  
-R;1010;1111;375.2  
-R;1111;1212;512.3  
-R;1212;1313;635.8  
-R;1313;1414;490.1  
-R;1414;1515;330.7  
-R;1515;1616;815.9  
-R;1616;1717;910.6  
-R;1717;1818;440.8  
-R;1818;1919;680.4  
-R;1919;2020;550.7  
-R;2020;2121;1240.2  
-R;2121;2222;840.9  
-R;2222;2323;265.3  
-R;2323;2424;460.1  
-R;2424;2525;220.6  
-R;2525;1001;510.4
+C;2000;Rosario;Santa Fe  
+C;3000;Santa Fe;Santa Fe  
+C;4000;San Miguel de Tucumán;Tucumán  
+C;1900;La Plata;Buenos Aires  
+C;7600;Mar del Plata;Buenos Aires  
+C;5500;Mendoza;Mendoza  
+C;4400;Salta;Salta  
+C;5400;San Juan;San Juan  
+C;3300;Posadas;Misiones  
+C;3500;Resistencia;Chaco  
+C;3400;Corrientes;Corrientes  
+C;8000;Bahía Blanca;Buenos Aires  
+C;3100;Paraná;Entre Ríos  
+C;3600;Formosa;Formosa  
+C;4200;Santiago del Estero;Santiago del Estero  
+C;4600;San Salvador de Jujuy;Jujuy  
+C;8300;Neuquén;Neuquén  
+C;9100;Rawson;Chubut  
+C;9400;Río Gallegos;Santa Cruz  
+C;9410;Ushuaia;Tierra del Fuego  
+C;5700;San Luis;San Luis  
+C;4700;Catamarca;Catamarca  
+C;5900;Villa María;Córdoba  
+C;3200;Concordia;Entre Ríos
+R;2000;3000;136.8
+R;3000;4000;460.2
+R;4000;5000;1030.5
+R;5000;1900;58.2
+R;1900;7600;404.2
+R;7600;5500;676.1
+R;5500;4400;646.5
+R;4400;5400;375.3
+R;5400;3300;853.7
+R;3300;3500;331.3
+R;3500;3400;89.3
+R;3400;8000;1394.6
+R;8000;3100;566.3
+R;3100;3600;672.3
+R;3600;4200;317.7
+R;4200;4600;364.4
+R;4600;8300;1336.8
+R;8300;9100;1290.6
+R;9100;9400;1575.7
+R;9400;5700;1137.4
+R;5700;4700;1540.5
+R;4700;5900;444.5
+R;5900;3200;381.2
+R;3200;1000;247.8
