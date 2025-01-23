@@ -39,18 +39,23 @@ public class TestGrafo {
         }
     }
 
-    public static void insertarRuta(String[] partes,GrafoEtiquetado mapa){
-        int codigoOrigen= Integer.parseInt(partes[1]);
+    public static void insertarRuta(String[] partes, GrafoEtiquetado mapa) {
+        int codigoOrigen = Integer.parseInt(partes[1]);
         int codigoDestino = Integer.parseInt(partes[2]);
-        double distancia =  Double.parseDouble(partes[3]);
-        if (!mapa.existeVertice(codigoOrigen) && !mapa.existeVertice(codigoDestino)) {
-          //verifica que no esten ya en el grafo
-          boolean yaExiste= mapa.existeVertice(codigoOrigen) && mapa.existeVertice(codigoDestino);
-         if (yaExiste) {
+        double distancia = Double.parseDouble(partes[3]);
+    
+        if (!mapa.existeVertice(codigoOrigen)) {
             mapa.insertarVertice(codigoOrigen);
+        }
+        
+        if (!mapa.existeVertice(codigoDestino)) {
             mapa.insertarVertice(codigoDestino);
+        }
+        
+        // Solo agregar el arco si ambos nodos han sido insertados
+        if (mapa.existeVertice(codigoOrigen) && mapa.existeVertice(codigoDestino)) {
             mapa.insertarArco(codigoOrigen, codigoDestino, distancia);
-         }
         }
     }
+    
 }
