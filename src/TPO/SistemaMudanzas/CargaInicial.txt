@@ -20,7 +20,6 @@ C;3560;Reconquista;Santa Fe
 C;5710;La Punta;San Luis
 C;8307;Catriel; Río Negro
 C;5400;San Juan; San Juan
-C;3500;Resistencia;Chaco
 C;8500;Viedma;Río Negro
 C;3450;Goya;Corrientes
 C;9103;Rawson;Chubut
@@ -28,6 +27,9 @@ C;9410;Ushuaia;Tierra del Fuego
 C;3561;Avellaneda;Santa Fe
 C;2820;Gualeguaychú;Entre Ríos
 C;8364;Chimpay;Río Negro
+C;3500;Resistencia;Chaco
+
+
 R;8324;8300;6.7
 R;3400;4200;634.2
 R;5000;2000;401.0

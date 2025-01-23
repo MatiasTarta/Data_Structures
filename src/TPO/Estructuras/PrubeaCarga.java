@@ -11,6 +11,8 @@ public class PrubeaCarga {
         ArbolAVL diccionarioCiudades= new ArbolAVL();
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         leerCiudades(archivo,diccionarioCiudades);
+
+
         System.out.println(diccionarioCiudades.toString());
     }
 

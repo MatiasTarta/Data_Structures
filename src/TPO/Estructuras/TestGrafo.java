@@ -26,11 +26,11 @@ public class TestGrafo {
                 String[] partes = linea.split(";");
                 switch (partes[0]) {
                     case "C":
-                        
-                    cargarCiudad(Integer.parseInt(partes[1]), partes[2], partes[3],diccionario);
+                    System.out.println(linea);
+                        cargarCiudad(Integer.parseInt(partes[1]), partes[2], partes[3],diccionario);
                         break;
                     case "R":
-                        insertarRuta(partes, mapa);
+                        insertarRuta( Integer.parseInt(partes[1]),Integer.parseInt(partes[2]),Double.parseDouble(partes[3]), mapa);
                         break;
                     default:
                         System.out.println("Formato desconocido en la línea: " + linea+" "+i);
@@ -43,10 +43,7 @@ public class TestGrafo {
         }
     }
 
-    public static void insertarRuta(String[] partes, GrafoEtiquetado mapa) {
-        int codigoOrigen = Integer.parseInt(partes[1]);
-        int codigoDestino = Integer.parseInt(partes[2]);
-        double distancia = Double.parseDouble(partes[3]);
+    public static void insertarRuta(int codigoOrigen ,int codigoDestino,  double distancia,GrafoEtiquetado mapa) {
         if (!mapa.existeVertice(codigoOrigen)) {
             mapa.insertarVertice(codigoOrigen);
         }
