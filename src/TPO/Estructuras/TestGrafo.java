@@ -45,9 +45,12 @@ public class TestGrafo {
         double distancia =  Double.parseDouble(partes[3]);
         if (!mapa.existeVertice(codigoOrigen) && !mapa.existeVertice(codigoDestino)) {
           //verifica que no esten ya en el grafo
-          mapa.insertarVertice(codigoOrigen);
-          mapa.insertarVertice(codigoDestino);
-          mapa.insertarArco(codigoOrigen, codigoDestino, distancia);
+          boolean yaExiste= mapa.existeVertice(codigoOrigen) && mapa.existeVertice(codigoDestino);
+         if (yaExiste) {
+            mapa.insertarVertice(codigoOrigen);
+            mapa.insertarVertice(codigoDestino);
+            mapa.insertarArco(codigoOrigen, codigoDestino, distancia);
+         }
         }
     }
 }

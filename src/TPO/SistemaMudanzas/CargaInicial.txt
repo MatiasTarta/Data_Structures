@@ -1,49 +1,72 @@
-C;1001;Buenos Aires;Buenos Aires  
-C;2000;Rosario;Santa Fe  
-C;3000;Santa Fe;Santa Fe  
-C;4000;San Miguel de Tucumán;Tucumán  
-C;1900;La Plata;Buenos Aires  
-C;7600;Mar del Plata;Buenos Aires  
-C;5500;Mendoza;Mendoza  
-C;4400;Salta;Salta  
-C;5400;San Juan;San Juan  
-C;3300;Posadas;Misiones  
-C;3500;Resistencia;Chaco  
-C;3400;Corrientes;Corrientes  
-C;8000;Bahía Blanca;Buenos Aires  
-C;3100;Paraná;Entre Ríos  
-C;3600;Formosa;Formosa  
-C;4200;Santiago del Estero;Santiago del Estero  
-C;4600;San Salvador de Jujuy;Jujuy  
-C;8300;Neuquén;Neuquén  
-C;9100;Rawson;Chubut  
-C;9400;Río Gallegos;Santa Cruz  
-C;9410;Ushuaia;Tierra del Fuego  
-C;5700;San Luis;San Luis  
-C;4700;Catamarca;Catamarca  
-C;5900;Villa María;Córdoba  
-C;3200;Concordia;Entre Ríos
-R;2000;3000;136.8
-R;3000;4000;460.2
-R;4000;5000;1030.5
-R;5000;1900;58.2
-R;1900;7600;404.2
-R;7600;5500;676.1
-R;5500;4400;646.5
-R;4400;5400;375.3
-R;5400;3300;853.7
-R;3300;3500;331.3
-R;3500;3400;89.3
-R;3400;8000;1394.6
-R;8000;3100;566.3
-R;3100;3600;672.3
-R;3600;4200;317.7
-R;4200;4600;364.4
-R;4600;8300;1336.8
-R;8300;9100;1290.6
-R;9100;9400;1575.7
-R;9400;5700;1137.4
-R;5700;4700;1540.5
-R;4700;5900;444.5
-R;5900;3200;381.2
-R;3200;1000;247.8
+R;8324;8300;6.7
+R;3400;4200;634.2
+R;5000;2000;401.0
+R;3000;2000;173.0
+R;5000;1000;696.4
+R;8324;1000;1136.1
+R;2000;1000;299.9
+R;2000;8316;20.9
+R;5000;4000;559.4
+R;5710;5400;328.7
+R;8332;9100;684.6
+R;9103;8332;518.8
+R;3561;3000;330.2
+R;5700;4200;789.6
+R;3300;3561;557.6
+R;4000;3300;1116.9
+R;8303;8324;15.5
+R;8324;5152;1131.5
+R;9410;9103;1734.7
+R;8303;5152;1118.7
+R;4000;5152;599.5
+R;8400;8300;438.5
+R;8307;5152;999.8
+R;3560;3300;417.1
+R;8300;8316;21.7
+R;8300;8307;133.2
+R;8300;8303;20.6
+R;9103;8364;567.6
+R;8307;5710;655.2
+R;9410;9000;1351.7
+R;9100;9000;376.4
+R;8324;8332;41.0
+R;8364;8332;133.5
+R;8364;1000;992.9
+R;3561;4200;551.6
+R;3560;5700;958.5
+R;3560;5710;936.8
+R;3500;5400;1347.8
+R;8500;1000;913.4
+R;3450;3500;243.3
+R;3450;4200;869.0
+R;2820;1000;849.0
+C;5000;Córdoba;Córdoba
+C;8300;Neuquén;Neuquén
+C;8324;Cipolletti;Río Negro
+C;2000;Rosario;Santa Fe
+C;1000;Buenos Aires; Ciudad Autónoma de Buenos Aires
+C;4000;San Miguel de Tucumán; Tucumán
+C;3300;Posadas;Misiones
+C;5152;Villa Carlos Paz;Córdoba
+C;3000;Santa Fe;Santa Fe
+C;5700;San Luis;San Luis
+C;8332;General Roca;Río Negro
+C;4200;Santiago del Estero;Santiago del Estero
+C;3400;Corrientes;Corrientes
+C;9100;Trelew;Chubut
+C;8303;Cinco Saltos;Rio Negro
+C;8316;Plottier;Neuquén
+C;9000;Comodoro Rivadavia;Chubut
+C;8400;San Carlos de Bariloche;Río Negro
+C;3560;Reconquista;Santa Fe
+C;5710;La Punta;San Luis
+C;8307;Catriel; Río Negro
+C;5400;San Juan; San Juan
+C;3500;Resistencia;Chaco
+C;8500;Viedma;Río Negro
+C;3450;Goya;Corrientes
+C;9103;Rawson;Chubut
+C;9410;Ushuaia;Tierra del Fuego
+C;3561;Avellaneda;Santa Fe
+C;2820;Gualeguaychú;Entre Ríos
+C;8364;Chimpay;Río Negro
