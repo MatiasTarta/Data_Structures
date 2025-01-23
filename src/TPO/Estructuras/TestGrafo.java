@@ -13,6 +13,7 @@ public class TestGrafo {
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarMapa(archivo,mapaRutas);
         System.out.println(mapaRutas.toString());
+        System.out.println(mapaRutas.cantidadNodos());
         
     }
 
