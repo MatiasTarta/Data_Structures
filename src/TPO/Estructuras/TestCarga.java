@@ -13,8 +13,8 @@ public class TestCarga {
         ArbolAVL diccionario = new ArbolAVL();
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarDatos(archivo,mapaRutas,diccionario);
-       System.out.println(mapaRutas.toString());
-        //System.out.println(diccionario.toString());
+        System.out.println(mapaRutas.toString());
+        System.out.println(diccionario.toString());
         
     }
 
