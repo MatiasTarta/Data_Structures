@@ -16,13 +16,10 @@ public class TestCarga {
         cargarDatos(archivo,mapaRutas,diccionario);
         // System.out.println(mapaRutas.toString());
         //System.out.println(diccionario.toString());
-        System.out.println("El camino que va de ciudad :"+1000+ "a "+3450+" sin pasar 2 veces por "+8324);
-        Lista nueva= mapaRutas.caminoSinRepetir(1000, 3450, 8324);
-        System.out.println(nueva.toString());
 
         System.out.println("Camino que ocupa maximo de km");
-        Lista lista2= mapaRutas.calcularMayorDistancia(8332, 8354);
-        System.out.println(lista2.toString());
+        System.out.println(mapaRutas.caminoMayorDistancia(3560, 1900));
+
         
     }
 
