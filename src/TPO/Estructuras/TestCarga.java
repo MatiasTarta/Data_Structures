@@ -14,9 +14,9 @@ public class TestCarga {
         ArbolAVL diccionario = new ArbolAVL();
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarDatos(archivo,mapaRutas,diccionario);
-        //System.out.println(mapaRutas.toString());
-       // System.out.println(diccionario.toString());
-      System.out.println("El camino que va de ciudad A a B sin pasar 2 veces por C");
+        // System.out.println(mapaRutas.toString());
+        //System.out.println(diccionario.toString());
+        System.out.println("El camino que va de ciudad :"+1000+ "a "+3450+" sin pasar 2 veces por "+8324);
         Lista nueva= mapaRutas.caminoSinRepetir(1000, 3450, 8324);
         System.out.println(nueva.toString());
 

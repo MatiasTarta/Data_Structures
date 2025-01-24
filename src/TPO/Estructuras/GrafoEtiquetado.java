@@ -285,48 +285,50 @@ public class GrafoEtiquetado {
         return res;
     }
     
-    public Lista caminoSinRepetir(Object origen,Object destino,Object intermedio){
-        Lista camino= new Lista();
-        Lista visitados= new Lista();
-        if (this.inicio!=null) {
-            NodoVert origenAux= buscarVertice(origen);
+    public Lista caminoSinRepetir(Object origen, Object destino, Object intermedio) {
+        Lista camino = new Lista();
+        Lista visitados = new Lista();
+        if (this.inicio != null) {
+            NodoVert origenAux = buscarVertice(origen);
             NodoVert destinoAux = buscarVertice(destino);
-            NodoVert ciudad= buscarVertice(intermedio);
-            if (origenAux!=null && destinoAux!=null && ciudad!=null) {
-                caminoSinRepetirAux(origenAux,destino,intermedio,camino,visitados,false);
+            NodoVert intermedioAux = buscarVertice(intermedio);
+            if (origenAux != null && destinoAux != null && intermedioAux != null) {
+                camino = caminoSinRepetirAux(origenAux, destino, intermedio, camino, visitados, false);
             }
         }
         return camino;
     }
+    
 
-    private Lista caminoSinRepetirAux(NodoVert vertice,Object destino, Object intermedio,Lista camino,Lista visitados,Boolean pasoInter){
-        if (vertice!=null) {
-            visitados.insertar(vertice.getElemento(), visitados.longitud()+1);
+    private Lista caminoSinRepetirAux(NodoVert vertice, Object destino, Object intermedio, Lista camino, Lista visitados, Boolean pasoInter) {
+        if (vertice != null) {
+            // Agrego el vértice actual a la lista de visitados
+            visitados.insertar(vertice.getElemento(), visitados.longitud() + 1);
+            // Si llego al nodo intermedio, marco que lo he visitado
             if (vertice.getElemento().equals(intermedio)) {
-                pasoInter=true;
+                pasoInter = true;
+            }
+            if (vertice.getElemento().equals(destino) && pasoInter) {
+                // Si es un camino válido, solo lo agrego si no está ya en la lista "camino"
+                if (camino.esVacia()) {
+                    camino = visitados.clone();
                 }
-            if (vertice.getElemento().equals(destino)) {
-                if (pasoInter) {
-                    Lista caminoEncontrado= visitados.clone();
-                    camino.insertar(caminoEncontrado, camino.longitud()+1);//agrega el camino a la lista
-                }
-            }else{
-                //exploro ciudades adyacentes
-                NodoAdy ady= vertice.getPrimerAdy();
-                while (ady!=null) {
-                    if (visitados.localizar(ady.getVertice().getElemento())<0) {
-                        //si todavia no visitamos esa ciudad
-                        
-                        //camino=caminoSinRepetirAux(ady.getVertice(), destino, intermedio, camino, visitados,pasoInter);
+            } else {
+                NodoAdy ady = vertice.getPrimerAdy();
+                while (ady != null) {
+                    if (visitados.localizar(ady.getVertice().getElemento()) < 0) {
+                        // Llamado recursivo para explorar los adyacentes
+                        camino = caminoSinRepetirAux(ady.getVertice(), destino, intermedio, camino, visitados, pasoInter);
                     }
-                    ady=ady.getSigAdyacente();
+                    ady = ady.getSigAdyacente();
                 }
             }
-            //elimina el vertice actual de la lista de visitados al retroceder
             visitados.eliminar(visitados.longitud());
         }
         return camino;
     }
+    
+    
 
     public String toString() {
         String resultado;
