@@ -18,7 +18,7 @@ public class TestCarga {
         //System.out.println(diccionario.toString());
 
         System.out.println("Camino que ocupa maximo de km");
-        System.out.println(mapaRutas.caminoMayorDistancia(3560, 1900));
+        System.out.println(mapaRutas.caminoMayorDistancia(3560, 1900,5000));
 
         
     }

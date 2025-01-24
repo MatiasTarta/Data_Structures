@@ -294,58 +294,47 @@ public class GrafoEtiquetado {
         return camino;
     }
 
-    
-
-    public Lista caminoMayorDistancia(Object origen, Object destino) {
+    public Lista caminoMayorDistancia(Object origen, Object destino, double maximo) {
         Lista visitados = new Lista();
         Lista res = new Lista();
         double[] mayorKM = new double[1];
-        mayorKM[0] = Double.NEGATIVE_INFINITY; // Inicializamos con el valor más bajo posible.
-        
+        mayorKM[0] =0;
         if (this.inicio != null) {
             NodoVert origenAux = buscarVertice(origen);
             NodoVert destinoAux = buscarVertice(destino);
             if (origenAux != null && destinoAux != null) {
-                res = caminoMayorDistanciaAux(origenAux, destino, 0, mayorKM, visitados, res);
+                res = caminoMayorDistanciaAux(origenAux, destino, 0, mayorKM, visitados, res, maximo);
             }
         }
         return res;
     }
     
-    private Lista caminoMayorDistanciaAux(NodoVert vertice, Object destino, double kmAux, double[] mayorKM, Lista visitados, Lista res) {
+    private Lista caminoMayorDistanciaAux(NodoVert vertice, Object destino, double kmAux, double[] mayorKM, Lista visitados, Lista res, double maximo) {
         if (vertice != null) {
-            double km = mayorKM[0]; // Recuperamos el valor de la mejor distancia encontrada hasta el momento.
-            
-            // Compara si la distancia acumulada (kmAux) es mayor que la mejor distancia almacenada.
-            if (kmAux > km) {
-                visitados.insertar(vertice.getElemento(), visitados.longitud() + 1); // Agregamos el vértice a la lista de visitados.
-                
-                // Si llegamos al destino, verificamos si la distancia acumulada es la mejor hasta ahora.
-                if (vertice.getElemento().equals(destino)) {
-                    mayorKM[0] = kmAux; // Actualizamos la distancia con la mejor encontrada.
-                    res = visitados.clone(); // Guardamos el camino encontrado.
-                } else {
-                    NodoAdy ady = vertice.getPrimerAdy();
-                    while (ady != null) {
-                        if (visitados.localizar(ady.getVertice().getElemento()) < 0) { // Si no hemos visitado este vértice
-                            // Llamada recursiva con la distancia acumulada sumada.
-                            res = caminoMayorDistanciaAux(ady.getVertice(), destino, kmAux + ady.getEtiqueta(), mayorKM, visitados, res);
-                        }
-                        ady = ady.getSigAdyacente(); // Pasamos al siguiente vértice adyacente.
-                    }
+            if (!(kmAux > maximo)){//si la distancia todavia no acumula el maximo
+                visitados.insertar(vertice.getElemento(), visitados.longitud() + 1);
+            // si llegamos al destino y la distancia es mayor que la mejor conocida, lo guardamos
+            if (vertice.getElemento().equals(destino) && kmAux <= maximo) {
+                if (kmAux > mayorKM[0]) {
+                    mayorKM[0] = kmAux;
+                    res = visitados.clone();
                 }
-                visitados.eliminar(visitados.longitud()); // Retrocedemos, eliminando el vértice actual de la lista de visitados.
+            } else {
+                NodoAdy ady = vertice.getPrimerAdy();
+                while (ady != null) {
+                    if (visitados.localizar(ady.getVertice().getElemento()) < 0) {
+                        res = caminoMayorDistanciaAux(ady.getVertice(), destino, kmAux + ady.getEtiqueta(), mayorKM, visitados, res, maximo);
+                    }
+                    ady = ady.getSigAdyacente();
+                }
             }
+            visitados.eliminar(visitados.longitud());
+            }
+            
         }
         return res;
     }
     
-    
-    
-    
-    
-    
-
     public String toString() {
         String resultado;
         if (this.inicio != null) {
