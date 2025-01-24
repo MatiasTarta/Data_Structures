@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import TPO.SistemaMudanzas.Ciudad;
+import lineales.dinamicas.Lista;
 import TPO.Estructuras.ArbolAVL;
 public class TestCarga {
     public static void main(String[] args) {
@@ -13,8 +14,15 @@ public class TestCarga {
         ArbolAVL diccionario = new ArbolAVL();
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarDatos(archivo,mapaRutas,diccionario);
-        System.out.println(mapaRutas.toString());
-        System.out.println(diccionario.toString());
+        //System.out.println(mapaRutas.toString());
+       // System.out.println(diccionario.toString());
+      System.out.println("El camino que va de ciudad A a B sin pasar 2 veces por C");
+        Lista nueva= mapaRutas.caminoSinRepetir(1000, 3450, 8324);
+        System.out.println(nueva.toString());
+
+        System.out.println("Camino que ocupa maximo de km");
+        Lista lista2= mapaRutas.calcularMayorDistancia(8332, 8354);
+        System.out.println(lista2.toString());
         
     }
 
