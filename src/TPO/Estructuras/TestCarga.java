@@ -15,12 +15,7 @@ public class TestCarga {
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarDatos(archivo,mapaRutas,diccionario);
         // System.out.println(mapaRutas.toString());
-        //System.out.println(diccionario.toString());
-
-        System.out.println("Camino que ocupa maximo de km");
-        System.out.println(mapaRutas.caminoMayorDistancia(3560, 1900,5000));
-
-        
+        //System.out.println(diccionario.toString()); 
     }
 
     public static void cargarDatos(String archivo,GrafoEtiquetado mapa,ArbolAVL diccionario){

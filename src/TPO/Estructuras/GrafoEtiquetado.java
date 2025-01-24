@@ -187,10 +187,8 @@ public class GrafoEtiquetado {
     private Lista caminoMasCortoAux(NodoVert vertice, Object destino, Lista visitados, Lista res) {
         if (vertice != null) {
             visitados.insertar(vertice.getElemento(), visitados.longitud() + 1);
-            //System.out.println("Visitando nodo: " + vertice.getElemento() + " | Lista de visitados: " + visitados.toString());
             if (vertice.getElemento().equals(destino)) { // si vert es el destino, encontró un camino
                 res = visitados.clone();
-                //System.out.println("¡Camino encontrado! Detalles: " + res.toString());
             } else {
                 NodoAdy ady = vertice.getPrimerAdy();
                 while (ady != null) {
@@ -231,7 +229,6 @@ public class GrafoEtiquetado {
                 if (vertice.getElemento().equals(destino)) {
                     menosKM[0] = kmAux;
                     res = visitados.clone();
-                    //System.out.println("Camino encontrado: " + res.toString() + " | Distancia total: " + menosKM[0] + " km");
                 } else {
                     NodoAdy ady = vertice.getPrimerAdy();
                     while (ady != null) {
@@ -268,14 +265,12 @@ public class GrafoEtiquetado {
 
     private Lista caminoSinRepetirAux(NodoVert vertice, Object destino, Object intermedio, Lista camino, Lista visitados, Boolean pasoInter) {
         if (vertice != null) {
-            // Agrego el vértice actual a la lista de visitados
             visitados.insertar(vertice.getElemento(), visitados.longitud() + 1);
-            // Si llego al nodo intermedio, marco que lo he visitado
+
             if (vertice.getElemento().equals(intermedio)) {
-                pasoInter = true;
+                pasoInter = true;// marco si visite el nodo intermedio
             }
             if (vertice.getElemento().equals(destino) && pasoInter) {
-                // Si es un camino válido, solo lo agrego si no está ya en la lista "camino"
                 if (camino.esVacia()) {
                     camino = visitados.clone();
                 }
@@ -283,7 +278,6 @@ public class GrafoEtiquetado {
                 NodoAdy ady = vertice.getPrimerAdy();
                 while (ady != null) {
                     if (visitados.localizar(ady.getVertice().getElemento()) < 0) {
-                        // Llamado recursivo para explorar los adyacentes
                         camino = caminoSinRepetirAux(ady.getVertice(), destino, intermedio, camino, visitados, pasoInter);
                     }
                     ady = ady.getSigAdyacente();
@@ -371,7 +365,6 @@ public class GrafoEtiquetado {
             contador++;
             actual = actual.getSigVertice();
         }
-    
         return contador;
     }
 
