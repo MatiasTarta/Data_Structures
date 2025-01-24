@@ -19,7 +19,6 @@ C;9000;Comodoro Rivadavia;Chubut
 C;8400;San Carlos de Bariloche;Río Negro
 C;3560;Reconquista;Santa Fe
 C;5710;La Punta;San Luis
-C;8307;Catriel; Río Negro
 C;5400;San Juan; San Juan
 C;8500;Viedma;Río Negro
 C;9103;Rawson;Chubut
@@ -50,13 +49,10 @@ R;9410;9103;1734.7
 R;8303;5152;1118.7
 R;4000;5152;599.5
 R;8400;8300;438.5
-R;8307;5152;999.8
 R;3560;3300;417.1
 R;8300;8316;21.7
-R;8300;8307;133.2
 R;8300;8303;20.6
 R;9103;8364;567.6
-R;8307;5710;655.2
 R;9410;9000;1351.7
 R;9100;9000;376.4
 R;8324;8332;41.0

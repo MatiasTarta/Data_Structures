@@ -7,13 +7,13 @@ import java.nio.file.Paths;
 
 import TPO.SistemaMudanzas.Ciudad;
 import TPO.Estructuras.ArbolAVL;
-public class TestGrafo {
+public class TestCarga {
     public static void main(String[] args) {
         GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
         ArbolAVL diccionario = new ArbolAVL();
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarDatos(archivo,mapaRutas,diccionario);
-       // System.out.println(mapaRutas.toString());
+       System.out.println(mapaRutas.toString());
         System.out.println(diccionario.toString());
         
     }

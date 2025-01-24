@@ -10,7 +10,6 @@ public class ArbolAVL {
         return raiz;
     }
 
-
     public boolean pertenece(NodoAVL nodo,Comparable clave){
         if (nodo==null) {
             //caso base, si el nodo es nulo entonces se llego a una hoja sin encontrar el resultado
@@ -414,13 +413,6 @@ public class ArbolAVL {
             return buscarMinimo(nodo.getIzquierdo());
         }
         
-        
-
-        
-        
-
-
-
         public String toString() {
             if (raiz == null) {
                 return "Árbol vacío";
