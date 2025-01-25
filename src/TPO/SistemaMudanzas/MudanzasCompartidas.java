@@ -11,11 +11,14 @@ import TPO.Estructuras.GrafoEtiquetado;
 import lineales.dinamicas.Lista;
 
 public class MudanzasCompartidas {
+    static ArbolAVL diccionario = new ArbolAVL();
+    static GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int entrada = 1;
         GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
-        ArbolAVL diccionario = new ArbolAVL();
+        // ArbolAVL diccionario = new ArbolAVL();
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
 
         System.out.println("Bienvenido al sistema de Mudanzas de la Empresa");
@@ -33,7 +36,7 @@ public class MudanzasCompartidas {
             switch (entrada) {
                 case 1:
                     // carga inicial
-                    hacerCargaInicial(archivo, mapaRutas, diccionario);
+                    hacerCargaInicial(archivo, mapa);
                     break;
                 case 2:
                     // abm
@@ -65,17 +68,35 @@ public class MudanzasCompartidas {
             System.out.println("Ingrese 0 para cerrar");
             System.out.println("<-------------------------------------------------->");
             entrada = sc.nextInt();
-
             System.out.println("\n");
             switch (entrada) {
                 case 1:
                     // consultas sobre clientes
                     break;
                 case 2:
-                    // consultas sobre ciudades
+                    while (entrada != 0) {
+                        System.out.println("Dado un código postal de una ciudad, mostrar toda su información");
+                        System.out.println(
+                                "Dado un prefijo, devolver todas las ciudades cuyo código postal comienza con dicho prefijo");
+                        System.out.println("Ingrese 0 para cerrar");
+                        entrada = sc.nextInt();
+                        System.out.println("\n");
+                        switch (entrada) {
+                            case 1:
+                                System.out.println("Ingrese el codigo Postal");
+                                int codigo = sc.nextInt();
+                                mostrarCiudadesPrefijo(codigo);
+                                break;
+                            case 2:
+                                System.out.println("Ingrese el prefijo");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     break;
                 case 3:
-                    // consultas sobre viajes
+                    // consultas sobre mapa
                     break;
                 case 4:
                     // verificar viaje
@@ -86,7 +107,7 @@ public class MudanzasCompartidas {
         }
     }
 
-    public static void hacerCargaInicial(String archivo, GrafoEtiquetado mapa, ArbolAVL diccionario) {
+    public static void hacerCargaInicial(String archivo, GrafoEtiquetado mapa) {
         int i = 1;
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
@@ -127,7 +148,7 @@ public class MudanzasCompartidas {
         }
     }
 
-    public static void cargarCiudad(int codigo, String nombre, String provincia, ArbolAVL diccionario) {
+    public static void cargarCiudad(int codigo, String nombre, String provincia) {
         Ciudad ciudad = new Ciudad(codigo, nombre, provincia);
         boolean exito = diccionario.insertar(codigo, ciudad);
         if (exito) {
@@ -135,12 +156,12 @@ public class MudanzasCompartidas {
         }
     }
 
-    public static String mostrarInfoCiudad(Comparable codigoPostal, ArbolAVL diccionario) {
+    public static String mostrarInfoCiudad(Comparable codigoPostal) {
         // Dado un código postal de una ciudad, mostrar toda su información
         return (diccionario.obtenerDato(codigoPostal).toString());
     }
 
-    public static Lista mostrarCiudadesPrefijo(int prefijo, ArbolAVL diccionario) {
+    public static Lista mostrarCiudadesPrefijo(int prefijo) {
         return diccionario.ciudadesPrefijo(prefijo);
     }
 
