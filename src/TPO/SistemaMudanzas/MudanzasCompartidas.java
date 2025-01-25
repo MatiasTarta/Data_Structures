@@ -21,12 +21,15 @@ public class MudanzasCompartidas {
         System.out.println("Bienvenido al sistema de Mudanzas de la Empresa");
         System.out.println("Que desea Hacer a Continuacion?");
         while (entrada != 0) {
+            System.out.println("<------------------Menu Principal------------------>");
             System.out.println("Ingrese 1 para realizar una carga Inicial de un lote fijo");
             System.out.println("Ingrese 2 para tratar Altas,Bajas y Modificaiones del sistema");
             System.out.println("Ingrese 3 para realizar consultas");
             System.out.println("Ingrese 4 para mostrar las estructuras del sistema");
             System.out.println("Ingrese 0 para cerrar");
+            System.out.println("<-------------------------------------------------->");
             entrada = sc.nextInt();
+            System.out.println("\n");
             switch (entrada) {
                 case 1:
                     // carga inicial
@@ -37,6 +40,7 @@ public class MudanzasCompartidas {
                     break;
                 case 3:
                     // consultas
+                    menuConsultas(sc, 1);
                     break;
                 case 4:
                     // muestra estructuras del sistema
@@ -46,6 +50,40 @@ public class MudanzasCompartidas {
             }
         }
 
+    }
+
+    public static void menuConsultas(Scanner sc, int entrada) {
+        System.out.println("Bienvenido al menu de Consultas");
+        System.out.println("Que desea Hacer a Continuacion?");
+
+        while (entrada != 0) {
+            System.out.println("<------------------Menu Consultas------------------>");
+            System.out.println("Ingrese 1 para realizar consultas sobre los clientes");
+            System.out.println("Ingrese 2 para realizar consultas sobre las ciudades");
+            System.out.println("Ingrese 3 para realizar consultas sobre los viajes");
+            System.out.println("Ingrese 4 para verificar un viaje");
+            System.out.println("Ingrese 0 para cerrar");
+            System.out.println("<-------------------------------------------------->");
+            entrada = sc.nextInt();
+
+            System.out.println("\n");
+            switch (entrada) {
+                case 1:
+                    // consultas sobre clientes
+                    break;
+                case 2:
+                    // consultas sobre ciudades
+                    break;
+                case 3:
+                    // consultas sobre viajes
+                    break;
+                case 4:
+                    // verificar viaje
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public static void hacerCargaInicial(String archivo, GrafoEtiquetado mapa, ArbolAVL diccionario) {
