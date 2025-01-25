@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import TPO.SistemaMudanzas.Ciudad;
+import lineales.dinamicas.Lista;
 
 public class TestCarga {
     public static void main(String[] args) {
@@ -15,8 +16,10 @@ public class TestCarga {
         cargarDatos(archivo, mapaRutas, diccionario);
         // System.out.println(mapaRutas.toString());
         System.out.println(diccionario.toString());
-        System.out.println(mostrarInfoCiudad(8332, diccionario));
-
+        // System.out.println(mostrarInfoCiudad(8332, diccionario));
+        Lista res = mostrarCiudadesPrefijo(83, diccionario);
+        System.out.println(res.toString());
+        System.out.println(res.longitud());
     }
 
     public static void cargarDatos(String archivo, GrafoEtiquetado mapa, ArbolAVL diccionario) {
@@ -68,7 +71,12 @@ public class TestCarga {
     }
 
     public static String mostrarInfoCiudad(Comparable codigoPostal, ArbolAVL diccionario) {
+        // Dado un código postal de una ciudad, mostrar toda su información
         return (diccionario.obtenerDato(codigoPostal).toString());
+    }
+
+    public static Lista mostrarCiudadesPrefijo(int prefijo, ArbolAVL diccionario) {
+        return diccionario.ciudadesPrefijo(prefijo);
     }
 
 }
