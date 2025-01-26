@@ -17,10 +17,10 @@ public class MudanzasCompartidas {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int entrada = 1;
-        GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
-        // ArbolAVL diccionario = new ArbolAVL();
+        
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
 
+        hacerCargaInicial(archivo);
         System.out.println("Bienvenido al sistema de Mudanzas de la Empresa");
         System.out.println("Que desea Hacer a Continuacion?");
         while (entrada != 0) {
@@ -36,7 +36,7 @@ public class MudanzasCompartidas {
             switch (entrada) {
                 case 1:
                     // carga inicial
-                    hacerCargaInicial(archivo, mapa);
+                    hacerCargaInicial(archivo);
                     break;
                 case 2:
                     // abm
@@ -58,7 +58,6 @@ public class MudanzasCompartidas {
     public static void menuConsultas(Scanner sc, int entrada) {
         System.out.println("Bienvenido al menu de Consultas");
         System.out.println("Que desea Hacer a Continuacion?");
-
         while (entrada != 0) {
             System.out.println("<------------------Menu Consultas------------------>");
             System.out.println("Ingrese 1 para realizar consultas sobre los clientes");
@@ -74,29 +73,11 @@ public class MudanzasCompartidas {
                     // consultas sobre clientes
                     break;
                 case 2:
-                    while (entrada != 0) {
-                        System.out.println("Dado un código postal de una ciudad, mostrar toda su información");
-                        System.out.println(
-                                "Dado un prefijo, devolver todas las ciudades cuyo código postal comienza con dicho prefijo");
-                        System.out.println("Ingrese 0 para cerrar");
-                        entrada = sc.nextInt();
-                        System.out.println("\n");
-                        switch (entrada) {
-                            case 1:
-                                System.out.println("Ingrese el codigo Postal");
-                                int codigo = sc.nextInt();
-                                mostrarCiudadesPrefijo(codigo);
-                                break;
-                            case 2:
-                                System.out.println("Ingrese el prefijo");
-                                break;
-                            default:
-                                break;
-                        }
-                    }
+                    menuConsultasCiudades(sc, 1);
                     break;
                 case 3:
                     // consultas sobre mapa
+                    menuConsultasMapa(sc, 1);
                     break;
                 case 4:
                     // verificar viaje
@@ -107,7 +88,64 @@ public class MudanzasCompartidas {
         }
     }
 
-    public static void hacerCargaInicial(String archivo, GrafoEtiquetado mapa) {
+
+    public static void menuConsultasCiudades(Scanner sc, int entrada){
+        while (entrada != 0) {
+            System.out.println("1.Dado un código postal de una ciudad, mostrar toda su información");
+            System.out.println("2.Dado un prefijo, devolver todas las ciudades cuyo código postal comienza con dicho prefijo");
+            System.out.println("Ingrese 0 para cerrar");
+            entrada = sc.nextInt();
+            System.out.println("\n");
+            switch (entrada) {
+                case 1:
+                    System.out.println("Ingrese el codigo Postal");
+                    int codigo = sc.nextInt();
+                    System.out.println(mostrarCiudadesPrefijo(codigo));
+                    break;
+                case 2:
+                    System.out.println("Ingrese el prefijo");
+                    int prefijo = sc.nextInt();
+                    System.out.println(mostrarCiudadesPrefijo(prefijo).toString());
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public static void menuConsultasMapa(Scanner sc, int entrada){
+        while (entrada != 0){
+            System.out.println("1. Obtener el camino mas directo");//mas directo= pasa por menos ciudades
+            System.out.println("2. Obtener el camino mas corto en distancia");
+            System.out.println("3. Obtener todos los caminos posibles entre dos ciudades pasando por una ciudad Intermedia");
+            System.out.println("4. Verificar si es posible viajar entre 2 ciudades con una cantidad maxima de Kilometros");
+            System.out.println("Ingrese 0 para cerrar");
+            entrada= sc.nextInt();
+            switch (entrada) {
+                case 1:
+                    System.out.println("Ingrese Ciudad de Origen y Ciudad de Destino");
+                    int origen=sc.nextInt();
+                    int destino=sc.nextInt();
+                    System.out.println("El camino mas directo desde "+origen+" hasta "+destino+" es:");
+                    Lista nueva= mapaRutas.caminoMasCorto(origen, destino);
+                    System.out.println((mapaRutas.caminoMasCorto(origen, destino)).toString());
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                    
+                    break;
+                case 4:
+                    
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public static void hacerCargaInicial(String archivo) {
         int i = 1;
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
@@ -115,11 +153,11 @@ public class MudanzasCompartidas {
                 String[] partes = linea.split(";");
                 switch (partes[0]) {
                     case "C":
-                        cargarCiudad(Integer.parseInt(partes[1]), partes[2], partes[3], diccionario);
+                        cargarCiudad(Integer.parseInt(partes[1]), partes[2], partes[3]);
                         break;
                     case "R":
                         insertarRuta(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]),
-                                Double.parseDouble(partes[3]), mapa);
+                                Double.parseDouble(partes[3]), mapaRutas);
                         break;
                     default:
                         System.out.println("Formato desconocido en la línea: " + linea + " " + i);

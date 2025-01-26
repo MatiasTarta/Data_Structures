@@ -15,11 +15,10 @@ public class TestCarga {
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarDatos(archivo, mapaRutas, diccionario);
         // System.out.println(mapaRutas.toString());
-        System.out.println(diccionario.toString());
-        // System.out.println(mostrarInfoCiudad(8332, diccionario));
-        Lista res = mostrarCiudadesPrefijo(83, diccionario);
-        System.out.println(res.toString());
-        System.out.println(res.longitud());
+       // System.out.println(diccionario.toString());
+        
+        Lista nueva= mapaRutas.caminoMasCorto(8332, 1900);
+        System.out.println(nueva.toString());
     }
 
     public static void cargarDatos(String archivo, GrafoEtiquetado mapa, ArbolAVL diccionario) {
