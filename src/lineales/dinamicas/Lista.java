@@ -104,12 +104,12 @@ public class Lista {
         String s = "[";
         Nodo aux = this.cabecera;
         while (aux != null) {
-            s = s + aux.getElem() + "|";
+            s = s + "<" + aux.getElem() + ">|";
             aux = aux.getEnlace();
-           
         }
         return s + "]";
     }
+    
 
     public String toStringSaltoLinea() {
         StringBuilder sb = new StringBuilder();
