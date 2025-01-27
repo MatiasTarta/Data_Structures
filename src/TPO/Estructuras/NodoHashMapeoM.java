@@ -8,13 +8,21 @@ public class NodoHashMapeoM {
     private Lista rango;
     private NodoHashMapeoM enlace;
 
-    public NodoHashMapeoM(String nombre,String apellido,String email){
+    public NodoHashMapeoM(String tipoDocumento,int numeroDocumento,String nombre,String apellido,String email){
+        this.tipoDocumento=tipoDocumento;
+        this.numeroDocumento=numeroDocumento;
         rango= new Lista();
         rango.insertar(nombre,1);
         rango.insertar(apellido,2);
         rango.insertar(email,3);
         enlace=null;
     }
+
+    public void setRango(Lista l){
+        rango=l;
+    }
+
+    public Lista getRango(){return rango;}
 
     public String getTipoDocumento() {
         return tipoDocumento;
