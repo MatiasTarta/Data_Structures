@@ -17,7 +17,7 @@ public class TestCarga {
         // System.out.println(mapaRutas.toString());
        // System.out.println(diccionario.toString());
         
-        Lista nueva= mapaRutas.caminoMasCorto(8332, 1900);
+        Lista nueva= diccionario.listarDatos();
         System.out.println(nueva.toString());
     }
 

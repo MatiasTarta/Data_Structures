@@ -457,4 +457,32 @@ public class Diccionario {
         this.raiz = null;
     }
 
+    public Lista listarClaves(){
+        Lista claves= new Lista();
+        listarClavesAux(raiz,claves);
+        return claves;
+    }
+    public static void listarClavesAux(NodoAVL nodo,Lista claves){
+        if (nodo!=null) {
+            listarClavesAux(nodo.getIzquierdo(), claves);
+            claves.insertar(nodo.getClave(), claves.longitud()+1);
+            listarClavesAux(nodo.getDerecho(), claves);
+        }
+    }
+
+    public Lista listarDatos() {
+        Lista datos = new Lista();
+        listarDatosAux(raiz, datos);
+        return datos;
+    }
+    
+    private void listarDatosAux(NodoAVL nodo, Lista datos) {
+        if (nodo != null) {
+            listarDatosAux(nodo.getIzquierdo(), datos);
+            datos.insertar(nodo.getDato(), datos.longitud() + 1);
+            listarDatosAux(nodo.getDerecho(), datos);
+        }
+    }
+    
+
 }
