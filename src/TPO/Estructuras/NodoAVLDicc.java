@@ -1,15 +1,15 @@
 package TPO.Estructuras;
 
 
-public class NodoAVL {
+public class NodoAVLDicc {
 
     private Comparable clave;
     private Object dato;
     private int altura;
-    private NodoAVL izquierdo;
-    private NodoAVL derecho;
+    private NodoAVLDicc izquierdo;
+    private NodoAVLDicc derecho;
 
-    public NodoAVL(Comparable clave, Object dato, NodoAVL izquierdo, NodoAVL derecho) {
+    public NodoAVLDicc(Comparable clave, Object dato, NodoAVLDicc izquierdo, NodoAVLDicc derecho) {
         this.clave = clave;
         this.dato = dato;
         this.izquierdo = izquierdo;
@@ -47,20 +47,20 @@ public class NodoAVL {
         this.altura = (Math.max(izq, der)) + 1;
     }
 
-    public NodoAVL getIzquierdo() {
+    public NodoAVLDicc getIzquierdo() {
         return izquierdo;
     }
 
-    public void setIzquierdo(NodoAVL izquierdo) {
+    public void setIzquierdo(NodoAVLDicc izquierdo) {
         this.izquierdo = izquierdo;
         recalcularAltura();
     }
 
-    public NodoAVL getDerecho() {
+    public NodoAVLDicc getDerecho() {
         return derecho;
     }
 
-    public void setDerecho(NodoAVL derecho) {
+    public void setDerecho(NodoAVLDicc derecho) {
         this.derecho = derecho;
         recalcularAltura();
     }

@@ -3,17 +3,17 @@ package TPO.Estructuras;
 import lineales.dinamicas.Lista;
 
 public class Diccionario {
-    NodoAVL raiz;
+    NodoAVLDicc raiz;
 
     public Diccionario() {
         raiz = null;
     }
 
-    public NodoAVL getRaiz() {
+    public NodoAVLDicc getRaiz() {
         return raiz;
     }
 
-    public boolean pertenece(NodoAVL nodo, Comparable clave) {
+    public boolean pertenece(NodoAVLDicc nodo, Comparable clave) {
         if (nodo == null) {
             // caso base, si el nodo es nulo entonces se llego a una hoja sin encontrar el
             // resultado
@@ -37,7 +37,7 @@ public class Diccionario {
     public boolean insertar(Comparable clave, Object dato) {
         boolean exito = true;
         if (this.raiz == null) {
-            this.raiz = new NodoAVL(clave, dato, null, null);
+            this.raiz = new NodoAVLDicc(clave, dato, null, null);
             // si el arbol esta vacio pongo el elemento como raiz
         } else {
             exito = insertarAux(this.raiz, null, clave, dato);
@@ -46,7 +46,7 @@ public class Diccionario {
         return exito;
     }
 
-    private boolean insertarAux(NodoAVL nodo, NodoAVL padre, Comparable clave, Object dato) {
+    private boolean insertarAux(NodoAVLDicc nodo, NodoAVLDicc padre, Comparable clave, Object dato) {
         // Precondicion: nodo no es nulo
         boolean exito = true;
         if (clave.compareTo(nodo.getClave()) == 0) {
@@ -58,7 +58,7 @@ public class Diccionario {
             if (nodo.getIzquierdo() != null) {
                 exito = insertarAux(nodo.getIzquierdo(), nodo, clave, dato);
             } else {
-                nodo.setIzquierdo(new NodoAVL(clave, dato, null, null));
+                nodo.setIzquierdo(new NodoAVLDicc(clave, dato, null, null));
             }
             nodo.recalcularAltura();
         } else if (clave.compareTo(nodo.getClave()) > 0) {
@@ -67,7 +67,7 @@ public class Diccionario {
                 exito = insertarAux(nodo.getDerecho(), nodo, clave, dato);
 
             } else {
-                nodo.setDerecho(new NodoAVL(clave, dato, null, null));
+                nodo.setDerecho(new NodoAVLDicc(clave, dato, null, null));
             }
         }
         if (exito) {
@@ -78,7 +78,7 @@ public class Diccionario {
         return exito;
     }
 
-    private void balancear(NodoAVL nodo, NodoAVL padre) {
+    private void balancear(NodoAVLDicc nodo, NodoAVLDicc padre) {
         int balanceNodo;
         int balanceHijo;
         balanceNodo = balance(nodo);
@@ -143,7 +143,7 @@ public class Diccionario {
 
     }
 
-    private int balance(NodoAVL nodo) {
+    private int balance(NodoAVLDicc nodo) {
         // retorna el balance
         int balanceNodo;
         int alturaHijoIzquierdo = -1;
@@ -158,9 +158,9 @@ public class Diccionario {
         return balanceNodo;
     }
 
-    public NodoAVL rotacionSimpleIzquierda(NodoAVL pivote) {
-        NodoAVL hijo = pivote.getDerecho();
-        NodoAVL temporal = hijo.getIzquierdo();
+    public NodoAVLDicc rotacionSimpleIzquierda(NodoAVLDicc pivote) {
+        NodoAVLDicc hijo = pivote.getDerecho();
+        NodoAVLDicc temporal = hijo.getIzquierdo();
         hijo.setIzquierdo(pivote);
         pivote.setDerecho(temporal);
         hijo.recalcularAltura();
@@ -168,9 +168,9 @@ public class Diccionario {
         return hijo;
     }
 
-    public NodoAVL rotacionSimpleDerecha(NodoAVL pivote) {
-        NodoAVL hijo = pivote.getIzquierdo();
-        NodoAVL temporal = hijo.getDerecho();
+    public NodoAVLDicc rotacionSimpleDerecha(NodoAVLDicc pivote) {
+        NodoAVLDicc hijo = pivote.getIzquierdo();
+        NodoAVLDicc temporal = hijo.getDerecho();
         hijo.setDerecho(pivote);
         pivote.setIzquierdo(temporal);
         hijo.recalcularAltura();
@@ -186,7 +186,7 @@ public class Diccionario {
         return exito;
     }
 
-    private boolean eliminarAux(NodoAVL n, NodoAVL padre, Comparable elem) {
+    private boolean eliminarAux(NodoAVLDicc n, NodoAVLDicc padre, Comparable elem) {
         boolean exito = false;
         if (n != null) {
             if ((elem.compareTo(n.getClave())) == 0) {
@@ -235,7 +235,7 @@ public class Diccionario {
 
     // CASOS DE ELIMINAR
 
-    private void noTieneHijos(NodoAVL padre, Comparable elem) {
+    private void noTieneHijos(NodoAVLDicc padre, Comparable elem) {
 
         // si no tiene hijos
         if (padre == null) {
@@ -258,7 +258,7 @@ public class Diccionario {
 
     }
 
-    private void tieneUnHijo(NodoAVL n, NodoAVL padre, Comparable elem) {
+    private void tieneUnHijo(NodoAVLDicc n, NodoAVLDicc padre, Comparable elem) {
 
         if (n.getIzquierdo() != null) {
             // si n tiene HI
@@ -293,7 +293,7 @@ public class Diccionario {
 
     }
 
-    private void tieneAmbosCandidato(NodoAVL n, NodoAVL anterior, NodoAVL raiz) {
+    private void tieneAmbosCandidato(NodoAVLDicc n, NodoAVLDicc anterior, NodoAVLDicc raiz) {
 
         if (n.getDerecho() != null) {
 
@@ -313,7 +313,7 @@ public class Diccionario {
 
     }
 
-    private void tieneAmbosHI(NodoAVL n) {
+    private void tieneAmbosHI(NodoAVLDicc n) {
         n.setClave(n.getIzquierdo().getClave());
         n.setDato(n.getIzquierdo().getDato());
         n.setIzquierdo(n.getIzquierdo().getIzquierdo());
@@ -331,7 +331,7 @@ public class Diccionario {
         return resultado;
     }
 
-    private Object buscarDato(NodoAVL nodo, Comparable clave) {
+    private Object buscarDato(NodoAVLDicc nodo, Comparable clave) {
         Object retorno = null;
         if (nodo != null) {
             // Si la clave buscada coincide con la clave del nodo
@@ -359,7 +359,7 @@ public class Diccionario {
         return resultado;
     }
 
-    private boolean existeClaveAux(NodoAVL nodo, Comparable clave) {
+    private boolean existeClaveAux(NodoAVLDicc nodo, Comparable clave) {
         boolean exito = false;
         if (nodo != null) {
             // Si la clave buscada coincide con la clave del nodo
@@ -386,7 +386,7 @@ public class Diccionario {
         return buscarMaximo(this.raiz);
     }
 
-    private Comparable buscarMaximo(NodoAVL nodo) {
+    private Comparable buscarMaximo(NodoAVLDicc nodo) {
         // Sigue moviéndose hacia la derecha hasta encontrar el nodo más a la derecha
         if (nodo.getDerecho() == null) {
             return nodo.getClave(); // El nodo actual es el mayor
@@ -402,7 +402,7 @@ public class Diccionario {
         return buscarMinimo(this.raiz);
     }
 
-    private Comparable buscarMinimo(NodoAVL nodo) {
+    private Comparable buscarMinimo(NodoAVLDicc nodo) {
         // Sigue moviéndose hacia la izquierda hasta encontrar el nodo más a la
         // izquierda
         if (nodo.getIzquierdo() == null) {
@@ -419,7 +419,7 @@ public class Diccionario {
         return listaCiudades;
     }
 
-    private void buscarCiudadesPorPrefijo(NodoAVL nodo, int prefijo, Lista listaCiudades) {
+    private void buscarCiudadesPorPrefijo(NodoAVLDicc nodo, int prefijo, Lista listaCiudades) {
         if (nodo != null) {
             String claveActual = nodo.getClave().toString();
             String prefijoStr = String.valueOf(prefijo);
@@ -441,7 +441,7 @@ public class Diccionario {
         return sb.toString();
     }
 
-    private void toStringTree(NodoAVL nodo, StringBuilder sb, int depth, boolean isLeft, String prefix, String branch) {
+    private void toStringTree(NodoAVLDicc nodo, StringBuilder sb, int depth, boolean isLeft, String prefix, String branch) {
         if (nodo != null) {
             sb.append(prefix);
             sb.append(isLeft ? "└── " : "├── ");
@@ -462,11 +462,10 @@ public class Diccionario {
         listarClavesAux(raiz,claves);
         return claves;
     }
-    public static void listarClavesAux(NodoAVL nodo,Lista claves){
+    
+    public static void listarClavesAux(NodoAVLDicc nodo,Lista claves){
         if (nodo!=null) {
-            listarClavesAux(nodo.getIzquierdo(), claves);
-            claves.insertar(nodo.getClave(), claves.longitud()+1);
-            listarClavesAux(nodo.getDerecho(), claves);
+            listarClavesAux(nodo, claves);
         }
     }
 
@@ -476,7 +475,7 @@ public class Diccionario {
         return datos;
     }
     
-    private void listarDatosAux(NodoAVL nodo, Lista datos) {
+    private void listarDatosAux(NodoAVLDicc nodo, Lista datos) {
         if (nodo != null) {
             listarDatosAux(nodo.getIzquierdo(), datos);
             datos.insertar(nodo.getDato(), datos.longitud() + 1);
