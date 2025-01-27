@@ -482,6 +482,5 @@ public class Diccionario {
             listarDatosAux(nodo.getDerecho(), datos);
         }
     }
-    
 
 }
