@@ -63,6 +63,9 @@ public class Cliente {
     }
 
     public String toString() {
-        return "Cliente: Tipo de Documento =" + tipoDocumento +", numeroDocumento=" + numeroDocumento + ", telefono=" + telefono + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email;
+        return "Cliente: Tipo de Documento = " + tipoDocumento + ", Numero Documento = " + numeroDocumento +
+               ", Nombre = " + nombre + ", Apellido = " + apellido + 
+               ", Telefono = " + telefono + ", Email = " + email;
     }
+    
 }

@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-import TPO.Estructuras.ArbolAVL;
+import TPO.Estructuras.Diccionario;
 import TPO.Estructuras.GrafoEtiquetado;
 import lineales.dinamicas.Lista;
 
 public class MudanzasCompartidas {
-    static ArbolAVL diccionario = new ArbolAVL();
+    static Diccionario diccionario = new Diccionario();
     static GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
 
     public static void main(String[] args) {
@@ -123,21 +123,38 @@ public class MudanzasCompartidas {
             entrada= sc.nextInt();
             switch (entrada) {
                 case 1:
-                    System.out.println("Ingrese Ciudad de Origen y Ciudad de Destino");
+                    System.out.println("Ingrese Ciudad de Origen");
                     int origen=sc.nextInt();
+                    System.out.println("Ingrese ciudad de Destino");
                     int destino=sc.nextInt();
                     System.out.println("El camino mas directo desde "+origen+" hasta "+destino+" es:");
-                    Lista nueva= mapaRutas.caminoMasCorto(origen, destino);
                     System.out.println((mapaRutas.caminoMasCorto(origen, destino)).toString());
                     break;
                 case 2:
-                    
+                    System.out.println("Ingrese Ciudad de Origen");
+                    int origenA=sc.nextInt();
+                    System.out.println("Ingrese ciudad de Destino");
+                    int destinoA=sc.nextInt();
+                    System.out.println("El camino mas corto desde "+origenA+" hasta "+destinoA+" es:");
+                    System.out.println((mapaRutas.caminoMenorDistancia(origenA, destinoA)).toString());
                     break;
                 case 3:
-                    
+                    //hay que arreglar el modulo
                     break;
                 case 4:
-                    
+                System.out.println("Ingrese Ciudad de Origen");
+                int origenC=sc.nextInt();
+                System.out.println("Ingrese ciudad de Destino");
+                int destinoC=sc.nextInt();
+                System.out.println("Ingrese el maximo de kilometros");
+                int km=sc.nextInt();
+                Lista nueva=mapaRutas.caminoMayorDistancia(origenC, destinoC, km);
+                if ((nueva).esVacia()) {
+                    System.out.println("No es posible viajar entre esas 2 ciudades recorriendo como maximo "+km+" kilometros");
+                }else{
+                    System.out.println("Es posible viajar entre las dos ciudades Siguiendo el camino:");
+                    System.out.println(nueva.toString());
+                }
                     break;
                 default:
                     break;

@@ -9,11 +9,11 @@ import TPO.SistemaMudanzas.Ciudad;
 import lineales.dinamicas.Lista;
 
 public class TestCarga {
+    public static GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
+    public static Diccionario diccionario = new Diccionario();
     public static void main(String[] args) {
-        GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
-        ArbolAVL diccionario = new ArbolAVL();
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
-        cargarDatos(archivo, mapaRutas, diccionario);
+        cargarDatos(archivo);
         // System.out.println(mapaRutas.toString());
        // System.out.println(diccionario.toString());
         
@@ -21,7 +21,7 @@ public class TestCarga {
         System.out.println(nueva.toString());
     }
 
-    public static void cargarDatos(String archivo, GrafoEtiquetado mapa, ArbolAVL diccionario) {
+    public static void cargarDatos(String archivo) {
         int i = 1;
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
@@ -29,11 +29,11 @@ public class TestCarga {
                 String[] partes = linea.split(";");
                 switch (partes[0]) {
                     case "C":
-                        cargarCiudad(Integer.parseInt(partes[1]), partes[2], partes[3], diccionario);
+                        cargarCiudad(Integer.parseInt(partes[1]), partes[2], partes[3]);
                         break;
                     case "R":
                         insertarRuta(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]),
-                                Double.parseDouble(partes[3]), mapa);
+                                Double.parseDouble(partes[3]), mapaRutas);
                         break;
                     default:
                         System.out.println("Formato desconocido en la línea: " + linea + " " + i);
@@ -61,7 +61,7 @@ public class TestCarga {
         }
     }
 
-    public static void cargarCiudad(int codigo, String nombre, String provincia, ArbolAVL diccionario) {
+    public static void cargarCiudad(int codigo, String nombre, String provincia) {
         Ciudad ciudad = new Ciudad(codigo, nombre, provincia);
         boolean exito = diccionario.insertar(codigo, ciudad);
         if (exito) {
@@ -69,12 +69,12 @@ public class TestCarga {
         }
     }
 
-    public static String mostrarInfoCiudad(Comparable codigoPostal, ArbolAVL diccionario) {
+    public static String mostrarInfoCiudad(Comparable codigoPostal ) {
         // Dado un código postal de una ciudad, mostrar toda su información
         return (diccionario.obtenerDato(codigoPostal).toString());
     }
 
-    public static Lista mostrarCiudadesPrefijo(int prefijo, ArbolAVL diccionario) {
+    public static Lista mostrarCiudadesPrefijo(int prefijo) {
         return diccionario.ciudadesPrefijo(prefijo);
     }
 

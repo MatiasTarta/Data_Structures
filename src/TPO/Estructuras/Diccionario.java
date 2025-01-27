@@ -2,10 +2,10 @@ package TPO.Estructuras;
 
 import lineales.dinamicas.Lista;
 
-public class ArbolAVL {
+public class Diccionario {
     NodoAVL raiz;
 
-    public ArbolAVL() {
+    public Diccionario() {
         raiz = null;
     }
 
@@ -351,11 +351,7 @@ public class ArbolAVL {
     }
 
     public boolean existeClave(Comparable clave) {
-        /*
-         * Devuelve verdadero si el elemento con la clave dada está almacenado en la
-         * estructura,
-         * devuelve falso si no está
-         */
+        //verifica si el elemento esta en la estructura
         boolean resultado = false;
         if (this.raiz != null) {
             resultado = existeClaveAux(this.raiz, clave);
