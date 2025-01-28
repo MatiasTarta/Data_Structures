@@ -8,12 +8,13 @@ import java.util.Scanner;
 
 import TPO.Estructuras.Diccionario;
 import TPO.Estructuras.GrafoEtiquetado;
+import TPO.Estructuras.MapeoAMuchos;
 import lineales.dinamicas.Lista;
 
 public class MudanzasCompartidas {
-    static Diccionario diccionario = new Diccionario();
-    static GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
-
+    private static Diccionario diccionario = new Diccionario();
+    private static GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
+    private static MapeoAMuchos infoClientes= new MapeoAMuchos(12);
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int entrada = 1;
@@ -175,6 +176,9 @@ public class MudanzasCompartidas {
                     case "R":
                         insertarRuta(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]),
                                 Double.parseDouble(partes[3]), mapaRutas);
+                        break;
+                    case"P":
+                        infoClientes.asociar(partes[1], Integer.parseInt(partes[2]), partes[3], partes[4], partes[5]);
                         break;
                     default:
                         System.out.println("Formato desconocido en la línea: " + linea + " " + i);
