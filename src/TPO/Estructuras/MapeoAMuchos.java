@@ -96,17 +96,18 @@ public class MapeoAMuchos {
         return rangos;
     }
 
-    public Lista obtenerConduntoDominio(){
-        Lista dominios=new Lista();
-            for (int i = 0; i < arreglo.length; i++) {
-                NodoHashMapeoM actual= arreglo[i];
-                while(actual!=null){
-                    dominios.insertar(actual, dominios.longitud()+1);
-                    actual.getEnlace();
-                }
+    public Lista obtenerConduntoDominio() {
+        Lista dominios = new Lista();
+        for (int i = 0; i < arreglo.length; i++) {
+            NodoHashMapeoM actual = arreglo[i];
+            while (actual != null) {
+                dominios.insertar(actual.getTipoDocumento() + ";" + actual.getNumeroDocumento(), dominios.longitud() + 1);
+                actual = actual.getEnlace();
             }
+        }
         return dominios;
     }
+    
 
     public Lista obtenerConjuntoRangos(){
         Lista rangos= new Lista();
@@ -114,6 +115,8 @@ public class MapeoAMuchos {
             NodoHashMapeoM actual= arreglo[i];
             while (actual!=null) {
                 rangos.insertar(actual.getRango(), rangos.longitud()+1);
+                actual = actual.getEnlace();
+
             }
         }
         return rangos;

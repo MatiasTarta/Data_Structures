@@ -17,10 +17,9 @@ public class TestCarga {
         cargarDatos(archivo);
         // System.out.println(mapaRutas.toString());
        // System.out.println(diccionario.toString());
-        
-        //Lista nueva= diccionario.listarDatos();
-        //System.out.println(nueva.toString());
-      System.out.println(  infoClientes.toString());
+      //System.out.println(  infoClientes.toString());
+      Lista nueva= infoClientes.obtenerConjuntoRangos();
+        System.out.println(nueva.toStringSaltoLinea());
     }
 
     public static void cargarDatos(String archivo) {

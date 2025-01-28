@@ -74,12 +74,7 @@ public class NodoHashMapeoM {
     }
 
     public String toString() {
-        return "NodoHashMapeoM{" +
-                "tipoDocumento='" + tipoDocumento + '\'' +
-                ", numeroDocumento=" + numeroDocumento +
-                ", nombre='" + (rango.recuperar(1)).toString() + '\'' +
-                ", apellido='" + (rango.recuperar(2)).toString() + '\'' +
-                ", email='" + (rango.recuperar(3)).toString() + '\'' +
-                '}';
+        return "{TipoDocumento='" + tipoDocumento + "', numeroDocumento=" + numeroDocumento + ", nombre='" + rango.recuperar(1) + "', apellido='" + rango.recuperar(2) + "', email='" + rango.recuperar(3) + "'}";
     }
+    
 }
