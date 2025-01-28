@@ -11,15 +11,15 @@ import lineales.dinamicas.Lista;
 public class TestCarga {
     public static GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
     public static Diccionario diccionario = new Diccionario();
-    private static MapeoAMuchos infoClientes= new MapeoAMuchos(12);
+    private static MapeoAMuchos infoClientes= new MapeoAMuchos(5);
     public static void main(String[] args) {
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarDatos(archivo);
         // System.out.println(mapaRutas.toString());
-       // System.out.println(diccionario.toString());
-      //System.out.println(  infoClientes.toString());
-      Lista nueva= infoClientes.obtenerConjuntoRangos();
-        System.out.println(nueva.toStringSaltoLinea());
+        // System.out.println(diccionario.toString());
+        System.out.println(  infoClientes.toString());
+        Lista nueva= infoClientes.obtenerConjuntoRangos();
+        //System.out.println(nueva.toStringSaltoLinea());
     }
 
     public static void cargarDatos(String archivo) {
