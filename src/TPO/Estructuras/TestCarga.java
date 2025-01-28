@@ -11,14 +11,16 @@ import lineales.dinamicas.Lista;
 public class TestCarga {
     public static GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
     public static Diccionario diccionario = new Diccionario();
+    private static MapeoAMuchos infoClientes= new MapeoAMuchos(12);
     public static void main(String[] args) {
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarDatos(archivo);
         // System.out.println(mapaRutas.toString());
        // System.out.println(diccionario.toString());
         
-        Lista nueva= diccionario.listarDatos();
-        System.out.println(nueva.toString());
+        //Lista nueva= diccionario.listarDatos();
+        //System.out.println(nueva.toString());
+      System.out.println(  infoClientes.toString());
     }
 
     public static void cargarDatos(String archivo) {
@@ -35,6 +37,9 @@ public class TestCarga {
                         insertarRuta(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]),
                                 Double.parseDouble(partes[3]), mapaRutas);
                         break;
+                    case"P":
+                        infoClientes.asociar(partes[1], Integer.parseInt(partes[2]), partes[3], partes[4], partes[5]);
+                    break;
                     default:
                         System.out.println("Formato desconocido en la línea: " + linea + " " + i);
                         break;

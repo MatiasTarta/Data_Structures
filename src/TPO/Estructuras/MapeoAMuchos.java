@@ -14,14 +14,14 @@ public class MapeoAMuchos {
     }
 
     private int funcionHash(String tipoDocumento, int numeroDocumento) {
-        return Math.abs((tipoDocumento + numeroDocumento).hashCode()) % tamanio;
+        return Math.abs((tipoDocumento + numeroDocumento).hashCode() - 1) % tamanio;
     }
+    
 
     public boolean asociar(String tipoDocumento, int numeroDocumento, String nombre, String apellido, String email) {
         int indice = funcionHash(tipoDocumento, numeroDocumento);
         NodoHashMapeoM actual = arreglo[indice];
         boolean exito=false;
-        
         // busca si ya existe el dominio (tupla de tipoDocumento y numeroDocumento)
         while (actual != null && !exito) {
             if (actual.getTipoDocumento().equals(tipoDocumento) && actual.getNumeroDocumento() == numeroDocumento) {
@@ -63,6 +63,7 @@ public class MapeoAMuchos {
                 }else{
                     //caso donde el elemento a eliminar esta entre medio o al final
                     previo.setEnlace(actual.getEnlace());
+                    //si el elemento al final actualgetEnlace es nulo asi que el ultimo elemento se pierde
                     exito=true;
                 }
             }
@@ -95,22 +96,57 @@ public class MapeoAMuchos {
         return rangos;
     }
 
-    
+    public Lista obtenerConduntoDominio(){
+        Lista dominios=new Lista();
+            for (int i = 0; i < arreglo.length; i++) {
+                NodoHashMapeoM actual= arreglo[i];
+                while(actual!=null){
+                    dominios.insertar(actual, dominios.longitud()+1);
+                    actual.getEnlace();
+                }
+            }
+        return dominios;
+    }
 
+    public Lista obtenerConjuntoRangos(){
+        Lista rangos= new Lista();
+        for (int i = 0; i < arreglo.length; i++) {
+            NodoHashMapeoM actual= arreglo[i];
+            while (actual!=null) {
+                rangos.insertar(actual.getRango(), rangos.longitud()+1);
+            }
+        }
+        return rangos;
+    }
+
+    
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tamanio; i++) {
             NodoHashMapeoM actual = arreglo[i];
-            sb.append("Cubeta ").append(i).append(": ");
-            while (actual != null) {
-                sb.append(actual.getTipoDocumento()).append(" -> ").append(actual.getRango()).append(" | ");
-                actual = actual.getEnlace();
+            
+            if (actual == null) {
+                sb.append("----"); // Señalizar posición vacía
+            } else {
+                while (actual != null) {
+                    // Mostrar tipo de documento y DNI dentro de corchetes
+                    sb.append("[").append(actual.getTipoDocumento()).append(": ").append(actual.getNumeroDocumento()).append("]");
+                    
+                    if (actual.getEnlace() != null) {
+                        sb.append(" -> "); // Flecha si hay un siguiente nodo
+                    }
+                    actual = actual.getEnlace(); // Avanzar al siguiente nodo
+                }
             }
-            sb.append("\n");
+            sb.append("\n"); // Nueva línea después de procesar todos los nodos de esa cubeta
         }
         return sb.toString();
     }
+    
+    
+    
+    
     
 
 }
