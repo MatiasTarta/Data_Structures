@@ -16,7 +16,7 @@ public class MudanzasCompartidas {
     private static Diccionario diccionario = new Diccionario();
     private static GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
     private static MapeoAMuchos infoClientes= new MapeoAMuchos(12);
-    private static GestorSolicitudes solicitudes=new GestorSolicitudes();
+    //private static GestorSolicitudes solicitudes=new GestorSolicitudes();
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int entrada = 1;
@@ -189,7 +189,7 @@ public class MudanzasCompartidas {
                         infoClientes.asociar(partes[1], Integer.parseInt(partes[2]), partes[3], partes[4], Integer.parseInt(partes[5]),partes[6]);
                         break;
                     case"S":
-                        solicitudes.cargarSolicitud(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]), partes[3],partes[4], Integer.parseInt(partes[5]), Integer.parseInt(partes[6]), Double.parseDouble(partes[7]), partes[8], partes[9], Boolean.parseBoolean(partes[10]));
+                        //solicitudes.cargarSolicitud(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]), partes[3],partes[4], Integer.parseInt(partes[5]), Integer.parseInt(partes[6]), Double.parseDouble(partes[7]), partes[8], partes[9], Boolean.parseBoolean(partes[10]));
                         break;
                     default:
                         System.out.println("Formato desconocido en la línea: " + linea + " " + i);

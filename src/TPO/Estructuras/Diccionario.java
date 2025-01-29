@@ -1,5 +1,6 @@
 package TPO.Estructuras;
 
+import TPO.SistemaMudanzas.SolicitudViaje;
 import lineales.dinamicas.Lista;
 
 public class Diccionario {
@@ -480,6 +481,15 @@ public class Diccionario {
             listarDatosAux(nodo.getIzquierdo(), datos);
             datos.insertar(nodo.getDato(), datos.longitud() + 1);
             listarDatosAux(nodo.getDerecho(), datos);
+        }
+    }
+
+    public void cargarSolicitud(Comparable clave,SolicitudViaje aux){
+        //metodo usado por el gestor de solicitudes
+        Object dato = this.obtenerDato(clave);
+        if (dato instanceof Lista) {
+            Lista solicitudes = (Lista) dato;
+            solicitudes.insertar(aux, solicitudes.longitud()+1);
         }
     }
 
