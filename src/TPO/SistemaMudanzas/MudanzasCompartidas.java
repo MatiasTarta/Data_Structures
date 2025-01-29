@@ -49,7 +49,7 @@ public class MudanzasCompartidas {
                     menuConsultas(sc, 1);
                     break;
                 case 4:
-                    // muestra estructuras del sistema
+                    menuVisualizacion(sc,1);
                     break;
                 default:
                     break;
@@ -216,6 +216,35 @@ public class MudanzasCompartidas {
                         System.out.println("El camino entre las ciudades no es perfecto");
                     }
                     break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public static void menuVisualizacion(Scanner sc,int entrada){
+        while (entrada!=0) {
+            System.out.println("<------------------------->");
+            System.out.println("Que estructura desea visualizar");
+            System.out.println("1.Arbol de Ciudades");
+            System.out.println("2.Grafo de Rutas");
+            System.out.println("3.Mapeo de los clientes");
+            System.out.println("4.Mapa de las solicitudes de viaje");
+            entrada=sc.nextInt();
+            switch (entrada) {
+                case 1:
+                    System.out.println(diccionario.toString());
+                    break;
+                case 2:
+                    System.out.println(mapaRutas.toString());
+                    break;
+                case 3:
+                    System.out.println(infoClientes.toString());
+                    break;
+                case 4:
+                    System.out.println(solicitudes.toString());
+                    break;
+            
                 default:
                     break;
             }
