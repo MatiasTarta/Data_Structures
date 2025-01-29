@@ -1,7 +1,7 @@
 package TPO.Estructuras;
 
 import lineales.dinamicas.Lista;
-
+import TPO.SistemaMudanzas.Cliente;;
 public class MapeoAMuchos {
     private int tamanio;
     private NodoHashMapeoM[] arreglo;
@@ -18,7 +18,7 @@ public class MapeoAMuchos {
     }
     
 
-    public boolean asociar(String tipoDocumento, int numeroDocumento, String nombre, String apellido, String email) {
+    public boolean asociar(String tipoDocumento, int numeroDocumento, String nombre, String apellido, int telefono,String email) {
         int indice = funcionHash(tipoDocumento, numeroDocumento);
         NodoHashMapeoM actual = arreglo[indice];
         boolean exito=false;
@@ -26,10 +26,11 @@ public class MapeoAMuchos {
         while (actual != null && !exito) {
             if (actual.getTipoDocumento().equals(tipoDocumento) && actual.getNumeroDocumento() == numeroDocumento) {
                 // Si el dominio ya existe, agregar al rango si no está duplicado
-                if (!actual.getRango().contiene(nombre) && !actual.getRango().contiene(apellido) && !actual.getRango().contiene(email)) {
-                    actual.getRango().insertar(nombre, 1);
-                    actual.getRango().insertar(apellido, 2);
-                    actual.getRango().insertar(email, 3);
+                if (!(actual.getRango().equivale(nombre, apellido, numeroDocumento,email))) {
+                    actual.getRango().setNombre(nombre);
+                    actual.getRango().setApellido(apellido);
+                    actual.getRango().setTelefono(telefono);
+                    actual.getRango().setEmail(email);
                     cantidad++;
                 }
                 exito=true;
@@ -41,7 +42,7 @@ public class MapeoAMuchos {
         }
             if (!exito) {
             //si recorri todos los nodos y no estaba creo un nodo nuevo
-            NodoHashMapeoM nuevoNodo = new NodoHashMapeoM(tipoDocumento, numeroDocumento, nombre, apellido, email);
+            NodoHashMapeoM nuevoNodo = new NodoHashMapeoM(tipoDocumento, numeroDocumento, nombre, apellido, telefono,email);
             nuevoNodo.setEnlace(arreglo[indice]); // si al principio no habia nada se setea el enlace en nulo
             arreglo[indice] = nuevoNodo; // Actualizar el arreglo
             cantidad++;
@@ -80,20 +81,17 @@ public class MapeoAMuchos {
         return cantidad == 0;
     }
 
-     public Lista obtenerValor(String tipoDocumento, int numeroDocumento) {
+     public Cliente obtenerValor(String tipoDocumento, int numeroDocumento) {
         int indice = funcionHash(tipoDocumento, numeroDocumento);
         NodoHashMapeoM actual = arreglo[indice];
-        Lista rangos=null;
-        // Buscar el nodo del dominio
+        Cliente valor= null;
         while (actual != null) {
             if (actual.getTipoDocumento().equals(tipoDocumento) && actual.getNumeroDocumento() == numeroDocumento) {
-                rangos= actual.getRango();
+                valor=actual.getRango();
             }
             actual = actual.getEnlace();
         }
-
-        // Si no se encuentra el dominio, devolver null
-        return rangos;
+        return valor;
     }
 
     public Lista obtenerConduntoDominio() {
