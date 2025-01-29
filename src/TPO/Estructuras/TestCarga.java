@@ -17,7 +17,7 @@ public class TestCarga {
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarDatos(archivo);
         // System.out.println(mapaRutas.toString());
-        System.out.println(diccionario.toString());
+        //System.out.println(diccionario.toString());
         //System.out.println(  infoClientes.toString());
         System.out.println(solicitudes.toString());
    
