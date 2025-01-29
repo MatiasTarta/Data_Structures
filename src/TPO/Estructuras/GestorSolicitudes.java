@@ -1,43 +1,31 @@
 package TPO.Estructuras;
+
 import TPO.SistemaMudanzas.SolicitudViaje;
 import java.util.HashMap;
+import lineales.dinamicas.Lista;
 
 public class GestorSolicitudes {
-    private HashMap<Integer, SolicitudViaje> mapaSolicitudes;
+    private final HashMap<Pair, Lista> mapaSolicitudes;
 
-    public GestorSolicitudes(){
-        mapaSolicitudes = new HashMap<>();
+    public GestorSolicitudes() {
+        this.mapaSolicitudes = new HashMap<>();
     }
 
-    public void cargarSolicitud(int codigoOrigen, int codigoDestino, String fecha, String tipoDocumento, int numeroDocumento, int bultos, double espacio, String domicilioRetiro, String domicilioEntrega, boolean pago){
-        SolicitudViaje aux = new SolicitudViaje(codigoOrigen, codigoDestino, fecha, tipoDocumento, numeroDocumento, bultos, espacio, domicilioRetiro, domicilioEntrega, pago);
-        mapaSolicitudes.put(aux.getIdSolicitud(), aux);
-    }
-
-    public SolicitudViaje obtenerSolicitud(int idSolicitud) {
-        return mapaSolicitudes.get(idSolicitud);
-    }
-
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
+    public void cargarSolicitud(int codigoOrigen, int codigoDestino, String fecha, String tipoDocumento, int numeroDocumento, int bultos, double espacio, String domicilioRetiro,String domicilioEntrega, boolean pago) {
+        SolicitudViaje solicitud = new SolicitudViaje(codigoOrigen, codigoDestino, fecha, tipoDocumento, numeroDocumento, bultos, espacio, domicilioRetiro,domicilioEntrega, pago);
+        Pair clave = new Pair(codigoOrigen, codigoDestino);
         
-        for (Integer key : mapaSolicitudes.keySet()) {
-            SolicitudViaje solicitud = mapaSolicitudes.get(key);
-            sb.append("Solicitud ID: ").append(key)
-              .append("\nTipo Documento: ").append(solicitud.getTipoDocumento())
-              .append("\nDNI Cliente: ").append(solicitud.getIdCliente())
-              .append("\nFecha: ").append(solicitud.getFecha())
-              .append("\nCódigo Postal Origen: ").append(solicitud.getCodigoPostalOrigen())
-              .append("\nCódigo Postal Destino: ").append(solicitud.getCodigoPostalDestino())
-              .append("\nDomicilio Retiro: ").append(solicitud.getDomicilioRetiro())
-              .append("\nDomicilio Entrega: ").append(solicitud.getDomicilioEntrega())
-              .append("\nCantidad de Bultos: ").append(solicitud.getCantBultos())
-              .append("\nMetros Cúbicos: ").append(solicitud.getMetrosCubicos())
-              .append("\nPagado: ").append(solicitud.isPagado() ? "Sí" : "No")
-              .append("\n\n");
-        }
-        
-        return sb.toString();
+        // Usamos la clase Lista para almacenar las solicitudes
+        mapaSolicitudes.putIfAbsent(clave, new Lista());//si no hay nada crea una lista
+        mapaSolicitudes.get(clave).insertar(solicitud, mapaSolicitudes.get(clave).longitud() + 1);//si habia alguna solicitud ya cargada por esas ciudades enlaza las solicitudes
+    }
+
+    public Lista buscarSolicitudes(int codigoOrigen, int codigoDestino) {
+        Pair clave = new Pair(codigoOrigen, codigoDestino);
+        // Crear la variable 'nueva' y asignarle el valor encontrado o una lista vacía
+        Lista nueva = mapaSolicitudes.getOrDefault(clave, new Lista());
+        // Retornar la variable 'nueva'
+        return nueva;
     }
     
 }
