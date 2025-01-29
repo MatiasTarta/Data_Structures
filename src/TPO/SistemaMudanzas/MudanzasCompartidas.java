@@ -89,7 +89,7 @@ public class MudanzasCompartidas {
                     menuConsultasMapa(sc, 1);
                     break;
                 case 4:
-                    // verificar viaje
+                    menuVerificacionViajes(sc, 1);
                     break;
                 default:
                     break;
@@ -171,6 +171,59 @@ public class MudanzasCompartidas {
         }
     }
 
+    public static void menuVerificacionViajes(Scanner sc,int entrada){
+        while (entrada!=0) {
+            System.out.println("1.Dadas 2 ciudades muestra todos los pedidos y calcula el espacio nescesario en el camion");
+            System.out.println("2.Dadas 2 ciudades y una cantidad de metros cubicos da todos las posibles solicitudes de viaje a ciudades intermedias");
+            System.out.println("3.Dado un listado de ciudades verifica si existe un camino perfecto entre las ciduades.");
+            System.out.println("0. Cerrar");
+            entrada=sc.nextInt();
+            switch (entrada) {
+                case 1:
+                    System.out.println("Ingrese la ciudad de origen(Codigo Postal)");
+                    int origen = sc.nextInt();
+                    System.out.println("Ingrese la ciudad de destino");
+                    int destino = sc.nextInt();
+                    double espacio= solicitudes.calculaEspacioNecesario(origen, destino);
+                    System.out.println("Para cubrir las solicitudes entre "+origen+" y"+destino+" hacen falta "+espacio+" metros cubicos");
+                    break;
+                 case 2:
+                 System.out.println("Ingrese la ciudad de origen(Codigo Postal)");
+                 int origenB = sc.nextInt();
+                 System.out.println("Ingrese la ciudad de destino");
+                 int destinoB = sc.nextInt();
+                 System.out.println("Ingrese los metros cubicos");
+                 double metros = sc.nextDouble();
+                 Lista caminos= solicitudesPosibles(origenB, destinoB,metros);
+                 if (!caminos.esVacia()) {
+                    System.out.println(caminos.toString());
+                 }else{
+                    System.out.println("O no sobra espacio o no hay solicitudes pendientes entre las ciudades ingresadas");
+                 }
+                    break;
+                case 3:
+                    System.out.println("Ingrese la cantidad de ciudades que quiera chequear");
+                    int cantidad= sc.nextInt();
+                    Lista ciudades= new Lista();
+                    for (int i = 1; i <=cantidad; i++) {
+                        System.out.println("Ingrese el codigo postal");
+                        int codigoPostal= sc.nextInt();
+                        ciudades.insertar(new Ciudad(codigoPostal, "", ""), ciudades.longitud()+1);
+                    }
+                    boolean caminoPerfecto= caminoPerfecto(ciudades, 0);
+                    if (caminoPerfecto) {
+                        System.out.println("Existe un camino perfecto entre las ciudades indicadas");
+                    }else{
+                        System.out.println("El camino entre las ciudades no es perfecto");
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+
     public static void hacerCargaInicial(String archivo) {
         int i = 1;
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
@@ -236,14 +289,41 @@ public class MudanzasCompartidas {
     }
 
 
-    public Lista solicitudesPosibles(int codigoO,int codigoD){
+    public static Lista solicitudesPosibles(int codigoO,int codigoD,double cantidad){
         Lista nueva= new Lista();
-        if (solicitudes.verificarEspacioDisponible(codigoO, codigoD, 4)) {
-            nueva=(mapaRutas.ciudadesIntermedias(8300, 1900));
+        if (solicitudes.verificarEspacioDisponible(codigoO, codigoD, cantidad)) {
+            nueva=(mapaRutas.ciudadesIntermedias(codigoO, codigoD));
         }else{
             //si devuelve vacio no hay espacio disponible en el camion
         }
         return nueva;
+    }
+
+    public static boolean caminoPerfecto(Lista ciudades, double metrosCubicos) {
+        boolean exito = false;
+        int i = 2;
+        while (i <= ciudades.longitud() && !exito) {
+            Ciudad origen = (Ciudad) ciudades.recuperar(1);  // Ciudad origen
+            int codigoO = origen.getCodigoPostal();
+            Ciudad destino = (Ciudad) ciudades.recuperar(i);  // Ciudad destino
+            int codigoD = destino.getCodigoPostal();
+            Lista viajes = solicitudes.buscarSolicitudes(codigoO, codigoD);
+            if (!viajes.esVacia()) {
+                //hay al menos una solicitud
+                SolicitudViaje aux= (SolicitudViaje) viajes.recuperar(1);
+                metrosCubicos+= aux.getMetrosCubicos();
+                if (metrosCubicos<=80.0) {
+                    exito = true;//40 es el maximo de metros cubicos de capacidad del camion
+                }
+                ciudades.eliminar(1);  // Eliminar la primera ciudad
+            }
+            i++;
+        }
+        // Si  se encontró un camino perfecto continua de forma recursiva
+        if (exito && ciudades.longitud() > 1) {
+            exito = caminoPerfecto(ciudades, metrosCubicos);  // Llamada recursiva con el resto de las ciudades
+        }
+        return exito;
     }
 
 }

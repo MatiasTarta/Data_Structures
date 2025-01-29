@@ -21,13 +21,7 @@ public class TestCarga {
         //System.out.println(diccionario.toString());
         //System.out.println(  infoClientes.toString());
         //System.out.println(solicitudes.toString());
-        Lista listita= new Lista();
-        listita.insertar(new Ciudad(8324,  "",  ""), listita.longitud()+1);
-        listita.insertar(new Ciudad(2900,  "",  ""), listita.longitud()+1);
-        listita.insertar(new Ciudad(5000,  "",  ""), listita.longitud()+1);
-        listita.insertar(new Ciudad(3300,  "",  ""), listita.longitud()+1);
-
-        System.out.println(caminoPerfecto(listita,0));
+       
     }
 
     public static boolean caminoPerfecto(Lista ciudades, double metrosCubicos) {
