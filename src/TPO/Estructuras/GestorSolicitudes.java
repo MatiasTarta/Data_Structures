@@ -39,7 +39,7 @@ public class GestorSolicitudes {
     }
     
     public boolean verificarEspacioDisponible(int codigoO, int codigoD, double cantidad) {
-        final double MAXIMO_CAMION = 20.0;//maximo de carga de un camion
+        final double MAXIMO_CAMION = 80.0;//maximo de carga de un camion
         double espacioActual = calculaEspacioNecesario(codigoO, codigoD);
         
         // Comprobamos si la suma del espacio actual y la cantidad excede el máximo permitido

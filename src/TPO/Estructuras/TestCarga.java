@@ -40,16 +40,20 @@ public class TestCarga {
             int codigoD = destino.getCodigoPostal();
             Lista viajes = solicitudes.buscarSolicitudes(codigoO, codigoD);
             if (!viajes.esVacia()) {
-                exito = true;//hay al menos una solicitud
+                //hay al menos una solicitud
+                SolicitudViaje aux= (SolicitudViaje) viajes.recuperar(1);
+                metrosCubicos+= aux.getMetrosCubicos();
+                if (metrosCubicos<=80.0) {
+                    exito = true;//40 es el maximo de metros cubicos de capacidad del camion
+                }
                 ciudades.eliminar(1);  // Eliminar la primera ciudad
             }
             i++;
         }
-        // Si  se encontró un camino perfecto, eliminar la primera ciudad y continuar de forma recursiva
+        // Si  se encontró un camino perfecto continua de forma recursiva
         if (exito && ciudades.longitud() > 1) {
             exito = caminoPerfecto(ciudades, metrosCubicos);  // Llamada recursiva con el resto de las ciudades
         }
-    
         return exito;
     }
     
