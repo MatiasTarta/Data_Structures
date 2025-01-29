@@ -12,13 +12,14 @@ public class TestCarga {
     public static GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
     public static Diccionario diccionario = new Diccionario();
     private static MapeoAMuchos infoClientes= new MapeoAMuchos(5);
+    private static GestorSolicitudes solicitudes = new GestorSolicitudes();
     public static void main(String[] args) {
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarDatos(archivo);
         // System.out.println(mapaRutas.toString());
         // System.out.println(diccionario.toString());
-        System.out.println(  infoClientes.toString());
-        System.out.println((infoClientes.obtenerValor("DNI", 44847072)).toString());
+        //System.out.println(  infoClientes.toString());
+        System.out.println(solicitudes.toString());
    
     }
 
@@ -39,6 +40,9 @@ public class TestCarga {
                     case"P":
                         infoClientes.asociar(partes[1], Integer.parseInt(partes[2]), partes[3], partes[4], Integer.parseInt(partes[5]),partes[6]);
                     break;
+                    case"S":
+                        solicitudes.cargarSolicitud(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]), partes[3],partes[4], Integer.parseInt(partes[5]), Integer.parseInt(partes[6]), Double.parseDouble(partes[7]), partes[8], partes[9], Boolean.parseBoolean(partes[10]));
+                        break;
                     default:
                         System.out.println("Formato desconocido en la línea: " + linea + " " + i);
                         break;

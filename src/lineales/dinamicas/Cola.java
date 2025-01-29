@@ -10,7 +10,7 @@ public class Cola {
     }
     public boolean poner(Object elem){
         Nodo aux= new Nodo(elem,null);
-            if(esVacia()){                
+            if(esVacia()){
                 frente= aux;
                 fin=this.frente;
             }else{
@@ -74,5 +74,16 @@ public class Cola {
         cadena = cadena + " ";
         return cadena;
     }
+
+    public String toStringSaltoLinea() {
+        String cadena = "";
+        Nodo temp = this.frente;
+        while (temp != null) {
+            cadena = cadena + temp.getElem() + "\n";  // Agregar salto de línea
+            temp = temp.getEnlace();
+        }
+        return cadena;
+    }
+    
     //cambio
 }

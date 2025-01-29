@@ -7,17 +7,20 @@ public class SolicitudViaje {
     int idCliente, cantBultos;
     double metrosCubicos;
     String domicilioRetiro, domicilioEntrega;
-    LocalDate fecha;
+    String fecha,tipoDocumento;
+    boolean pagado;
 
-    public SolicitudViaje(int codigoPostalOrigen, int codigoPostalDestino, int idCliente, int cantBultos, double metrosCubicos, String domicilioRetiro, String domicilioEntrega, LocalDate fecha) {
+    public SolicitudViaje(int codigoPostalOrigen, int codigoPostalDestino,String fecha ,String tipoDocumento,int idCliente, int cantBultos, double metrosCubicos, String domicilioRetiro, String domicilioEntrega,boolean pagado) {
         this.codigoPostalOrigen = codigoPostalOrigen;
         this.codigoPostalDestino = codigoPostalDestino;
+        this.tipoDocumento=tipoDocumento;
         this.idCliente = idCliente;
         this.cantBultos = cantBultos;
         this.metrosCubicos = metrosCubicos;
         this.domicilioRetiro = domicilioRetiro;
         this.domicilioEntrega = domicilioEntrega;
         this.fecha = fecha;
+        this.pagado=pagado;
     }
 
     public int getCodigoPostalOrigen() {
@@ -76,11 +79,20 @@ public class SolicitudViaje {
         this.domicilioEntrega = domicilioEntrega;
     }
 
-    public LocalDate getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+    public String toString() {
+        return "Solicitud de Viaje: Código Postal Origen = " + codigoPostalOrigen + ", Código Postal Destino = " + codigoPostalDestino + 
+               ", Fecha = " + fecha + ", Tipo de Documento = " + tipoDocumento + ", ID Cliente = " + idCliente + 
+               ", Cantidad de Bultos = " + cantBultos + ", Metros Cúbicos = " + metrosCubicos + 
+               ", Domicilio de Retiro = " + domicilioRetiro + ", Domicilio de Entrega = " + domicilioEntrega + 
+               ", Pagado = " + (pagado ? "Sí" : "No");
+    }
+    
 }
