@@ -97,7 +97,6 @@ public class MudanzasCompartidas {
         }
     }
 
-
     public static void menuConsultasCiudades(Scanner sc, int entrada){
         while (entrada != 0) {
             System.out.println("1.Dado un código postal de una ciudad, mostrar toda su información");
@@ -223,7 +222,6 @@ public class MudanzasCompartidas {
         }
     }
 
-
     public static void hacerCargaInicial(String archivo) {
         int i = 1;
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
@@ -287,7 +285,6 @@ public class MudanzasCompartidas {
     public static Lista mostrarCiudadesPrefijo(int prefijo) {
         return diccionario.ciudadesPrefijo(prefijo);
     }
-
 
     public static Lista solicitudesPosibles(int codigoO,int codigoD,double cantidad){
         Lista nueva= new Lista();
