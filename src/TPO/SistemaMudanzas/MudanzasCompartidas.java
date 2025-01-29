@@ -42,7 +42,7 @@ public class MudanzasCompartidas {
                     hacerCargaInicial(archivo);
                     break;
                 case 2:
-                    // abm
+                    menuABM(sc, 1);
                     break;
                 case 3:
                     // consultas
@@ -56,6 +56,35 @@ public class MudanzasCompartidas {
             }
         }
 
+    }
+
+    public static void menuABM(Scanner sc,int entrada){
+        while (entrada!=0) {
+            
+            System.out.println("<------------------Menu ABM------------------>");
+            System.out.println("1. Altas/Bajas/Modificaciones de Ciudades");
+            System.out.println("2. Altas/Bajas/Modificaciones de Rutas");
+            System.out.println("3. Altas/Bajas/Modificaciones de Clientes");
+            System.out.println("4. Altas/Bajas/Modificaciones de Solicitudes");
+            System.out.println("0.CERRAR");
+            entrada=sc.nextInt();
+            switch (entrada) {
+                case 1:
+                   
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+                
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public static void menuConsultas(Scanner sc, int entrada) {
