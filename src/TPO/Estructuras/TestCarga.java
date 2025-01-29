@@ -19,7 +19,9 @@ public class TestCarga {
         // System.out.println(mapaRutas.toString());
         //System.out.println(diccionario.toString());
         //System.out.println(  infoClientes.toString());
-        System.out.println(solicitudes.toString());
+        //System.out.println(solicitudes.toString());
+        Lista nueva= solicitudes.buscarSolicitudes(5000, 8300);
+        System.out.println(nueva.toStringSaltoLinea());
    
     }
 

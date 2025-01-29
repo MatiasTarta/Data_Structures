@@ -11,6 +11,15 @@ public class Pair {
         this.codigoPostalDestino = codigoPostalDestino;
     }
 
+    public int getCodigoPostalOrigen() {
+        return codigoPostalOrigen;
+    }
+
+    public int getCodigoPostalDestino() {
+        return codigoPostalDestino;
+    }
+    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -27,5 +27,30 @@ public class GestorSolicitudes {
         // Retornar la variable 'nueva'
         return nueva;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        
+        // Iterar sobre las claves y sus listas de solicitudes
+        for (Pair clave : mapaSolicitudes.keySet()) {
+            sb.append("Origen: ").append(clave.getCodigoPostalOrigen())
+              .append(", Destino: ").append(clave.getCodigoPostalDestino())
+              .append("\nSolicitudes:\n");
+            
+            Lista listaSolicitudes = mapaSolicitudes.get(clave);
+            
+            // Iterar sobre la lista de solicitudes
+            for (int i = 1; i <= listaSolicitudes.longitud(); i++) {
+                sb.append(listaSolicitudes.recuperar(i).toString())  // Supone que SolicitudViaje tiene su propio toString
+                  .append("\n");
+            }
+        }
+        
+        return sb.toString();
+    }
+    
+    
+
     
 }
