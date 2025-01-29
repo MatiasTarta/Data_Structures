@@ -60,7 +60,6 @@ public class MudanzasCompartidas {
 
     public static void menuABM(Scanner sc,int entrada){
         while (entrada!=0) {
-            
             System.out.println("<------------------Menu ABM------------------>");
             System.out.println("1. Altas/Bajas/Modificaciones de Ciudades");
             System.out.println("2. Altas/Bajas/Modificaciones de Rutas");
@@ -70,7 +69,34 @@ public class MudanzasCompartidas {
             entrada=sc.nextInt();
             switch (entrada) {
                 case 1:
-                   
+                    abmCiudades(sc, 1);
+                    break;
+                case 2:
+                    abmRutas(sc, 1);
+                    break;
+                case 3:
+                    abmRutas(sc, 1);
+                    break;
+                case 4:
+                    abmSolicitudes(sc, 1);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public static void abmCiudades(Scanner sc,int entrada){
+        while (entrada!=0) {
+            System.out.println("<------------------Menu ABM CIUDADES------------------>");
+            System.out.println("1. Altas de Ciudades");
+            System.out.println("2. /Bajas de Ciudades");
+            System.out.println("3. /Modificaciones de Ciudades");
+            System.out.println("0.CERRAR");
+            entrada=sc.nextInt();
+            switch (entrada) {
+                case 1:
+
                     break;
                 case 2:
 
@@ -78,8 +104,77 @@ public class MudanzasCompartidas {
                 case 3:
 
                     break;
-                case 4:
-                
+                default:
+                    break;
+            }
+        }
+    }
+
+    public static void abmRutas(Scanner sc,int entrada){
+        while (entrada!=0) {
+            System.out.println("<------------------Menu ABM RUTAS------------------>");
+            System.out.println("1. Altas de Rutas");
+            System.out.println("2. /Bajas de Rutas");
+            System.out.println("3. /Modificaciones de Rutas");
+            System.out.println("0.CERRAR");
+            entrada=sc.nextInt();
+            switch (entrada) {
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public static void abmClientes(Scanner sc,int entrada){
+        while (entrada!=0) {
+            System.out.println("<------------------Menu ABM CLIENTES------------------>");
+            System.out.println("1. Altas de Clientes");
+            System.out.println("2. /Bajas de Clientes");
+            System.out.println("3. /Modificaciones de Clientes");
+            System.out.println("0.CERRAR");
+            entrada=sc.nextInt();
+            switch (entrada) {
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public static void abmSolicitudes(Scanner sc,int entrada){
+        while (entrada!=0) {
+            System.out.println("<------------------Menu ABM SOLICITUDES------------------>");
+            System.out.println("1. Altas de Solicitudes");
+            System.out.println("2. /Bajas de Solicitudes");
+            System.out.println("3. /Modificaciones de Solicitudes");
+            System.out.println("0.CERRAR");
+            entrada=sc.nextInt();
+            switch (entrada) {
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
                     break;
                 default:
                     break;
