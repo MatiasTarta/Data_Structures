@@ -82,7 +82,9 @@ public class MapeoAMuchos {
     }
 
      public Cliente obtenerValor(String tipoDocumento, int numeroDocumento) {
-        int indice = funcionHash(tipoDocumento, numeroDocumento);
+        System.out.println(tipoDocumento);
+        System.out.println(numeroDocumento);
+        int indice = funcionHash(tipoDocumento.toUpperCase(), numeroDocumento);
         NodoHashMapeoM actual = arreglo[indice];
         Cliente valor= null;
         while (actual != null) {

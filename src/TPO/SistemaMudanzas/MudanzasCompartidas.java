@@ -71,7 +71,13 @@ public class MudanzasCompartidas {
             System.out.println("\n");
             switch (entrada) {
                 case 1:
-                    // consultas sobre clientes
+                System.out.println("Dada una clave de un Cliente muestra toda la informacion sobre el");
+                System.out.println("Ingrese el tipo de Documento del cliente:");
+                String tipo = sc.next();
+                sc.nextLine();
+                System.out.println("Ingrese el numero de Documento del cliente");
+                int numero = sc.nextInt();
+                System.out.println((infoClientes.obtenerValor(tipo, numero)).toString());
                     break;
                 case 2:
                     menuConsultasCiudades(sc, 1);

@@ -68,7 +68,7 @@ C;2820;Gualeguaychú;Entre Ríos
 C;8364;Chimpay;Río Negro
 C;1900;La Plata;Buenos Aires
 C;3500;Resistencia;Chaco
-P;DNI;35678965;FERNANDEZ;JUAN CARLOS;299444951;juan.fernandez@gmail.com
+P;DNI;44847072;FERNANDEZ;JUAN CARLOS;299444951;juan.fernandez@gmail.com
 P;PAS;21923847;MARTINEZ;GRACIELA;298443482;graciela.martinez@gmail.com
 P;DNI;28455678;LOPEZ;MARIA JOSE;298456789;maría.lopez@gmail.com
 P;DNI;37234567;GOMEZ;CARLOS ALBERTO;299445890;carlose.gomez@gmail.com

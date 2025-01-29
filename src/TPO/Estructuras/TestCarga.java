@@ -18,6 +18,7 @@ public class TestCarga {
         // System.out.println(mapaRutas.toString());
         // System.out.println(diccionario.toString());
         System.out.println(  infoClientes.toString());
+        System.out.println((infoClientes.obtenerValor("DNI", 44847072)).toString());
    
     }
 
