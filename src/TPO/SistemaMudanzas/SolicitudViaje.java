@@ -3,25 +3,39 @@ package TPO.SistemaMudanzas;
 import java.time.LocalDate;
 
 public class SolicitudViaje {
+    // Campos de la clase
+    private static int contadorId = 0;  // Contador estático que lleva el control de los identificadores
+    private int idSolicitud;  // Identificador único de la instancia
     int codigoPostalOrigen, codigoPostalDestino;
     int idCliente, cantBultos;
     double metrosCubicos;
     String domicilioRetiro, domicilioEntrega;
-    String fecha,tipoDocumento;
+    String fecha, tipoDocumento;
     boolean pagado;
 
-    public SolicitudViaje(int codigoPostalOrigen, int codigoPostalDestino,String fecha ,String tipoDocumento,int idCliente, int cantBultos, double metrosCubicos, String domicilioRetiro, String domicilioEntrega,boolean pagado) {
+    // Constructor
+    public SolicitudViaje(int codigoPostalOrigen, int codigoPostalDestino, String fecha, String tipoDocumento, 
+                          int idCliente, int cantBultos, double metrosCubicos, String domicilioRetiro, 
+                          String domicilioEntrega, boolean pagado) {
+        this.idSolicitud = ++contadorId;  // asigno un identificador único e incrementamos el contador
         this.codigoPostalOrigen = codigoPostalOrigen;
         this.codigoPostalDestino = codigoPostalDestino;
-        this.tipoDocumento=tipoDocumento;
+        this.tipoDocumento = tipoDocumento;
         this.idCliente = idCliente;
         this.cantBultos = cantBultos;
         this.metrosCubicos = metrosCubicos;
         this.domicilioRetiro = domicilioRetiro;
         this.domicilioEntrega = domicilioEntrega;
         this.fecha = fecha;
-        this.pagado=pagado;
+        this.pagado = pagado;
     }
+
+    // Métodos de acceso
+    public int getIdSolicitud() {
+        return idSolicitud;
+    }
+
+    public String getTipoDocumento(){return tipoDocumento;}
 
     public int getCodigoPostalOrigen() {
         return codigoPostalOrigen;
@@ -42,6 +56,8 @@ public class SolicitudViaje {
     public int getIdCliente() {
         return idCliente;
     }
+
+    public boolean isPagado(){return pagado;}
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
@@ -87,12 +103,14 @@ public class SolicitudViaje {
         this.fecha = fecha;
     }
 
+    // Método toString para representar la instancia como cadena de texto
+    @Override
     public String toString() {
-        return "Solicitud de Viaje: Código Postal Origen = " + codigoPostalOrigen + ", Código Postal Destino = " + codigoPostalDestino + 
-               ", Fecha = " + fecha + ", Tipo de Documento = " + tipoDocumento + ", ID Cliente = " + idCliente + 
+        return "Solicitud de Viaje ID = " + idSolicitud + ": Código Postal Origen = " + codigoPostalOrigen + 
+               ", Código Postal Destino = " + codigoPostalDestino + ", Fecha = " + fecha + 
+               ", Tipo de Documento = " + tipoDocumento + ", ID Cliente = " + idCliente + 
                ", Cantidad de Bultos = " + cantBultos + ", Metros Cúbicos = " + metrosCubicos + 
                ", Domicilio de Retiro = " + domicilioRetiro + ", Domicilio de Entrega = " + domicilioEntrega + 
                ", Pagado = " + (pagado ? "Sí" : "No");
     }
-    
 }

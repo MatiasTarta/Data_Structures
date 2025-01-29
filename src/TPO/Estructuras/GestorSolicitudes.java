@@ -1,44 +1,43 @@
 package TPO.Estructuras;
 import TPO.SistemaMudanzas.SolicitudViaje;
-import lineales.dinamicas.Lista;
+import java.util.HashMap;
+
 public class GestorSolicitudes {
-    Diccionario ciudadesPartida;
-    Diccionario ciudadesLlegada;
+    private HashMap<Integer, SolicitudViaje> mapaSolicitudes;
 
     public GestorSolicitudes(){
-        ciudadesPartida=new Diccionario();
-        ciudadesLlegada= new Diccionario();
+        mapaSolicitudes = new HashMap<>();
     }
-    //S;7100;9000;17/06/2023;PAS;35761234;10;4;Calle Larga 2021;Trelew 205;F
-    public void cargarSolicitud(int codigoOrigen,int codigoDestino,String fecha,String tipoDocumento,int numeroDocumento,int bultos,double espacio,String domicilioRetiro,String domicilioEntrega,boolean pago){
-        SolicitudViaje aux= new SolicitudViaje(codigoOrigen, codigoDestino, fecha, tipoDocumento, numeroDocumento, bultos, espacio, domicilioRetiro, domicilioEntrega,pago);
-        
-        if (ciudadesPartida.existeClave(codigoOrigen)) {
-            //si la ciudad existe directamente cargo la solicitud en la lista ya existente del nodo
-            ciudadesPartida.cargarSolicitud(codigoOrigen, aux);
-        }else{
-            Lista solicitudesAsociadas= new Lista();
-            solicitudesAsociadas.insertar(aux, solicitudesAsociadas.longitud()+1);
-            ciudadesPartida.insertar(codigoOrigen, solicitudesAsociadas);
-        }
-        if (ciudadesLlegada.existeClave(codigoDestino)) {
-            //si la ciudad existe directamente cargo la solicitud en la lista ya existente del nodo
-            ciudadesPartida.cargarSolicitud(codigoDestino, aux);
-        }else{
-            Lista solicitudesAsociadas= new Lista();
-            solicitudesAsociadas.insertar(aux, solicitudesAsociadas.longitud()+1);
-            ciudadesLlegada.insertar(codigoDestino, solicitudesAsociadas);
-        }
+
+    public void cargarSolicitud(int codigoOrigen, int codigoDestino, String fecha, String tipoDocumento, int numeroDocumento, int bultos, double espacio, String domicilioRetiro, String domicilioEntrega, boolean pago){
+        SolicitudViaje aux = new SolicitudViaje(codigoOrigen, codigoDestino, fecha, tipoDocumento, numeroDocumento, bultos, espacio, domicilioRetiro, domicilioEntrega, pago);
+        mapaSolicitudes.put(aux.getIdSolicitud(), aux);
+    }
+
+    public SolicitudViaje obtenerSolicitud(int idSolicitud) {
+        return mapaSolicitudes.get(idSolicitud);
     }
 
     public String toString() {
-        return "Ciudades Partida: \n" + ciudadesPartida.toString() + "\n\nCiudades Llegada: \n" + ciudadesLlegada.toString();
+        StringBuilder sb = new StringBuilder();
+        
+        for (Integer key : mapaSolicitudes.keySet()) {
+            SolicitudViaje solicitud = mapaSolicitudes.get(key);
+            sb.append("Solicitud ID: ").append(key)
+              .append("\nTipo Documento: ").append(solicitud.getTipoDocumento())
+              .append("\nDNI Cliente: ").append(solicitud.getIdCliente())
+              .append("\nFecha: ").append(solicitud.getFecha())
+              .append("\nCódigo Postal Origen: ").append(solicitud.getCodigoPostalOrigen())
+              .append("\nCódigo Postal Destino: ").append(solicitud.getCodigoPostalDestino())
+              .append("\nDomicilio Retiro: ").append(solicitud.getDomicilioRetiro())
+              .append("\nDomicilio Entrega: ").append(solicitud.getDomicilioEntrega())
+              .append("\nCantidad de Bultos: ").append(solicitud.getCantBultos())
+              .append("\nMetros Cúbicos: ").append(solicitud.getMetrosCubicos())
+              .append("\nPagado: ").append(solicitud.isPagado() ? "Sí" : "No")
+              .append("\n\n");
+        }
+        
+        return sb.toString();
     }
-    
-    
-
-
-
-
     
 }
