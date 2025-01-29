@@ -178,7 +178,7 @@ public class MudanzasCompartidas {
                                 Double.parseDouble(partes[3]), mapaRutas);
                         break;
                     case"P":
-                        infoClientes.asociar(partes[1], Integer.parseInt(partes[2]), partes[3], partes[4], partes[5]);
+                    infoClientes.asociar(partes[1], Integer.parseInt(partes[2]), partes[3], partes[4], Integer.parseInt(partes[5]),partes[6]);
                         break;
                     default:
                         System.out.println("Formato desconocido en la línea: " + linea + " " + i);

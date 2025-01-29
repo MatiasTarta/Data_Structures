@@ -1,24 +1,23 @@
 package TPO.SistemaMudanzas;
 
 public class Cliente {
-    char tipoDocumento;
     int telefono, numeroDocumento;
-    String nombre, apellido, email;
+    String nombre, apellido, email,tipoDocumento;
 
-    public Cliente(char tipo, int t, int n, String nom, String ap, String mail) {
-        tipoDocumento = tipo;
-        telefono = t;
-        numeroDocumento = n;
-        nombre = nom;
-        apellido = ap;
-        email = mail;
+    public Cliente(String tipoDocumento, int numeroDocumento, String nombre, String apellido, int telefono,String email) {
+        this.tipoDocumento = tipoDocumento;
+        this. telefono = telefono;
+        this.numeroDocumento = numeroDocumento;
+        this. nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
     }
 
-    public char getTipoDocumento() {
+    public String getTipoDocumento() {
         return tipoDocumento;
     }
 
-    public void setTipoDocumento(char tipoDocumento) {
+    public void setTipoDocumento(String tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
 
@@ -62,10 +61,14 @@ public class Cliente {
         this.email = email;
     }
 
+    public boolean equivale(String nombre, String apellido, int telefono, String email){
+        return this.nombre.equals(nombre) && this.apellido.equals(apellido) && this.telefono==telefono && this.email.equals(email);
+    }
+
     public String toString() {
-        return "Cliente: Tipo de Documento = " + tipoDocumento + ", Numero Documento = " + numeroDocumento +
-               ", Nombre = " + nombre + ", Apellido = " + apellido + 
-               ", Telefono = " + telefono + ", Email = " + email;
+        return "TipoDocumento: " + tipoDocumento + ", NumeroDocumento: " + numeroDocumento +
+               ",Nombre: " + nombre + ",Apellido: " + apellido +
+               ",Telefono: " + telefono + ",Email: " + email;
     }
     
 }
