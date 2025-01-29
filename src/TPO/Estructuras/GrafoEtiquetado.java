@@ -328,6 +328,23 @@ public class GrafoEtiquetado {
         }
         return res;
     }
+
+    public Lista ciudadesIntermedias(Object origen, Object destino) {
+        Lista camino = caminoMasCorto(origen, destino);
+        
+        // Si la lista de camino no está vacía, eliminamos el primer y el último elemento
+        if (!camino.esVacia()) {
+            camino.eliminar(1); // Eliminar el primer nodo (origen)
+            camino.eliminar(camino.longitud()); // Eliminar el último nodo (destino)
+        }
+        
+        return camino;
+    }
+    
+
+    
+    
+
     
     public String toString() {
         String resultado;

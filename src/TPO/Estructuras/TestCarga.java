@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import TPO.SistemaMudanzas.Ciudad;
+import TPO.SistemaMudanzas.SolicitudViaje;
 import lineales.dinamicas.Lista;
 
 public class TestCarga {
@@ -16,15 +17,44 @@ public class TestCarga {
     public static void main(String[] args) {
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
         cargarDatos(archivo);
-        // System.out.println(mapaRutas.toString());
+        //System.out.println(mapaRutas.toString());
         //System.out.println(diccionario.toString());
         //System.out.println(  infoClientes.toString());
         //System.out.println(solicitudes.toString());
-        Lista nueva= solicitudes.buscarSolicitudes(5000, 8300);
-        System.out.println(nueva.toStringSaltoLinea());
-   
+        Lista listita= new Lista();
+        listita.insertar(new Ciudad(8324,  "",  ""), listita.longitud()+1);
+        listita.insertar(new Ciudad(2900,  "",  ""), listita.longitud()+1);
+        listita.insertar(new Ciudad(5000,  "",  ""), listita.longitud()+1);
+        listita.insertar(new Ciudad(3300,  "",  ""), listita.longitud()+1);
+
+        System.out.println(caminoPerfecto(listita,0));
     }
 
+    public static boolean caminoPerfecto(Lista ciudades, double metrosCubicos) {
+        boolean exito = false;
+        int i = 2;
+        while (i <= ciudades.longitud() && !exito) {
+            Ciudad origen = (Ciudad) ciudades.recuperar(1);  // Ciudad origen
+            int codigoO = origen.getCodigoPostal();
+            Ciudad destino = (Ciudad) ciudades.recuperar(i);  // Ciudad destino
+            int codigoD = destino.getCodigoPostal();
+            Lista viajes = solicitudes.buscarSolicitudes(codigoO, codigoD);
+            if (!viajes.esVacia()) {
+                exito = true;//hay al menos una solicitud
+                ciudades.eliminar(1);  // Eliminar la primera ciudad
+            }
+            i++;
+        }
+        // Si  se encontró un camino perfecto, eliminar la primera ciudad y continuar de forma recursiva
+        if (exito && ciudades.longitud() > 1) {
+            exito = caminoPerfecto(ciudades, metrosCubicos);  // Llamada recursiva con el resto de las ciudades
+        }
+    
+        return exito;
+    }
+    
+    
+    
     public static void cargarDatos(String archivo) {
         int i = 1;
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {

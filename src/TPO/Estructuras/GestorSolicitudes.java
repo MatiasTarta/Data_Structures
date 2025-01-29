@@ -28,6 +28,28 @@ public class GestorSolicitudes {
         return nueva;
     }
 
+    public double calculaEspacioNecesario(int codigoO, int codigoD) {
+        Lista solicitudes = buscarSolicitudes(codigoO, codigoD);
+        double espacio = 0;
+        for (int i = 1; i <= solicitudes.longitud(); i++) {
+            SolicitudViaje solicitud = (SolicitudViaje) solicitudes.recuperar(i);
+            espacio += solicitud.getMetrosCubicos(); // suma el valor de metros cúbicos
+        }
+        return espacio;
+    }
+    
+    public boolean verificarEspacioDisponible(int codigoO, int codigoD, double cantidad) {
+        final double MAXIMO_CAMION = 20.0;//maximo de carga de un camion
+        double espacioActual = calculaEspacioNecesario(codigoO, codigoD);
+        
+        // Comprobamos si la suma del espacio actual y la cantidad excede el máximo permitido
+        return (espacioActual + cantidad) <= MAXIMO_CAMION;
+    }
+    
+
+
+
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
