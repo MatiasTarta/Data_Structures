@@ -1,7 +1,7 @@
 package TPO.Estructuras;
 
 import TPO.SistemaMudanzas.SolicitudViaje;
-import lineales.dinamicas.Lista;
+
 
 public class Diccionario {
     NodoAVLDicc raiz;

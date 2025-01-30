@@ -1,10 +1,4 @@
 package TPO.Estructuras;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import lineales.dinamicas.Lista;
 public class GrafoEtiquetado {
     private NodoVert inicio;
 

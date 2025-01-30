@@ -1,6 +1,4 @@
 package TPO.Estructuras;
-
-import lineales.dinamicas.Lista;
 import TPO.SistemaMudanzas.Cliente;;
 public class MapeoAMuchos {
     private int tamanio;

@@ -2,7 +2,6 @@ package TPO.Estructuras;
 
 import TPO.SistemaMudanzas.SolicitudViaje;
 import java.util.HashMap;
-import lineales.dinamicas.Lista;
 
 public class GestorSolicitudes {
     private final HashMap<Pair, Lista> mapaSolicitudes;

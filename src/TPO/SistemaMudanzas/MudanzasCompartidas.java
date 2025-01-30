@@ -11,11 +11,7 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import TPO.Estructuras.Diccionario;
-import TPO.Estructuras.GestorSolicitudes;
-import TPO.Estructuras.GrafoEtiquetado;
-import TPO.Estructuras.MapeoAMuchos;
-import lineales.dinamicas.Lista;
+import TPO.Estructuras.*;
 
 public class MudanzasCompartidas {
     private static Diccionario diccionario = new Diccionario();

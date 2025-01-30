@@ -1,7 +1,4 @@
 package TPO.SistemaMudanzas;
-
-import java.time.LocalDate;
-
 public class SolicitudViaje {
     // Campos de la clase
     private static int contadorId = 0;  // Contador estático que lleva el control de los identificadores
