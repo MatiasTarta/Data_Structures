@@ -229,7 +229,6 @@ public class Diccionario {
                 n.recalcularAltura();
             }
         }
-
         return exito;
 
     }

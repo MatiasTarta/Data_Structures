@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import TPO.Estructuras.Diccionario;
@@ -95,41 +97,87 @@ public class MudanzasCompartidas {
             entrada=sc.nextInt();
             switch (entrada) {
                 case 1:
-                    System.out.println("Ingrese codigo Postal");
-                    int codigoA= sc.nextInt();
-                    System.out.println("Ingrese Nombre de la Ciudad");
-                    String nombreA= sc.next();
-                    System.out.println("Ingrese Provincia");
-                    String provinciaA= sc.next();
-                    diccionario.insertar(codigoA, new Ciudad(codigoA, nombreA, provinciaA));
+                    try {
+                        System.out.println("Ingrese código Postal:");
+                        int codigoA = sc.nextInt();
+                        System.out.println("Ingrese Nombre de la Ciudad:");
+                        String nombreA = sc.next();
+                        System.out.println("Ingrese Provincia:");
+                        String provinciaA = sc.next();
+                        boolean exito=diccionario.insertar(codigoA, new Ciudad(codigoA, nombreA, provinciaA));
+                        if (exito) {
+                            System.out.println("Elemento insertado con exito");
+                        }else{
+                            System.out.println("Ha ocurrido un error");
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: El formato ingresado no es válido. Asegúrese de ingresar un número para el código postal.");
+                        sc.nextLine(); // Limpiar el buffer
+                    } catch (NoSuchElementException e) {
+                        System.out.println("Error: No se ingresó ningún valor.");
+                    }
                     break;
                 case 2:
-                    System.out.println("Ingrese la ciudad que quiere eliminar");
-                    int codigoB= sc.nextInt();
-                    diccionario.eliminar(codigoB);
+                    try {
+                        System.out.println("Ingrese la ciudad que quiere eliminar:");
+                        int codigoB = sc.nextInt();
+                        boolean exito=diccionario.eliminar(codigoB);
+                        if (!exito) {
+                            System.out.println("Ha ocurrido un error");
+                        }else{
+                            System.out.println("Elemento eliminado con exito");
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: Debe ingresar un número entero para el código postal.");
+                        sc.nextLine(); // Limpiar el buffer
+                    } catch (NoSuchElementException e) {
+                        System.out.println("Error: No se ingresó ningún valor.");
+                    } catch (Exception e) {
+                        System.out.println("Error: No se pudo eliminar la ciudad. " + e.getMessage());
+                    }
                     break;
                 case 3:
-                    System.out.println("Ingrese el codigo postal de la ciudad que desea modificar");
-                    int codigoC= sc.nextInt();
-                    Ciudad c = (Ciudad) diccionario.obtenerDato(codigoC);
-                    System.out.println("Que desea modificar");
-                    System.out.println("1. Nombre de la Ciudad");
-                    System.out.println("2. Provincia de la ciudad");
-                    int entradaB=sc.nextInt();
-                    switch (entradaB) {
-                        case 1:
-                            System.out.println("Ingrese el nuevo nombre");
-                            String nombreC= sc.next();
-                            c.setNombre(nombreC);
-                            break;
-                        case 2:
-                            System.out.println("Ingrese la nueva provincia");
-                            String provinciaC= sc.next();
-                            c.setProvincia(provinciaC);
-                            break;
-                        default:
-                            break;
-                    }
+                    try {
+                        System.out.println("Ingrese el código postal de la ciudad que desea modificar:");
+                        int codigoC = sc.nextInt();
+                        Ciudad c = (Ciudad) diccionario.obtenerDato(codigoC);
+                        if (c == null) {
+                            System.out.println("Error: No se encontró ninguna ciudad con el código postal ingresado.");
+                            return;
+                        }
+                        System.out.println("¿Qué desea modificar?");
+                        System.out.println("1. Nombre de la Ciudad");
+                        System.out.println("2. Provincia de la Ciudad");
+                        int entradaB = sc.nextInt();
+                        switch (entradaB) {
+                            case 1:
+                                System.out.println("Ingrese el nuevo nombre:");
+                                String nombreC = sc.next();
+                                c.setNombre(nombreC);
+                                System.out.println("Nombre de la ciudad actualizado con éxito.");
+                                break;
+                            case 2:
+                                System.out.println("Ingrese la nueva provincia:");
+                                String provinciaC = sc.next();
+                                c.setProvincia(provinciaC);
+                                System.out.println("Provincia de la ciudad actualizada con éxito.");
+                                break;
+                            default:
+                                System.out.println("Opción no válida.");
+                                break;
+                        }
+                        } catch (InputMismatchException e) {
+                            System.out.println("Error: Entrada inválida. Por favor, ingrese un valor válido.");
+                            sc.nextLine(); // Limpiar el buffer en caso de error
+                        } catch (NoSuchElementException e) {
+                            System.out.println("Error: No se ingresó ningún valor.");
+                        } catch (IllegalStateException e) {
+                            System.out.println("Error: El objeto Scanner está cerrado.");
+                        } catch (ClassCastException e) {
+                            System.out.println("Error: El objeto obtenido no es del tipo esperado.");
+                        } catch (Exception e) {
+                            System.out.println("Error inesperado: " + e.getMessage());
+                        }
                     break;
                 default:
                     break;
