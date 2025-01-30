@@ -59,6 +59,8 @@ public class SolicitudViaje {
 
     public boolean isPagado(){return pagado;}
 
+    public void setPago(boolean pago){pagado=pago;}
+
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }

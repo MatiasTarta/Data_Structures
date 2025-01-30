@@ -305,8 +305,60 @@ public class MudanzasCompartidas {
                     int pos=sc.nextInt();
                     solicitudesELiminarB.eliminar(pos);
                     break;
-                case 3:
-
+                case 3: 
+                System.out.println("Ingrese la ciudad Origen de la solicitud");
+                int origenC = sc.nextInt();
+                System.out.println("Ingrese la ciudad Destino de la solicitud");
+                int destinoC = sc.nextInt();
+                Lista solicitudesModificar = solicitudes.buscarSolicitudes(origenC, destinoC);
+                System.out.println("Las solicitudes para estas ciudades son: ");
+                System.out.println(solicitudesModificar.toStringSaltoLinea());
+                System.out.println("¿Cuál desea Modificar? (Ingrese la posición en la lista)");
+                int posC = sc.nextInt();
+                SolicitudViaje aux =(SolicitudViaje) solicitudesModificar.recuperar(posC);
+                    System.out.println("Que desea Modificar");
+                    System.out.println("1.Fecha");
+                    System.out.println("2.Cantidad Bultos");
+                    System.out.println("3.Metros Cubicos");
+                    System.out.println("4.Domicilio Retiro");
+                    System.out.println("5.Domicilio Entrega");
+                    System.out.println("6.Estado del pago");
+                    int modificacion = sc.nextInt();
+                    switch (modificacion) {
+                        case 1:
+                            System.out.println("Ingrese la nueva fecha (formato: YYYY-MM-DD)");
+                            String nuevaFecha = sc.next();
+                            aux.setFecha(nuevaFecha);
+                            break;
+                        case 2:
+                            System.out.println("Ingrese la nueva cantidad de bultos");
+                            int nuevaCantidadBultos = sc.nextInt();
+                            aux.setCantBultos(nuevaCantidadBultos);
+                            break;
+                        case 3:
+                            System.out.println("Ingrese los nuevos metros cúbicos");
+                            double nuevosMetrosCubicos = sc.nextDouble();
+                            aux.setMetrosCubicos(nuevosMetrosCubicos);
+                            break;
+                        case 4:
+                            System.out.println("Ingrese el nuevo domicilio de retiro");
+                            String nuevoDomicilioRetiro = sc.next();
+                            aux.setDomicilioRetiro(nuevoDomicilioRetiro);;
+                            break;
+                        case 5:
+                            System.out.println("Ingrese el nuevo domicilio de entrega");
+                            String nuevoDomicilioEntrega = sc.next();
+                           aux.setDomicilioRetiro(nuevoDomicilioEntrega);
+                            break;
+                        case 6:
+                            System.out.println("Ingrese el nuevo estado del pago (true/false)");
+                            boolean nuevoEstadoPago = sc.nextBoolean();
+                            aux.setPago(nuevoEstadoPago);
+                            break;
+                        default:
+                            System.out.println("Opción no válida");
+                            break;
+                    }
                     break;
                 default:
                     break;
