@@ -190,20 +190,70 @@ public class MudanzasCompartidas {
     public static void abmClientes(Scanner sc,int entrada){
         while (entrada!=0) {
             System.out.println("<------------------Menu ABM CLIENTES------------------>");
-            System.out.println("1. Altas de Clientes");
-            System.out.println("2. /Bajas de Clientes");
-            System.out.println("3. /Modificaciones de Clientes");
+            System.out.println("1.  Altas de Clientes");
+            System.out.println("2.  Bajas de Clientes");
+            System.out.println("3.  Modificaciones de Clientes");
             System.out.println("0.CERRAR");
             entrada=sc.nextInt();
             switch (entrada) {
-                case 1:
-
+                case 1://P;DNI;34871234;MONTES;ANDRES IGNACIO;299456321;andres.montes@gmail.com
+                    System.out.println("Ingrese el tipo de Documento del cliente nuevo");
+                    String tipoA=sc.next();
+                    System.out.println("Ingrese el numero de Documento del cliente nuevo");
+                    int numeroA=sc.nextInt();
+                    System.out.println("Ingrese el apellido del cliente");
+                    String nombreA=sc.next();
+                    System.out.println("Ingrese el apellido del cliente");
+                    String apellidoA=sc.next();
+                    System.out.println("Ingrese el telefono del cliente");
+                    int telefonoA=sc.nextInt();
+                    System.out.println("Ingrese el mail del cliente");
+                    String emailA=sc.next();
+                    infoClientes.asociar(tipoA, numeroA, nombreA, apellidoA, telefonoA, emailA);
                     break;
                 case 2:
-
+                    System.out.println("Ingrese tipo de Documento del Cliente a dar de Baja");
+                    String tipoB= sc.next();
+                    System.out.println("Ingrese el numero de documento del Cliente a dar de baja");
+                    int numeroB=sc.nextInt();
+                    infoClientes.desacoiar(tipoB, numeroB);
                     break;
                 case 3:
-
+                    System.out.println("Ingrese tipo de Documento del Cliente a modificar");
+                    String tipoC= sc.next();
+                    System.out.println("Ingrese el numero de documento del Cliente a modificar");
+                    int numeroC=sc.nextInt();
+                    Cliente aux = (Cliente) infoClientes.obtenerValor(tipoC, numeroC);
+                    System.out.println("Que desea modificar del cliente "+aux.toString());
+                    System.out.println("1.Nombre");
+                    System.out.println("2.Apellido");
+                    System.out.println("3.Telefono");
+                    System.out.println("4.Email");
+                    int modificacion=sc.nextInt();
+                        switch (modificacion) {
+                            case 1:
+                                System.out.println("Ingrese el nombre del cliente");
+                                String nombreC = sc.next();
+                                aux.setNombre(nombreC);
+                                    break;
+                            case 2:
+                                System.out.println("Ingrese el apellido del cliente");
+                                String apellidoC = sc.next();
+                                aux.setApellido(apellidoC);
+                                    break;
+                            case 3:
+                                System.out.println("Ingrese el teléfono del cliente");
+                                int telefonoC = sc.nextInt();
+                                aux.setTelefono(telefonoC);
+                                    break;
+                            case 4:
+                                System.out.println("Ingrese el email del cliente");
+                                String emailC = sc.next();
+                                aux.setEmail(emailC);
+                                break;
+                            default:
+                                break;
+                        }
                     break;
                 default:
                     break;
