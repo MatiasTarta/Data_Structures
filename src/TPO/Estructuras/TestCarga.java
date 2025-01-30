@@ -21,6 +21,8 @@ public class TestCarga {
         //System.out.println(diccionario.toString());
         //System.out.println(  infoClientes.toString());
         //System.out.println(solicitudes.toString());
+        Lista nueva= mapaRutas.caminoSinRepetir(1000, 8300, 8303);
+        System.out.println(nueva.toString());
        
     }
 
