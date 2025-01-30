@@ -2,8 +2,11 @@ package TPO.SistemaMudanzas;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -19,12 +22,12 @@ public class MudanzasCompartidas {
     private static GrafoEtiquetado mapaRutas = new GrafoEtiquetado();
     private static MapeoAMuchos infoClientes= new MapeoAMuchos(12);
     private static GestorSolicitudes solicitudes=new GestorSolicitudes();
+    private static FileWriter logWriter;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int entrada = 1;
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
-
-        //hacerCargaInicial(archivo);
+        inicializarLog();
         System.out.println("Bienvenido al sistema de Mudanzas de la Empresa");
         System.out.println("Que desea Hacer a Continuacion?");
         while (entrada != 0) {
@@ -41,6 +44,11 @@ public class MudanzasCompartidas {
                 case 1:
                     // carga inicial
                     hacerCargaInicial(archivo);
+                    escribirEnLog("Estado de las Estructuras luego de carga inicial: ");
+                    escribirEnLog(diccionario.toString());
+                    escribirEnLog(mapaRutas.toString());
+                    escribirEnLog(solicitudes.toString());
+                    escribirEnLog(infoClientes.toString());
                     break;
                 case 2:
                     menuABM(sc, 1);
@@ -67,6 +75,8 @@ public class MudanzasCompartidas {
             System.out.println("3. Altas/Bajas/Modificaciones de Clientes");
             System.out.println("4. Altas/Bajas/Modificaciones de Solicitudes");
             System.out.println("0.CERRAR");
+            System.out.println("!ADVERTENCIA!Todos los nombres que se ingresen deben ir juntos sin espacios.Ejemplo, en caso de ingresar General Roca, se ingresa GeneralRoca");
+            //esto es por un error leyendo los string con la clase scanner no se porque
             entrada=sc.nextInt();
             switch (entrada) {
                 case 1:
@@ -104,11 +114,14 @@ public class MudanzasCompartidas {
                         String nombreA = sc.next();
                         System.out.println("Ingrese Provincia:");
                         String provinciaA = sc.next();
-                        boolean exito=diccionario.insertar(codigoA, new Ciudad(codigoA, nombreA, provinciaA));
+                        Ciudad nueva=  new Ciudad(codigoA, nombreA, provinciaA);
+                        boolean exito=diccionario.insertar(codigoA,nueva);
                         if (exito) {
                             System.out.println("Elemento insertado con exito");
+                            escribirEnLog("Se cargo la ciudad "+nueva.toString());
                         }else{
                             System.out.println("Ha ocurrido un error");
+                            escribirEnLog("No se cargo la ciudad "+nueva.toString());
                         }
                     } catch (InputMismatchException e) {
                         System.out.println("Error: El formato ingresado no es válido. Asegúrese de ingresar un número para el código postal.");
@@ -122,10 +135,12 @@ public class MudanzasCompartidas {
                         System.out.println("Ingrese la ciudad que quiere eliminar:");
                         int codigoB = sc.nextInt();
                         boolean exito=diccionario.eliminar(codigoB);
-                        if (!exito) {
-                            System.out.println("Ha ocurrido un error");
-                        }else{
+                        if (exito) {
                             System.out.println("Elemento eliminado con exito");
+                            escribirEnLog("Se elimino la ciudad con codigo Postal "+codigoB);
+                        }else{
+                            System.out.println("Ha ocurrido un error");
+                            escribirEnLog("no se elimino la ciudad con codigo Postal "+codigoB);
                         }
                     } catch (InputMismatchException e) {
                         System.out.println("Error: Debe ingresar un número entero para el código postal.");
@@ -155,12 +170,14 @@ public class MudanzasCompartidas {
                                 String nombreC = sc.next();
                                 c.setNombre(nombreC);
                                 System.out.println("Nombre de la ciudad actualizado con éxito.");
+                                escribirEnLog("Se cambio el nombre de "+c.toString());
                                 break;
                             case 2:
                                 System.out.println("Ingrese la nueva provincia:");
                                 String provinciaC = sc.next();
                                 c.setProvincia(provinciaC);
                                 System.out.println("Provincia de la ciudad actualizada con éxito.");
+                                escribirEnLog("Se cambio la provincia de "+c.toString());
                                 break;
                             default:
                                 System.out.println("Opción no válida.");
@@ -208,12 +225,13 @@ public class MudanzasCompartidas {
     
                             Ciudad origen = (Ciudad) diccionario.obtenerDato(codigoA);
                             Ciudad destino = (Ciudad) diccionario.obtenerDato(codigoB);
-    
+                            
                             if (origen == null || destino == null) {
                                 System.out.println("Error: Una o ambas ciudades no existen en el diccionario.");
                             } else {
                                 insertarRuta(codigoA, codigoB, distancia);
                                 System.out.println("Ruta añadida con éxito.");
+                                escribirEnLog("Se cargo la ruta con Origen "+codigoA+" ,con Destino: "+codigoB+" con distancia: "+distancia );
                             }
                         } catch (InputMismatchException e) {
                             System.out.println("Error: Entrada inválida. Por favor, ingrese valores correctos.");
@@ -236,6 +254,7 @@ public class MudanzasCompartidas {
                                 System.out.println("Error: No existe la ruta entre las ciudades especificadas.");
                             } else {
                                 System.out.println("Ruta eliminada con éxito.");
+                                escribirEnLog("Se elimino con exito la ruta de "+origenB+" a "+destinoB);
                             }
                         } catch (InputMismatchException e) {
                             System.out.println("Error: Entrada inválida. Por favor, ingrese valores correctos.");
@@ -258,6 +277,7 @@ public class MudanzasCompartidas {
                             } else {
                                 mapaRutas.insertarArco(origenC, destinoC, distanciaC);
                                 System.out.println("Ruta modificada con éxito.");
+                                escribirEnLog("Se modifico con exito la ruta con origen de "+origenC+" ,destino a "+destinoC);
                             }
                         } catch (InputMismatchException e) {
                             System.out.println("Error: Entrada inválida. Por favor, ingrese valores correctos.");
@@ -284,7 +304,6 @@ public class MudanzasCompartidas {
         }
     }
     
-
     public static void abmClientes(Scanner sc, int entrada) {
         while (entrada != 0) {
             System.out.println("<------------------Menu ABM CLIENTES------------------>");
@@ -314,6 +333,7 @@ public class MudanzasCompartidas {
     
                             infoClientes.asociar(tipoA, numeroA, nombreA, apellidoA, telefonoA, emailA);
                             System.out.println("Cliente agregado con éxito.");
+                            escribirEnLog("Se cargó al cliente con Tipo de Documento: " + tipoA + " y Número de Documento: " + numeroA);
                         } catch (InputMismatchException e) {
                             System.out.println("Error: Entrada inválida. Por favor, ingrese valores correctos.");
                             sc.nextLine(); // Limpiar el buffer en caso de error
@@ -331,6 +351,7 @@ public class MudanzasCompartidas {
     
                             if (infoClientes.desacoiar(tipoB, numeroB)) {
                                 System.out.println("Cliente eliminado con éxito.");
+                                escribirEnLog("Se elimino al cliente con Tipo de Documento: " + tipoB + " y Número de Documento: " + numeroB);
                             } else {
                                 System.out.println("Error: No se encontró un cliente con los datos especificados.");
                             }
@@ -392,6 +413,7 @@ public class MudanzasCompartidas {
                                         break;
                                 }
                             }
+                            escribirEnLog("Se modificaron los datos del cliente con Tipo de Documento: " + tipoC + " y Número de Documento: " + numeroC);
                         } catch (InputMismatchException e) {
                             System.out.println("Error: Entrada inválida. Por favor, ingrese valores correctos.");
                             sc.nextLine(); // Limpiar el buffer en caso de error
@@ -454,6 +476,11 @@ public class MudanzasCompartidas {
     
                             solicitudes.cargarSolicitud(codigoOrigenA, codigoDestinoA, fechaA, tipoDocumentoA, idClienteA, cantBultosA, metrosCubicosA, domicilioRetiroA, domicilioEntregaA, pagadoA);
                             System.out.println("Solicitud cargada con éxito.");
+                                escribirEnLog("Se cargó la solicitud desde Ciudad Origen: " + codigoOrigenA + " hasta Ciudad Destino: " + codigoDestinoA 
+                + ", con Fecha: " + fechaA + ", Tipo de Documento Cliente: " + tipoDocumentoA + ", Número de Documento: " 
+                + idClienteA + ", Bultos: " + cantBultosA + ", Espacio: " + metrosCubicosA + "m3, Domicilio de Retiro: " 
+                + domicilioRetiroA + ", Domicilio de Entrega: " + domicilioEntregaA + ", Pagado: " + pagadoA);
+
                         } catch (InputMismatchException e) {
                             System.out.println("Error: Entrada inválida. Por favor, ingrese valores correctos.");
                             sc.nextLine(); // Limpiar el buffer en caso de error
@@ -482,6 +509,7 @@ public class MudanzasCompartidas {
     
                             solicitudesEliminarB.eliminar(pos);
                             System.out.println("Solicitud eliminada con éxito.");
+                            escribirEnLog("Se dio de baja la solicitud con origen "+origenB+" ,destino "+destinoB);
                         } catch (InputMismatchException e) {
                             System.out.println("Error: Entrada inválida. Por favor, ingrese valores correctos.");
                             sc.nextLine(); // Limpiar el buffer en caso de error
@@ -567,6 +595,7 @@ public class MudanzasCompartidas {
                                     System.out.println("Opción no válida.");
                                     break;
                             }
+                            escribirEnLog("Se modifico la solicitud "+aux.toString());
                         } catch (InputMismatchException e) {
                             System.out.println("Error: Entrada inválida. Por favor, ingrese valores correctos.");
                             sc.nextLine(); // Limpiar el buffer en caso de error
@@ -791,6 +820,7 @@ public class MudanzasCompartidas {
                         double metros = sc.nextDouble();
                         Lista caminos = solicitudesPosibles(origenB, destinoB, metros);
                         if (!caminos.esVacia()) {
+                            System.out.println("Las ciudades a las que se pueden hacer viajes intermedios son:");
                             System.out.println(caminos.toString());
                         } else {
                             System.out.println("O no sobra espacio o no hay solicitudes pendientes entre las ciudades ingresadas.");
@@ -826,7 +856,6 @@ public class MudanzasCompartidas {
         }
     }
     
-
     public static void menuVisualizacion(Scanner sc,int entrada){
         while (entrada!=0) {
             System.out.println("<------------------------->");
@@ -877,10 +906,10 @@ public class MudanzasCompartidas {
                                 Double.parseDouble(partes[3]));
                         break;
                     case"P":
-                        infoClientes.asociar(partes[1], Integer.parseInt(partes[2]), partes[3], partes[4], Integer.parseInt(partes[5]),partes[6]);
+                        cargarCliente(partes[1], Integer.parseInt(partes[2]), partes[3], partes[4], Integer.parseInt(partes[5]),partes[6]);
                         break;
                     case"S":
-                        solicitudes.cargarSolicitud(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]), partes[3],partes[4], Integer.parseInt(partes[5]), Integer.parseInt(partes[6]), Double.parseDouble(partes[7]), partes[8], partes[9], Boolean.parseBoolean(partes[10]));
+                        cargarSolicitud(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]), partes[3],partes[4], Integer.parseInt(partes[5]), Integer.parseInt(partes[6]), Double.parseDouble(partes[7]), partes[8], partes[9], Boolean.parseBoolean(partes[10]));
                         break;
                     default:
                         System.out.println("Formato desconocido en la línea: " + linea + " " + i);
@@ -907,14 +936,43 @@ public class MudanzasCompartidas {
         if (mapaRutas.existeVertice(codigoOrigen) && mapaRutas.existeVertice(codigoDestino)) {
             mapaRutas.insertarArco(codigoOrigen, codigoDestino, distancia);
         }
+
+            escribirEnLog("Se cargo la ruta con Origen "+codigoOrigen+" ,con Destino: "+codigoDestino+" con distancia: "+distancia );
+        
     }
 
     public static void cargarCiudad(int codigo, String nombre, String provincia) {
         Ciudad ciudad = new Ciudad(codigo, nombre, provincia);
         boolean exito = diccionario.insertar(codigo, ciudad);
-        if (exito) {
+            if (exito) {
+                escribirEnLog("Se cargo la " + ciudad.toString());
+            } else {
+                escribirEnLog("No se pudo cargar la " + ciudad.toString());
+            }
+    }
 
+    public static void cargarCliente(String tipoDocumento, int numeroDocumento, String nombre, String apellido, int telefono,String email){
+        boolean exito = infoClientes.asociar(tipoDocumento, numeroDocumento, nombre, apellido, telefono, email);
+        if (exito) {
+            escribirEnLog("Se cargó al cliente con Tipo de Documento: " + tipoDocumento + " y Número de Documento: " + numeroDocumento);
+        } else { 
+            escribirEnLog("No se pudo cargar al cliente con Tipo de Documento: " + tipoDocumento + " y Número de Documento: " + numeroDocumento);
         }
+    }
+
+    public static void cargarSolicitud(int codigoOrigen, int codigoDestino, String fecha, String tipoDocumento, int numeroDocumento, int bultos, double espacio, String domicilioRetiro,String domicilioEntrega, boolean pago){
+        boolean exito = solicitudes.cargarSolicitud(codigoOrigen, codigoDestino, fecha, tipoDocumento, numeroDocumento, bultos, espacio, domicilioRetiro, domicilioEntrega, pago);
+        if (exito) {
+            escribirEnLog("Se cargó la solicitud desde Ciudad Origen: " + codigoOrigen + " hasta Ciudad Destino: " + codigoDestino 
+                           + ", con Fecha: " + fecha + ", Tipo de Documento Cliente: " + tipoDocumento + ", Número de Documento: " 
+                           + numeroDocumento + ", Bultos: " + bultos + ", Espacio: " + espacio + "m3, Domicilio de Retiro: " 
+                           + domicilioRetiro + ", Domicilio de Entrega: " + domicilioEntrega + ", Pagado: " + pago);
+        } else {
+            escribirEnLog("No se pudo cargar la solicitud desde Ciudad Origen: " + codigoOrigen + " hasta Ciudad Destino: " + codigoDestino 
+                           + ", con Fecha: " + fecha + ", Tipo de Documento Cliente: " + tipoDocumento + ", Número de Documento: " 
+                           + numeroDocumento + ", Bultos: " + bultos + ", Espacio: " + espacio + "m3, Domicilio de Retiro: " 
+                           + domicilioRetiro + ", Domicilio de Entrega: " + domicilioEntrega + ", Pagado: " + pago);
+        }        
     }
 
     public static String mostrarInfoCiudad(Comparable codigoPostal) {
@@ -962,5 +1020,37 @@ public class MudanzasCompartidas {
         }
         return exito;
     }
+
+    public static void inicializarLog() {
+        String rutaLog = Paths.get("src", "TPO", "SistemaMudanzas", "log.txt").toString();
+        try {
+            logWriter = new FileWriter(rutaLog, true);
+            logWriter.write("Inicio del registro: \n");
+            logWriter.flush();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage() + "Error al inicializar el archivo log.");
+        }
+    }
+
+    public static void escribirEnLog(String mensaje) {
+        try {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String fechaHora = formatoFecha.format(new Date());
+            logWriter.write(fechaHora + " - " + mensaje + "\n");
+            logWriter.flush();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage() + "Error al escribir en el archivo log.");
+        }
+    }
+
+    public static void finalizarLog() {
+        try {
+            logWriter.write("Fin del registro");
+            logWriter.close();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage() + "Error al finalizar el archivo log.");
+        }
+    }
+
 
 }

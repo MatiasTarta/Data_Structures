@@ -11,13 +11,15 @@ public class GestorSolicitudes {
         this.mapaSolicitudes = new HashMap<>();
     }
 
-    public void cargarSolicitud(int codigoOrigen, int codigoDestino, String fecha, String tipoDocumento, int numeroDocumento, int bultos, double espacio, String domicilioRetiro,String domicilioEntrega, boolean pago) {
+    public boolean cargarSolicitud(int codigoOrigen, int codigoDestino, String fecha, String tipoDocumento, int numeroDocumento, int bultos, double espacio, String domicilioRetiro,String domicilioEntrega, boolean pago) {
+        boolean exito=false;
         SolicitudViaje solicitud = new SolicitudViaje(codigoOrigen, codigoDestino, fecha, tipoDocumento, numeroDocumento, bultos, espacio, domicilioRetiro,domicilioEntrega, pago);
         Pair clave = new Pair(codigoOrigen, codigoDestino);
         
         // Usamos la clase Lista para almacenar las solicitudes
         mapaSolicitudes.putIfAbsent(clave, new Lista());//si no hay nada crea una lista
         mapaSolicitudes.get(clave).insertar(solicitud, mapaSolicitudes.get(clave).longitud() + 1);//si habia alguna solicitud ya cargada por esas ciudades enlaza las solicitudes
+        return exito;
     }
 
     public Lista buscarSolicitudes(int codigoOrigen, int codigoDestino) {
