@@ -997,7 +997,7 @@ public class MudanzasCompartidas {
         if (solicitudes.verificarEspacioDisponible(codigoO, codigoD, cantidad)) {
             nueva=(mapaRutas.ciudadesIntermedias(codigoO, codigoD));
         }else{
-            //si devuelve vacio no hay espacio disponible en el camion
+            System.out.println("No hay espacio disponible en el camion para hacer viajes a ciudades intermedias");
         }
         return nueva;
     }
