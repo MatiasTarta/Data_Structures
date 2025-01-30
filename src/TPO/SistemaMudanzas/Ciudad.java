@@ -16,9 +16,6 @@ public class Ciudad {
         return codigoPostal;
     }
 
-    public void setCodigoPostal(int codigoPostal) {
-        this.codigoPostal = codigoPostal;
-    }
 
     public String getNombre() {
         return nombre;

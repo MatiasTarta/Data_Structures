@@ -20,7 +20,6 @@ public class MudanzasCompartidas {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int entrada = 1;
-        
         String archivo = Paths.get("src", "TPO", "SistemaMudanzas", "CargaInicial.txt").toString();
 
         hacerCargaInicial(archivo);
@@ -96,13 +95,41 @@ public class MudanzasCompartidas {
             entrada=sc.nextInt();
             switch (entrada) {
                 case 1:
-
+                    System.out.println("Ingrese codigo Postal");
+                    int codigoA= sc.nextInt();
+                    System.out.println("Ingrese Nombre de la Ciudad");
+                    String nombreA= sc.next();
+                    System.out.println("Ingrese Provincia");
+                    String provinciaA= sc.next();
+                    diccionario.insertar(codigoA, new Ciudad(codigoA, nombreA, provinciaA));
                     break;
                 case 2:
-
+                    System.out.println("Ingrese la ciudad que quiere eliminar");
+                    int codigoB= sc.nextInt();
+                    diccionario.eliminar(codigoB);
                     break;
                 case 3:
-
+                    System.out.println("Ingrese el codigo postal de la ciudad que desea modificar");
+                    int codigoC= sc.nextInt();
+                    Ciudad c = (Ciudad) diccionario.obtenerDato(codigoC);
+                    System.out.println("Que desea modificar");
+                    System.out.println("1. Nombre de la Ciudad");
+                    System.out.println("2. Provincia de la ciudad");
+                    int entradaB=sc.nextInt();
+                    switch (entradaB) {
+                        case 1:
+                            System.out.println("Ingrese el nuevo nombre");
+                            String nombreC= sc.next();
+                            c.setNombre(nombreC);
+                            break;
+                        case 2:
+                            System.out.println("Ingrese la nueva provincia");
+                            String provinciaC= sc.next();
+                            c.setProvincia(provinciaC);
+                            break;
+                        default:
+                            break;
+                    }
                     break;
                 default:
                     break;
@@ -119,14 +146,40 @@ public class MudanzasCompartidas {
             System.out.println("0.CERRAR");
             entrada=sc.nextInt();
             switch (entrada) {
-                case 1:
-
+                case 1: 
+                    System.out.println("Ingrese la ciudad Origen de la Ruta");
+                    int codigoA=sc.nextInt();
+                    System.out.println("Ingrese la ciudad Destino de la ruta");
+                    int codigoB=sc.nextInt();
+                    System.out.println("Ingrese distancia en km entre las ciudades");
+                    double distancia=sc.nextDouble();
+                    try {
+                        Ciudad origen = (Ciudad) diccionario.obtenerDato(codigoA);
+                        Ciudad destino = (Ciudad) diccionario.obtenerDato(codigoB);
+                        //esto es Solamente para que se puedan agregar rutas con ciudades ya insertadas en el diccionario, en realidad las variables no se usan
+                    } catch (ClassCastException e) {
+                        System.out.println("Error. Ingrese una ciudad existente en el diccionario");
+                    }
+                    insertarRuta(codigoA, codigoB, distancia);
                     break;
                 case 2:
-
+                    System.out.println("Ingrese la ciudad de Origen de la ruta que quiere eliminar");
+                    int origenB= sc.nextInt();
+                    System.out.println("Ingrese la ciudad de Destino de la ruta que quiere eliminar");
+                    int destinoB=sc.nextInt();
+                    mapaRutas.eliminarVertice(origenB);
+                    mapaRutas.eliminarVertice(destinoB);
+                    mapaRutas.eliminarArco(origenB, destinoB);
                     break;
                 case 3:
-
+                    System.out.println("Ingrese la ciudad de Origen de la ruta que quiere modificar");
+                    int origenC= sc.nextInt();
+                    System.out.println("Ingrese la ciudad de Destino de la ruta que quiere modificar");
+                    int destinoC=sc.nextInt();
+                    System.out.println("Ingrese la nueva distancia en km que hay entre las ciduades");
+                    double distanciaC= sc.nextDouble();
+                    mapaRutas.eliminarArco(origenC, destinoC);
+                    mapaRutas.insertarArco(origenC, destinoC, distanciaC);
                     break;
                 default:
                     break;
@@ -387,7 +440,7 @@ public class MudanzasCompartidas {
                         break;
                     case "R":
                         insertarRuta(Integer.parseInt(partes[1]), Integer.parseInt(partes[2]),
-                                Double.parseDouble(partes[3]), mapaRutas);
+                                Double.parseDouble(partes[3]));
                         break;
                     case"P":
                         infoClientes.asociar(partes[1], Integer.parseInt(partes[2]), partes[3], partes[4], Integer.parseInt(partes[5]),partes[6]);
@@ -407,18 +460,18 @@ public class MudanzasCompartidas {
         System.out.println("Carga inicial realizada");
     }
 
-    public static void insertarRuta(int codigoOrigen, int codigoDestino, double distancia, GrafoEtiquetado mapa) {
-        if (!mapa.existeVertice(codigoOrigen)) {
-            mapa.insertarVertice(codigoOrigen);
+    public static void insertarRuta(int codigoOrigen, int codigoDestino, double distancia) {
+        if (!mapaRutas.existeVertice(codigoOrigen)) {
+            mapaRutas.insertarVertice(codigoOrigen);
         }
 
-        if (!mapa.existeVertice(codigoDestino)) {
-            mapa.insertarVertice(codigoDestino);
+        if (!mapaRutas.existeVertice(codigoDestino)) {
+            mapaRutas.insertarVertice(codigoDestino);
         }
 
         // Solo agregar el arco si ambos nodos han sido insertados
-        if (mapa.existeVertice(codigoOrigen) && mapa.existeVertice(codigoDestino)) {
-            mapa.insertarArco(codigoOrigen, codigoDestino, distancia);
+        if (mapaRutas.existeVertice(codigoOrigen) && mapaRutas.existeVertice(codigoDestino)) {
+            mapaRutas.insertarArco(codigoOrigen, codigoDestino, distancia);
         }
     }
 

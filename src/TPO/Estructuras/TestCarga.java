@@ -88,7 +88,6 @@ public class TestCarga {
         if (!mapa.existeVertice(codigoOrigen)) {
             mapa.insertarVertice(codigoOrigen);
         }
-
         if (!mapa.existeVertice(codigoDestino)) {
             mapa.insertarVertice(codigoDestino);
         }

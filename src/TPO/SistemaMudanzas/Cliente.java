@@ -17,10 +17,6 @@ public class Cliente {
         return tipoDocumento;
     }
 
-    public void setTipoDocumento(String tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
-    }
-
     public int getTelefono() {
         return telefono;
     }
@@ -31,10 +27,6 @@ public class Cliente {
 
     public int getNumeroDocumento() {
         return numeroDocumento;
-    }
-
-    public void setNumeroDocumento(int numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
     }
 
     public String getNombre() {
