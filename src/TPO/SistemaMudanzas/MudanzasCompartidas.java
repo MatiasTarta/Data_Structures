@@ -196,7 +196,7 @@ public class MudanzasCompartidas {
             System.out.println("0.CERRAR");
             entrada=sc.nextInt();
             switch (entrada) {
-                case 1://P;DNI;34871234;MONTES;ANDRES IGNACIO;299456321;andres.montes@gmail.com
+                case 1:
                     System.out.println("Ingrese el tipo de Documento del cliente nuevo");
                     String tipoA=sc.next();
                     System.out.println("Ingrese el numero de Documento del cliente nuevo");
@@ -250,7 +250,7 @@ public class MudanzasCompartidas {
                                 System.out.println("Ingrese el email del cliente");
                                 String emailC = sc.next();
                                 aux.setEmail(emailC);
-                                break;
+                                    break;
                             default:
                                 break;
                         }
@@ -265,16 +265,45 @@ public class MudanzasCompartidas {
         while (entrada!=0) {
             System.out.println("<------------------Menu ABM SOLICITUDES------------------>");
             System.out.println("1. Altas de Solicitudes");
-            System.out.println("2. /Bajas de Solicitudes");
-            System.out.println("3. /Modificaciones de Solicitudes");
+            System.out.println("2. Bajas de Solicitudes");
+            System.out.println("3. Modificaciones de Solicitudes");
             System.out.println("0.CERRAR");
             entrada=sc.nextInt();
             switch (entrada) {
                 case 1:
-
+                System.out.println("Ingrese el código postal de origen:");
+                int codigoOrigenA = sc.nextInt();
+                System.out.println("Ingrese el código postal de destino:");
+                int codigoDestinoA = sc.nextInt();
+                System.out.println("Ingrese la fecha del viaje (formato: dd/mm/yyyy):");
+                String fechaA = sc.next();
+                System.out.println("Ingrese el tipo de documento del cliente:");
+                String tipoDocumentoA = sc.next();
+                System.out.println("Ingrese el ID del cliente:");
+                int idClienteA = sc.nextInt();
+                System.out.println("Ingrese la cantidad de bultos:");
+                int cantBultosA = sc.nextInt(); 
+                System.out.println("Ingrese la cantidad de metros cúbicos:");
+                double metrosCubicosA = sc.nextDouble();
+                System.out.println("Ingrese el domicilio de retiro:");
+                String domicilioRetiroA = sc.next();
+                System.out.println("Ingrese el domicilio de entrega:");
+                String domicilioEntregaA = sc.next();
+                System.out.println("¿El viaje está pagado? (true/false):");
+                boolean pagadoA = sc.nextBoolean();
+                solicitudes.cargarSolicitud(codigoOrigenA, codigoDestinoA, fechaA, tipoDocumentoA, idClienteA, cantBultosA, metrosCubicosA, domicilioRetiroA, domicilioEntregaA, pagadoA);
                     break;
                 case 2:
-
+                    System.out.println("Ingrese la ciudad Origen de la solicitud");
+                    int origenB=sc.nextInt();
+                    System.out.println("Ingrese la ciudad Destino de la solicitud");
+                    int destinoB=sc.nextInt();
+                    Lista solicitudesELiminarB=solicitudes.buscarSolicitudes(origenB, destinoB);
+                    System.out.println("Las solicitudes para estas cidudades son: ");
+                    System.out.println(solicitudesELiminarB.toStringSaltoLinea());
+                    System.out.println("Cual desea eliminar(Ingrese la posicion en la lista)");
+                    int pos=sc.nextInt();
+                    solicitudesELiminarB.eliminar(pos);
                     break;
                 case 3:
 
