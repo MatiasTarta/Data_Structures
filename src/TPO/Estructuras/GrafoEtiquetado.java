@@ -249,44 +249,46 @@ public class GrafoEtiquetado {
     
     
     public Lista caminoSinRepetir(Object origen, Object destino, Object intermedio) {
-        Lista camino = new Lista();
-        Lista visitados = new Lista();
+        Lista caminos = new Lista();  // Lista para almacenar todos los caminos
+        Lista visitados = new Lista();  // Lista para marcar los vértices visitados
         if (this.inicio != null) {
             NodoVert origenAux = buscarVertice(origen);
             NodoVert destinoAux = buscarVertice(destino);
             NodoVert intermedioAux = buscarVertice(intermedio);
             if (origenAux != null && destinoAux != null && intermedioAux != null) {
-                camino = caminoSinRepetirAux(origenAux, destino, intermedio, camino, visitados, false);
+                caminoSinRepetirAux(origenAux, destino, intermedio, caminos, visitados, false);
             }
         }
-        return camino;
+        return caminos;  // Devolver todos los caminos encontrados
     }
     
-
-    private Lista caminoSinRepetirAux(NodoVert vertice, Object destino, Object intermedio, Lista camino, Lista visitados, Boolean pasoInter) {
+    private void caminoSinRepetirAux(NodoVert vertice, Object destino, Object intermedio, 
+                                     Lista caminos, Lista visitados, Boolean pasoInter) {
         if (vertice != null) {
             visitados.insertar(vertice.getElemento(), visitados.longitud() + 1);
-
+    
             if (vertice.getElemento().equals(intermedio)) {
-                pasoInter = true;// marco si visite el nodo intermedio
+                pasoInter = true;  // Marca que se pasó por el nodo intermedio
             }
+    
             if (vertice.getElemento().equals(destino) && pasoInter) {
-                if (camino.esVacia()) {
-                    camino = visitados.clone();
-                }
+                // Si se ha llegado al destino y se ha pasado por el nodo intermedio
+                caminos.insertar(visitados.clone(), caminos.longitud() + 1);
             } else {
+                // Explora los adyacentes
                 NodoAdy ady = vertice.getPrimerAdy();
                 while (ady != null) {
                     if (visitados.localizar(ady.getVertice().getElemento()) < 0) {
-                        camino = caminoSinRepetirAux(ady.getVertice(), destino, intermedio, camino, visitados, pasoInter);
+                        caminoSinRepetirAux(ady.getVertice(), destino, intermedio, caminos, visitados, pasoInter);
                     }
                     ady = ady.getSigAdyacente();
                 }
             }
-            visitados.eliminar(visitados.longitud());
+    
+            visitados.eliminar(visitados.longitud());  // Desmarca el vértice actual
         }
-        return camino;
     }
+    
 
     public Lista caminoMayorDistancia(Object origen, Object destino, double maximo) {
         Lista visitados = new Lista();
@@ -331,13 +333,11 @@ public class GrafoEtiquetado {
 
     public Lista ciudadesIntermedias(Object origen, Object destino) {
         Lista camino = caminoMasCorto(origen, destino);
-        
         // Si la lista de camino no está vacía, eliminamos el primer y el último elemento
         if (!camino.esVacia()) {
             camino.eliminar(1); // Eliminar el primer nodo (origen)
             camino.eliminar(camino.longitud()); // Eliminar el último nodo (destino)
         }
-        
         return camino;
     }
     

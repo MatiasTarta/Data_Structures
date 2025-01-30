@@ -763,7 +763,15 @@ public class MudanzasCompartidas {
                         System.out.println((mapaRutas.caminoMenorDistancia(origenA, destinoA)).toString());
                         break;
                     case 3:
-                        // hay que arreglar el módulo
+                        System.out.println("Ingrese Ciudad de Origen:");
+                        int origenB = sc.nextInt();
+                        System.out.println("Ingrese Ciudad de Destino:");
+                        int destinoB = sc.nextInt();
+                        System.out.println("Ingrese Ciudad Intermedia");
+                        int intermedia=sc.nextInt();
+                        Lista listaIntermedios= mapaRutas.caminoSinRepetir(origenB, destinoB, intermedia);
+                        System.out.println("Todos los caminos posibles desde "+origenB+" hasta "+destinoB+" sin pasar 2 veces por la misma ciudad, pasando obligatoriamente por "+intermedia+" Son:");
+                        System.out.println(listaIntermedios.toStringSaltoLinea());
                         break;
                     case 4:
                         System.out.println("Ingrese Ciudad de Origen:");
