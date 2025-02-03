@@ -326,8 +326,7 @@ public class MudanzasCompartidas {
                             int telefonoA = sc.nextInt();
                             System.out.println("Ingrese el email del cliente:");
                             String emailA = sc.next();
-    
-                            infoClientes.asociar(tipoA, numeroA, nombreA, apellidoA, telefonoA, emailA);
+                            cargarCliente(tipoA, numeroA, nombreA, apellidoA, telefonoA, emailA);
                             System.out.println("Cliente agregado con éxito.");
                             escribirEnLog("Se cargó al cliente con Tipo de Documento: " + tipoA + " y Número de Documento: " + numeroA);
                         } catch (InputMismatchException e) {
@@ -956,7 +955,8 @@ public class MudanzasCompartidas {
     }
 
     public static void cargarCliente(String tipoDocumento, int numeroDocumento, String nombre, String apellido, int telefono,String email){
-        boolean exito = infoClientes.asociar(tipoDocumento, numeroDocumento, nombre, apellido, telefono, email);
+        Cliente nuevo= new Cliente(tipoDocumento, numeroDocumento, nombre, apellido, telefono, email);
+        boolean exito = infoClientes.asociar(nuevo);
         if (exito) {
             escribirEnLog("Se cargó al cliente con Tipo de Documento: " + tipoDocumento + " y Número de Documento: " + numeroDocumento);
         } else { 

@@ -5,20 +5,20 @@ public class NodoHashMapeoM {
     private String tipoDocumento;
     private int numeroDocumento;
     //rango y enlace
-    private Cliente rango;
+    private Object rango;
     private NodoHashMapeoM enlace;
 
-    public NodoHashMapeoM(String tipoDocumento,int numeroDocumento,String nombre,String apellido,int telefono,String email){
+    public NodoHashMapeoM(String tipoDocumento,int numeroDocumento, Cliente nuevo){
         this.tipoDocumento=tipoDocumento;
         this.numeroDocumento=numeroDocumento;
-        rango= new Cliente(tipoDocumento, numeroDocumento, nombre, apellido,telefono,email);
+        rango= nuevo;
         enlace=null;
     }
 
-    public void setRango(Cliente clientela){
-        rango=clientela;
+    public void setRango(Object cliente){
+        rango=cliente;
     }
-    public Cliente getRango(){return rango;}
+    public Object getRango(){return rango;}
 
     public String getTipoDocumento() {
         return tipoDocumento;

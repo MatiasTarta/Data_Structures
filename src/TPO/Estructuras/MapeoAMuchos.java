@@ -16,31 +16,25 @@ public class MapeoAMuchos {
     }
     
 
-    public boolean asociar(String tipoDocumento, int numeroDocumento, String nombre, String apellido, int telefono,String email) {
+    public boolean asociar(Cliente nuevo) {
+        String tipoDocumento=nuevo.getTipoDocumento();
+        int numeroDocumento=nuevo.getNumeroDocumento();
         int indice = funcionHash(tipoDocumento, numeroDocumento);
         NodoHashMapeoM actual = arreglo[indice];
         boolean exito=false;
         // busca si ya existe el dominio (tupla de tipoDocumento y numeroDocumento)
         while (actual != null && !exito) {
             if (actual.getTipoDocumento().equals(tipoDocumento) && actual.getNumeroDocumento() == numeroDocumento) {
-                // Si el dominio ya existe, agregar al rango si no está duplicado
-                if (!(actual.getRango().equivale(nombre, apellido, numeroDocumento,email))) {
-                    actual.getRango().setNombre(nombre);
-                    actual.getRango().setApellido(apellido);
-                    actual.getRango().setTelefono(telefono);
-                    actual.getRango().setEmail(email);
-                    cantidad++;
-                }
-                exito=true;
+                // el dominio ya existe
+                exito=true;//pongo true porque si no se duplica el cliente
             }else{
                 //si no estoy en el nodo correcto busco al siguiente
                 actual = actual.getEnlace();
             }
-            
         }
             if (!exito) {
             //si recorri todos los nodos y no estaba creo un nodo nuevo
-            NodoHashMapeoM nuevoNodo = new NodoHashMapeoM(tipoDocumento, numeroDocumento, nombre, apellido, telefono,email);
+            NodoHashMapeoM nuevoNodo = new NodoHashMapeoM(tipoDocumento, numeroDocumento, nuevo);
             nuevoNodo.setEnlace(arreglo[indice]); // si al principio no habia nada se setea el enlace en nulo
             arreglo[indice] = nuevoNodo; // Actualizar el arreglo
             cantidad++;
@@ -79,14 +73,14 @@ public class MapeoAMuchos {
         return cantidad == 0;
     }
 
-     public Cliente obtenerValor(String tipoDocumento, int numeroDocumento) {
+     public Object obtenerValor(String tipoDocumento, int numeroDocumento) {
         tipoDocumento = tipoDocumento.toUpperCase();
         int indice = funcionHash(tipoDocumento, numeroDocumento);
         NodoHashMapeoM actual = arreglo[indice];
-        Cliente valor= null;
+        Object valor= null;
         while (actual != null) {
             if (actual.getTipoDocumento().equals(tipoDocumento) && actual.getNumeroDocumento() == numeroDocumento) {
-                valor=actual.getRango();
+                valor= actual.getRango();
             }
             actual = actual.getEnlace();
         }
