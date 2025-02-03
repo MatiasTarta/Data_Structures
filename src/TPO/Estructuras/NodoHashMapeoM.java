@@ -8,7 +8,7 @@ public class NodoHashMapeoM {
     private Object rango;
     private NodoHashMapeoM enlace;
 
-    public NodoHashMapeoM(String tipoDocumento,int numeroDocumento, Cliente nuevo){
+    public NodoHashMapeoM(String tipoDocumento,int numeroDocumento, Object nuevo){
         this.tipoDocumento=tipoDocumento;
         this.numeroDocumento=numeroDocumento;
         rango= nuevo;
