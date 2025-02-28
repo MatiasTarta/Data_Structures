@@ -14,12 +14,12 @@ public class PruebaDiccionario {
         nuevo.insertar(35, "H");
         nuevo.insertar(45, "I");
         nuevo.insertar(60, "J");
-        //respuestaEsperada();
+        respuestaEsperada();
         System.out.println("Respuesta obtenida");
         System.out.println(nuevo.toString());
-        System.out.println("ELiminado elemento 30");
+        //System.out.println("ELiminado elemento 30");
         nuevo.eliminar(30);
-        System.out.println(nuevo.toString());
+        //System.out.println(nuevo.toString());
     }
 
     public static void respuestaEsperada(){
