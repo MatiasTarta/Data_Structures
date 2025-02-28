@@ -188,7 +188,6 @@ public class Diccionario {
                     // si n no tiene hijos
                     noTieneHijos(padre, elem);
                     exito = true;
-
                 } else if ((n.getIzquierdo() != null ^ n.getDerecho() != null)) {
                     // si n tiene UN hijo
                     tieneUnHijo(n, padre, elem); // CASO3
@@ -201,7 +200,9 @@ public class Diccionario {
                         tieneAmbosCandidato(n.getIzquierdo(), null, n);
                     }else {
                         // caso HI
-                        tieneAmbosHI(n);
+                        //reemplaza el nodo eliminado con su hijo izquierdo cuando no hay un subarbol derecho en ese hijo.
+                        reemplazarConHijoIzquierdo(n);
+
                     }
                     exito = true;
                 }
@@ -285,9 +286,7 @@ public class Diccionario {
     private void tieneAmbosCandidato(NodoAVLDicc n, NodoAVLDicc anterior, NodoAVLDicc raiz) {
 
         if (n.getDerecho() != null) {
-
             tieneAmbosCandidato(n.getDerecho(), n, raiz);
-
         } else {
             System.out.println("encontro candidato: " + n.getClave().toString());
             // encontro el candidato, setea los elementos del nodo a modificar(raíz)
@@ -298,7 +297,7 @@ public class Diccionario {
         balancear(n, anterior);
     }
 
-    private void tieneAmbosHI(NodoAVLDicc n) {
+    private void reemplazarConHijoIzquierdo(NodoAVLDicc n) {
         n.setClave(n.getIzquierdo().getClave());
         n.setDato(n.getIzquierdo().getDato());
         n.setIzquierdo(n.getIzquierdo().getIzquierdo());

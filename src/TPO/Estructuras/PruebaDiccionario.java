@@ -19,6 +19,10 @@ public class PruebaDiccionario {
         System.out.println(nuevo.toString());
         System.out.println("ELiminado elemento 20");
         nuevo.eliminar(20);
+        
+        System.out.println("Caso de prueba para tieneAmbosHI");
+        System.out.println("Se elimina el elemento 10");
+        nuevo.eliminar(10);
         System.out.println(nuevo.toString());
     }
 
