@@ -1,11 +1,6 @@
 package TPO.Estructuras;
-
-import TPO.SistemaMudanzas.SolicitudViaje;
-
-
 public class Diccionario {
-    NodoAVLDicc raiz;
-
+    private NodoAVLDicc raiz;
     public Diccionario() {
         raiz = null;
     }
@@ -15,12 +10,11 @@ public class Diccionario {
     }
 
     public boolean pertenece(NodoAVLDicc nodo, Comparable clave) {
+        boolean pertenece = false;
         if (nodo == null) {
             // caso base, si el nodo es nulo entonces se llego a una hoja sin encontrar el
-            // resultado
-            return false;// se corta el programa
-        }
-        boolean pertenece = false;
+            // resultado se corta el programa
+        }else{
         int comparado = clave.compareTo(nodo.getClave());
         if (comparado == 0) {
             // si devuelve 0 entonces el elemento es igual
@@ -31,6 +25,7 @@ public class Diccionario {
         }
         if (comparado < 0) {
             pertenece = pertenece(nodo.getIzquierdo(), clave);
+        }
         }
         return pertenece;
     }
@@ -62,12 +57,13 @@ public class Diccionario {
                 nodo.setIzquierdo(new NodoAVLDicc(clave, dato, null, null));
             }
             nodo.recalcularAltura();
-        } else if (clave.compareTo(nodo.getClave()) > 0) {
-            // mismo caso de arriba
+        } else  {
+            //el elemento a insertar es mayor
             if (nodo.getDerecho() != null) {
+                //si ya existe busco recursivamente en el subarbol derecho
                 exito = insertarAux(nodo.getDerecho(), nodo, clave, dato);
-
             } else {
+                //estoy en la posicion de insercion
                 nodo.setDerecho(new NodoAVLDicc(clave, dato, null, null));
             }
         }
@@ -476,13 +472,6 @@ public class Diccionario {
         }
     }
 
-    public void cargarSolicitud(Comparable clave,SolicitudViaje aux){
-        //metodo usado por el gestor de solicitudes
-        Object dato = this.obtenerDato(clave);
-        if (dato instanceof Lista) {
-            Lista solicitudes = (Lista) dato;
-            solicitudes.insertar(aux, solicitudes.longitud()+1);
-        }
-    }
+   
 
 }

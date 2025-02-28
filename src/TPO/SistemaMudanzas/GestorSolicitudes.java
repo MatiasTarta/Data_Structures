@@ -1,7 +1,9 @@
-package TPO.Estructuras;
+package TPO.SistemaMudanzas;
 
-import TPO.SistemaMudanzas.SolicitudViaje;
 import java.util.HashMap;
+
+import TPO.Estructuras.Lista;
+import TPO.Estructuras.Pair;
 
 public class GestorSolicitudes {
     private final HashMap<Pair, Lista> mapaSolicitudes;
@@ -47,11 +49,6 @@ public class GestorSolicitudes {
         return (espacioActual + cantidad) <= MAXIMO_CAMION;
     }
     
-
-
-
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         
@@ -72,8 +69,5 @@ public class GestorSolicitudes {
         
         return sb.toString();
     }
-    
-    
 
-    
 }
