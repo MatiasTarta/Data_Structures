@@ -203,6 +203,9 @@ public class Diccionario {
                     if (n.getIzquierdo().getDerecho() != null) {
                         // caso candidato
                         tieneAmbosCandidato(n.getIzquierdo(), null, n);
+                    }else {
+                        // caso HI
+                        tieneAmbosHI(n);
                     }
                     exito = true;
                 }
@@ -217,9 +220,7 @@ public class Diccionario {
             }
 
             if (exito) {
-                n.recalcularAltura();
                 balancear(n, padre);
-                n.recalcularAltura();
             }
         }
         return exito;
@@ -306,7 +307,11 @@ public class Diccionario {
 
     }
 
- 
+    private void tieneAmbosHI(NodoAVLDicc n) {
+        n.setClave(n.getIzquierdo().getClave());
+        n.setDato(n.getIzquierdo().getDato());
+        n.setIzquierdo(n.getIzquierdo().getIzquierdo());
+    }
 
     public Object obtenerDato(Comparable clave) {
         // busca en el arbol el elemento con la clave y retorna el dato
