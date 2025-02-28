@@ -14,6 +14,24 @@ public class PruebaDiccionario {
         nuevo.insertar(35, "H");
         nuevo.insertar(45, "I");
         nuevo.insertar(60, "J");
+        //respuestaEsperada();
+        System.out.println("Respuesta obtenida");
         System.out.println(nuevo.toString());
+    }
+
+    public static void respuestaEsperada(){
+        System.out.println("RESPUESTA ESPERADA");
+        System.out.println("└── 20");
+        System.out.println("    ├── I-10");        
+        System.out.println("    │   ├── I-5");     
+        System.out.println("    │   └── D-15");    
+        System.out.println("    └── D-40");        
+        System.out.println("        ├── I-30");    
+        System.out.println("        │   ├── I-25");
+        System.out.println("        │   └── D-35");
+        System.out.println("        └── D-50");    
+        System.out.println("            ├── I-45");
+        System.out.println("            └── D-60");
+        
     }
 }
