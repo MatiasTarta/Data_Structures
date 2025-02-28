@@ -202,11 +202,9 @@ public class Diccionario {
                         // caso HI
                         //reemplaza el nodo eliminado con su hijo izquierdo cuando no hay un subarbol derecho en ese hijo.
                         reemplazarConHijoIzquierdo(n);
-
                     }
                     exito = true;
                 }
-
             } else {
                 if (elem.compareTo(n.getClave()) < 0) {
                     exito = eliminarAux(n.getIzquierdo(), n, elem);
@@ -220,7 +218,6 @@ public class Diccionario {
             }
         }
         return exito;
-
     }
 
     // CASOS DE ELIMINAR
@@ -395,26 +392,7 @@ public class Diccionario {
         return buscarMinimo(nodo.getIzquierdo());
     }
 
-    public Lista ciudadesPrefijo(int prefijo) {
-        Lista listaCiudades = new Lista();
-        if (this.raiz != null) {
-            buscarCiudadesPorPrefijo(this.raiz, prefijo, listaCiudades);
-        }
-        return listaCiudades;
-    }
-
-    private void buscarCiudadesPorPrefijo(NodoAVLDicc nodo, int prefijo, Lista listaCiudades) {
-        if (nodo != null) {
-            String claveActual = nodo.getClave().toString();
-            String prefijoStr = String.valueOf(prefijo);
-            // Verifica si la clave contiene el prefijo
-            if (claveActual.contains(prefijoStr)) {
-                listaCiudades.insertar(nodo.getDato(), listaCiudades.longitud() + 1);
-            }
-            buscarCiudadesPorPrefijo(nodo.getIzquierdo(), prefijo, listaCiudades);
-            buscarCiudadesPorPrefijo(nodo.getDerecho(), prefijo, listaCiudades);
-        }
-    }
+    
 
     public String toString() {
         if (raiz == null) {
@@ -467,6 +445,27 @@ public class Diccionario {
         }
     }
 
+
+    public Lista ciudadesPrefijo(int prefijo) {
+        Lista listaCiudades = new Lista();
+        if (this.raiz != null) {
+            buscarCiudadesPorPrefijo(this.raiz, prefijo, listaCiudades);
+        }
+        return listaCiudades;
+    }
+
+    private void buscarCiudadesPorPrefijo(NodoAVLDicc nodo, int prefijo, Lista listaCiudades) {
+        if (nodo != null) {
+            String claveActual = nodo.getClave().toString();
+            String prefijoStr = String.valueOf(prefijo);
+            // Verifica si la clave contiene el prefijo
+            if (claveActual.contains(prefijoStr)) {
+                listaCiudades.insertar(nodo.getDato(), listaCiudades.longitud() + 1);
+            }
+            buscarCiudadesPorPrefijo(nodo.getIzquierdo(), prefijo, listaCiudades);
+            buscarCiudadesPorPrefijo(nodo.getDerecho(), prefijo, listaCiudades);
+        }
+    }
    
 
 }
