@@ -9,7 +9,6 @@ public class Clave {
         numeroDocumento=numero;
     }
 
-
     public String getTipoDocumento() {
         return tipoDocumento;
     }
