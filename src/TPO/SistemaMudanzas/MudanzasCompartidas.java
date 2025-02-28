@@ -343,8 +343,9 @@ public class MudanzasCompartidas {
                             String tipoB = sc.next();
                             System.out.println("Ingrese el numero de documento del Cliente a dar de baja:");
                             int numeroB = sc.nextInt();
-    
-                            if (infoClientes.desacoiar(tipoB, numeroB)) {
+                            Clave claveB= new Clave(tipoB, numeroB);
+                            boolean exitoB=infoClientes.desasociar(claveB);
+                            if (exitoB){
                                 System.out.println("Cliente eliminado con éxito.");
                                 escribirEnLog("Se elimino al cliente con Tipo de Documento: " + tipoB + " y Número de Documento: " + numeroB);
                             } else {
@@ -364,7 +365,8 @@ public class MudanzasCompartidas {
                             String tipoC = sc.next();
                             System.out.println("Ingrese el numero de documento del Cliente a modificar:");
                             int numeroC = sc.nextInt();
-                            Cliente aux = (Cliente) infoClientes.obtenerValor(tipoC, numeroC);
+                            Clave claveC= new Clave(tipoC,numeroC);
+                            Cliente aux = (Cliente) infoClientes.obtenerValor(claveC);
                             if (aux == null) {
                                 System.out.println("Error: No se encontró un cliente con los datos especificados.");
                             } else {
@@ -642,8 +644,8 @@ public class MudanzasCompartidas {
                             sc.nextLine(); // Limpiar buffer
                             System.out.println("Ingrese el número de Documento del cliente:");
                             int numero = sc.nextInt();
-    
-                            Object clienteInfo = infoClientes.obtenerValor(tipo, numero);
+                            Clave claveAux= new Clave(tipo, numero);
+                            Object clienteInfo = infoClientes.obtenerValor(claveAux);
                             if (clienteInfo != null) {
                                 System.out.println(clienteInfo.toString());
                             } else {
@@ -955,8 +957,9 @@ public class MudanzasCompartidas {
     }
 
     public static void cargarCliente(String tipoDocumento, int numeroDocumento, String nombre, String apellido, int telefono,String email){
-        Cliente nuevo= new Cliente(tipoDocumento, numeroDocumento, nombre, apellido, telefono, email);
-        boolean exito = infoClientes.asociar(nuevo);
+        Cliente clienteNuevo= new Cliente(tipoDocumento, numeroDocumento, nombre, apellido, telefono, email);
+        Clave claveNueva = new Clave(tipoDocumento, numeroDocumento);
+        boolean exito = infoClientes.asociar(claveNueva,clienteNuevo);
         if (exito) {
             escribirEnLog("Se cargó al cliente con Tipo de Documento: " + tipoDocumento + " y Número de Documento: " + numeroDocumento);
         } else { 
