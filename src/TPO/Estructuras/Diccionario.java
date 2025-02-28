@@ -56,7 +56,6 @@ public class Diccionario {
             } else {
                 nodo.setIzquierdo(new NodoAVLDicc(clave, dato, null, null));
             }
-            nodo.recalcularAltura();
         } else  {
             //el elemento a insertar es mayor
             if (nodo.getDerecho() != null) {
@@ -68,9 +67,7 @@ public class Diccionario {
             }
         }
         if (exito) {
-            nodo.recalcularAltura();
             balancear(nodo, padre);
-            nodo.recalcularAltura();
         }
         return exito;
     }
@@ -135,9 +132,8 @@ public class Diccionario {
                     }
                 }
             }
-            nodo.recalcularAltura();
+            nodo.recalcularAltura();//sin esta instruccion el arbol entero se desbalancea a la derecha
         }
-
     }
 
     private int balance(NodoAVLDicc nodo) {
@@ -218,7 +214,6 @@ public class Diccionario {
                     exito = eliminarAux(n.getDerecho(), n, elem);
                 }
             }
-
             if (exito) {
                 balancear(n, padre);
             }
@@ -300,11 +295,7 @@ public class Diccionario {
             raiz.setDato(n.getDato());
             anterior.setDerecho(n.getIzquierdo());
         }
-
-        n.recalcularAltura();
         balancear(n, anterior);
-        n.recalcularAltura();
-
     }
 
     private void tieneAmbosHI(NodoAVLDicc n) {
