@@ -151,7 +151,7 @@ public class Diccionario {
         return balanceNodo;
     }
 
-    public NodoAVLDicc rotacionSimpleIzquierda(NodoAVLDicc r) {
+    private NodoAVLDicc rotacionSimpleIzquierda(NodoAVLDicc r) {
         NodoAVLDicc h = r.getDerecho();
         NodoAVLDicc temp = h.getIzquierdo();
         h.setIzquierdo(r);
@@ -159,7 +159,7 @@ public class Diccionario {
         return h; // Retorna la nueva raíz del subárbol
     }
 
-    public NodoAVLDicc rotacionSimpleDerecha(NodoAVLDicc r) {
+    private NodoAVLDicc rotacionSimpleDerecha(NodoAVLDicc r) {
         NodoAVLDicc h = r.getIzquierdo();
         NodoAVLDicc temp = h.getDerecho();
         h.setDerecho(r);
@@ -421,7 +421,7 @@ public class Diccionario {
         return claves;
     }
     
-    public static void listarClavesAux(NodoAVLDicc nodo,Lista claves){
+    private static void listarClavesAux(NodoAVLDicc nodo,Lista claves){
         if (nodo!=null) {
             listarClavesAux(nodo, claves);
         }
