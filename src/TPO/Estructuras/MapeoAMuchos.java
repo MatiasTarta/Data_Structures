@@ -1,4 +1,5 @@
 package TPO.Estructuras;
+
 public class MapeoAMuchos {
     private int tamanio;
     private NodoHashMapeoM[] arreglo;
@@ -70,5 +71,54 @@ public class MapeoAMuchos {
             actual = actual.getEnlace();
         }
         return null;
+    }
+
+    public boolean esVacio() {
+        return cantidad == 0;
+    }
+
+    public Lista obtenerConjuntoDominio() {
+        Lista dominios = new Lista();
+        for (int i = 0; i < arreglo.length; i++) {
+            NodoHashMapeoM actual = arreglo[i];
+            while (actual != null) {
+                dominios.insertar(actual.getDominio(), dominios.longitud() + 1);
+                actual = actual.getEnlace();
+            }
+        }
+        return dominios;
+    }
+
+    public Lista obtenerConjuntoRangos() {
+        Lista rangos = new Lista();
+        for (int i = 0; i < arreglo.length; i++) {
+            NodoHashMapeoM actual = arreglo[i];
+            while (actual != null) {
+                rangos.insertar(actual.getRango(), rangos.longitud() + 1);
+                actual = actual.getEnlace();
+            }
+        }
+        return rangos;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < tamanio; i++) {
+            NodoHashMapeoM actual = arreglo[i];
+
+            if (actual == null) {
+                sb.append("----");
+            } else {
+                while (actual != null) {
+                    sb.append("[").append(actual.getDominio()).append("]");
+                    if (actual.getEnlace() != null) {
+                        sb.append(" -> ");
+                    }
+                    actual = actual.getEnlace();
+                }
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }

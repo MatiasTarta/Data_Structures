@@ -82,7 +82,7 @@ public class MudanzasCompartidas {
                     abmRutas(sc, 1);
                     break;
                 case 3:
-                    abmRutas(sc, 1);
+                    abmClientes(sc, entrada);
                     break;
                 case 4:
                     abmSolicitudes(sc, 1);
