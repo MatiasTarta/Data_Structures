@@ -184,7 +184,7 @@ public class Diccionario {
                     // si n no tiene hijos
                     noTieneHijos(padre, elem);
                     exito = true;
-                } else if ((n.getIzquierdo() != null ^ n.getDerecho() != null)) {
+                } else if ((n.getIzquierdo() != null ^ n.getDerecho() != null)) {//XOR (^)
                     // si n tiene UN hijo
                     tieneUnHijo(n, padre, elem); // CASO3
                     exito = true;
