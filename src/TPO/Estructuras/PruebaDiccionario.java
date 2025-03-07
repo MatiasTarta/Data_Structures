@@ -3,7 +3,6 @@ package TPO.Estructuras;
 public class PruebaDiccionario {
     public static void main(String[] args) {
         Diccionario nuevo = new Diccionario();
-<<<<<<< HEAD
         nuevo.insertar(3450, "Goya");
         nuevo.insertar(5000, "Córdoba");
         nuevo.insertar(8300, "Neuquén");
@@ -34,25 +33,7 @@ public class PruebaDiccionario {
         nuevo.insertar(8364, "Chimpay");
         nuevo.insertar(1900, "La Plata");
         nuevo.insertar(3500, "Resistencia");
-       
-=======
-        nuevo.insertar(5, "MARC");
-        nuevo.insertar(10, "A");
-        nuevo.insertar(15, "B");
-        nuevo.insertar(20, "C");
-        nuevo.insertar(40, "D");
-        nuevo.insertar(30, "E");
-        nuevo.insertar(50, "F");
-        nuevo.insertar(25, "G");
-        nuevo.insertar(35, "H");
-        nuevo.insertar(45, "I");
-        nuevo.insertar(60, "J");
-        //respuestaEsperada();
-        System.out.println("Respuesta obtenida");
->>>>>>> parent of 82a3c02 (rotaciones arregladas)
-        System.out.println(nuevo.toString());
-        System.out.println("ELiminado elemento 30");
-        nuevo.eliminar(30);
+            
         System.out.println(nuevo.toString());
     }
 
