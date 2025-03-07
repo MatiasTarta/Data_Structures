@@ -151,6 +151,7 @@ public class Diccionario {
         return balanceNodo;
     }
 
+<<<<<<< HEAD
     private NodoAVLDicc rotacionSimpleIzquierda(NodoAVLDicc r) {
         NodoAVLDicc h = r.getDerecho();
         NodoAVLDicc temp = h.getIzquierdo();
@@ -165,6 +166,26 @@ public class Diccionario {
         h.setDerecho(r);
         r.setIzquierdo(temp);
         return h; // Retorna la nueva raíz del subárbol
+=======
+    public NodoAVLDicc rotacionSimpleIzquierda(NodoAVLDicc pivote) {
+        NodoAVLDicc hijo = pivote.getDerecho();
+        NodoAVLDicc temporal = hijo.getIzquierdo();
+        hijo.setIzquierdo(pivote);
+        pivote.setDerecho(temporal);
+        hijo.recalcularAltura();
+        pivote.recalcularAltura();
+        return hijo;
+    }
+
+    public NodoAVLDicc rotacionSimpleDerecha(NodoAVLDicc pivote) {
+        NodoAVLDicc hijo = pivote.getIzquierdo();
+        NodoAVLDicc temporal = hijo.getDerecho();
+        hijo.setDerecho(pivote);
+        pivote.setIzquierdo(temporal);
+        hijo.recalcularAltura();
+        pivote.recalcularAltura();
+        return hijo;
+>>>>>>> parent of 82a3c02 (rotaciones arregladas)
     }
 
     public boolean eliminar(Comparable elem) {
