@@ -33,7 +33,7 @@ public class PruebaDiccionario {
         nuevo.insertar(8364, "Chimpay");
         nuevo.insertar(1900, "La Plata");
         nuevo.insertar(3500, "Resistencia");
-            
+        nuevo.eliminar(8332);
         System.out.println(nuevo.toString());
     }
 
