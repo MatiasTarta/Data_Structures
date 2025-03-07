@@ -186,7 +186,7 @@ public class Diccionario {
                     exito = true;
                 } else if ((n.getIzquierdo() != null ^ n.getDerecho() != null)) {//XOR (^)
                     // si n tiene UN hijo
-                    tieneUnHijo(n, padre, elem); // CASO3
+                    tieneUnHijo(n, padre); // CASO3
                     exito = true;
 
                 } else {
@@ -219,7 +219,6 @@ public class Diccionario {
     // CASOS DE ELIMINAR
 
     private void noTieneHijos(NodoAVLDicc padre, Comparable elem) {
-
         // si no tiene hijos
         if (padre == null) {
             // caso especial si el padre es nulo (raíz)
@@ -241,43 +240,31 @@ public class Diccionario {
 
     }
 
-    private void tieneUnHijo(NodoAVLDicc n, NodoAVLDicc padre, Comparable elem) {
-
-        if (n.getIzquierdo() != null) {
-            // si n tiene HI
-            if (padre == null) {
-                // caso especial si el padre es nulo
-                this.raiz = n.getIzquierdo();
-            } else {
-                if (padre.getIzquierdo().getClave().compareTo(elem) == 0) {
-                    // si n es el HI de padre
-                    padre.setIzquierdo(n.getIzquierdo());
-                } else {
-                    // si n es el HD de padre
-                    padre.setDerecho(n.getIzquierdo());
-                }
+    private void tieneUnHijo(NodoAVLDicc n, NodoAVLDicc padre) {
+        if(padre!=null){
+            if(n.getDerecho()==null){
+                    if(((Comparable) n.getClave()).compareTo( padre.getClave()) < 0 ){
+                        padre.setIzquierdo(n.getIzquierdo());
+                    }else{//si el hijo izquierdo es mayor que su padre
+                        padre.setDerecho(n.getIzquierdo());
+                    }
+            }else{//su hijo izquierdo es null(solo tiene hijo derecho)
+                    if(((Comparable) n.getClave() ).compareTo(padre.getClave())  < 0 ){//y el hijo izquierdo es menor que su padre
+                        padre.setIzquierdo(n.getDerecho());
+                    }else{//si el hijo izquierdo es mayor que su padre
+                        padre.setDerecho(n.getDerecho());
+                    }
             }
-        }
-        if (n.getDerecho() != null) {
-            // si n tiene HD
-            if (padre == null) {
-                // caso especial si el padre es nulo
-                this.raiz.setDerecho(n.getDerecho());
-            } else {
-                if (padre.getIzquierdo().getClave().compareTo(elem) == 0) {
-                    // si n es el HI de padre
-                    padre.setIzquierdo(n.getDerecho());
-                } else {
-                    // si n es el HD de padre
-                    padre.setDerecho(n.getDerecho());
-                }
-            }
-        }
-
+     }else{//caso espacial:si el elemento es raiz lo intercambio por su hijo
+          if(n.getIzquierdo()==null){
+               this.raiz=n.getDerecho();
+          }else{
+               this.raiz=n.getIzquierdo();
+          }
+     }
     }
 
     private void tieneAmbosCandidato(NodoAVLDicc n, NodoAVLDicc anterior, NodoAVLDicc raiz) {
-
         if (n.getDerecho() != null) {
             tieneAmbosCandidato(n.getDerecho(), n, raiz);
         } else {
@@ -291,6 +278,7 @@ public class Diccionario {
     }
 
     private void reemplazarConHijoIzquierdo(NodoAVLDicc n) {
+        
         n.setClave(n.getIzquierdo().getClave());
         n.setDato(n.getIzquierdo().getDato());
         n.setIzquierdo(n.getIzquierdo().getIzquierdo());
