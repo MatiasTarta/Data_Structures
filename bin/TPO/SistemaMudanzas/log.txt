@@ -2487,3 +2487,252 @@ Solicitud de Viaje ID = 14: Código Postal Origen = 5000, Código Postal Destino
 [DNI 36987452] -> [DNI 44847072]
 [DNI 37234567]
 
+Inicio del registro: 
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8324 ,con Destino: 8300 con distancia: 6.7
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 3400 ,con Destino: 4200 con distancia: 634.2
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 5000 ,con Destino: 2000 con distancia: 401.0
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 3000 ,con Destino: 2000 con distancia: 173.0
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 5000 ,con Destino: 1000 con distancia: 696.4
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8324 ,con Destino: 1000 con distancia: 1136.1
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 2000 ,con Destino: 1000 con distancia: 299.9
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 2000 ,con Destino: 8316 con distancia: 20.9
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 5000 ,con Destino: 4000 con distancia: 559.4
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 5710 ,con Destino: 5400 con distancia: 328.7
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8332 ,con Destino: 9100 con distancia: 684.6
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 9103 ,con Destino: 8332 con distancia: 518.8
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 3561 ,con Destino: 3000 con distancia: 330.2
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 5700 ,con Destino: 4200 con distancia: 789.6
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 3300 ,con Destino: 3561 con distancia: 557.6
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 4000 ,con Destino: 3300 con distancia: 1116.9
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8303 ,con Destino: 8324 con distancia: 15.5
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8324 ,con Destino: 5152 con distancia: 1131.5
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 9410 ,con Destino: 9103 con distancia: 1734.7
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8303 ,con Destino: 5152 con distancia: 1118.7
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 4000 ,con Destino: 5152 con distancia: 599.5
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8400 ,con Destino: 8300 con distancia: 438.5
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 3560 ,con Destino: 3300 con distancia: 417.1
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8300 ,con Destino: 8316 con distancia: 21.7
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8300 ,con Destino: 8303 con distancia: 20.6
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 9103 ,con Destino: 8364 con distancia: 567.6
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 9410 ,con Destino: 9000 con distancia: 1351.7
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 9100 ,con Destino: 9000 con distancia: 376.4
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8324 ,con Destino: 8332 con distancia: 41.0
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8364 ,con Destino: 8332 con distancia: 133.5
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8364 ,con Destino: 1000 con distancia: 992.9
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 3561 ,con Destino: 4200 con distancia: 551.6
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 3560 ,con Destino: 5700 con distancia: 958.5
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 3560 ,con Destino: 5710 con distancia: 936.8
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 3500 ,con Destino: 5400 con distancia: 1347.8
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 8500 ,con Destino: 1000 con distancia: 913.4
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 3450 ,con Destino: 3500 con distancia: 243.3
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 3450 ,con Destino: 4200 con distancia: 869.0
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 2820 ,con Destino: 1000 con distancia: 849.0
+07/03/2025 11:25:50 - Se cargo la ruta con Origen 1900 ,con Destino: 3400 con distancia: 975.1
+07/03/2025 11:25:50 - Se cargo la ||Goya||Corrientes||3450
+07/03/2025 11:25:50 - Se cargo la ||Córdoba||Córdoba||5000
+07/03/2025 11:25:50 - Se cargo la ||Neuquén||Neuquén||8300
+07/03/2025 11:25:50 - Se cargo la ||Cipolletti||Río Negro||8324
+07/03/2025 11:25:50 - Se cargo la ||Rosario||Santa Fe||2000
+07/03/2025 11:25:50 - Se cargo la ||Buenos Aires||Ciudad Autónoma de Buenos Aires||1000
+07/03/2025 11:25:50 - Se cargo la ||San Miguel de Tucumán||Tucumán||4000
+07/03/2025 11:25:50 - Se cargo la ||Posadas||Misiones||3300
+07/03/2025 11:25:50 - Se cargo la ||Villa Carlos Paz||Córdoba||5152
+07/03/2025 11:25:50 - Se cargo la ||Santa Fe||Santa Fe||3000
+07/03/2025 11:25:50 - Se cargo la ||San Luis||San Luis||5700
+07/03/2025 11:25:50 - Se cargo la ||General Roca||Río Negro||8332
+07/03/2025 11:25:50 - Se cargo la ||Santiago del Estero||Santiago del Estero||4200
+07/03/2025 11:25:50 - Se cargo la ||Corrientes||Corrientes||3400
+07/03/2025 11:25:50 - Se cargo la ||Trelew||Chubut||9100
+07/03/2025 11:25:50 - Se cargo la ||Cinco Saltos||Rio Negro||8303
+07/03/2025 11:25:50 - Se cargo la ||Plottier||Neuquén||8316
+07/03/2025 11:25:50 - Se cargo la ||Comodoro Rivadavia||Chubut||9000
+07/03/2025 11:25:50 - Se cargo la ||San Carlos de Bariloche||Río Negro||8400
+07/03/2025 11:25:50 - Se cargo la ||Reconquista||Santa Fe||3560
+07/03/2025 11:25:50 - Se cargo la ||La Punta||San Luis||5710
+07/03/2025 11:25:50 - Se cargo la ||San Juan||San Juan||5400
+07/03/2025 11:25:50 - Se cargo la ||Viedma||Río Negro||8500
+07/03/2025 11:25:50 - Se cargo la ||Rawson||Chubut||9103
+07/03/2025 11:25:50 - Se cargo la ||Ushuaia||Tierra del Fuego||9410
+07/03/2025 11:25:50 - Se cargo la ||Avellaneda||Santa Fe||3561
+07/03/2025 11:25:50 - Se cargo la ||Gualeguaychú||Entre Ríos||2820
+07/03/2025 11:25:50 - Se cargo la ||Chimpay||Río Negro||8364
+07/03/2025 11:25:50 - Se cargo la ||La Plata||Buenos Aires||1900
+07/03/2025 11:25:50 - Se cargo la ||Resistencia||Chaco||3500
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 44847072
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: PAS y Número de Documento: 21923847
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 28455678
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 37234567
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: PAS y Número de Documento: 19945678
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 32987654
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: PAS y Número de Documento: 21234567
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 39456789
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 36812345
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: PAS y Número de Documento: 20765432
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 37894561
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: PAS y Número de Documento: 21678943
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 35761234
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 36987452
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: PAS y Número de Documento: 20123456
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 34567891
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: PAS y Número de Documento: 21876543
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 35654321
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: PAS y Número de Documento: 21456789
+07/03/2025 11:25:50 - No se pudo cargar al cliente con Tipo de Documento: DNI y Número de Documento: 34871234
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 8324 hasta Ciudad Destino: 5000, con Fecha: 14/06/2023, Tipo de Documento Cliente: PAS, Número de Documento: 21923847, Bultos: 8, Espacio: 8.0m3, Domicilio de Retiro: Belgrano 134, Domicilio de Entrega: San Martín 752, Pagado: false
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 8400 hasta Ciudad Destino: 9000, con Fecha: 14/06/2023, Tipo de Documento Cliente: DNI, Número de Documento: 36987452, Bultos: 14, Espacio: 6.0m3, Domicilio de Retiro: Rivadavia 567, Domicilio de Entrega: El Bolsón 345, Pagado: false
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 1000 hasta Ciudad Destino: 2000, con Fecha: 16/06/2023, Tipo de Documento Cliente: PAS, Número de Documento: 39456789, Bultos: 9, Espacio: 5.0m3, Domicilio de Retiro: Jujuy 456, Domicilio de Entrega: Córdoba 789, Pagado: true
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 9000 hasta Ciudad Destino: 9103, con Fecha: 11/06/2023, Tipo de Documento Cliente: DNI, Número de Documento: 36812345, Bultos: 20, Espacio: 7.0m3, Domicilio de Retiro: Av. Rivadavia 1000, Domicilio de Entrega: Santiago 234, Pagado: false
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 5000 hasta Ciudad Destino: 8300, con Fecha: 15/06/2023, Tipo de Documento Cliente: DNI, Número de Documento: 35678965, Bultos: 13, Espacio: 5.0m3, Domicilio de Retiro: Sarmiento 3400, Domicilio de Entrega: Roca 2100, Pagado: true
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 1000 hasta Ciudad Destino: 5000, con Fecha: 20/06/2023, Tipo de Documento Cliente: PAS, Número de Documento: 35654321, Bultos: 12, Espacio: 7.0m3, Domicilio de Retiro: San Fernando 345, Domicilio de Entrega: Plaza San Martín 102, Pagado: true
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 5000 hasta Ciudad Destino: 1000, con Fecha: 17/06/2023, Tipo de Documento Cliente: PAS, Número de Documento: 35761234, Bultos: 6, Espacio: 4.0m3, Domicilio de Retiro: San Martín 654, Domicilio de Entrega: Río Negro 120, Pagado: true
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 2900 hasta Ciudad Destino: 5000, con Fecha: 10/06/2023, Tipo de Documento Cliente: DNI, Número de Documento: 34567891, Bultos: 10, Espacio: 3.0m3, Domicilio de Retiro: Calle Mendoza 890, Domicilio de Entrega: La Plata 456, Pagado: false
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 3500 hasta Ciudad Destino: 9000, con Fecha: 18/06/2023, Tipo de Documento Cliente: PAS, Número de Documento: 37894561, Bultos: 12, Espacio: 5.0m3, Domicilio de Retiro: Pueyrredón 1234, Domicilio de Entrega: Trelew 789, Pagado: true
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 5700 hasta Ciudad Destino: 4000, con Fecha: 16/06/2023, Tipo de Documento Cliente: PAS, Número de Documento: 34567891, Bultos: 9, Espacio: 3.0m3, Domicilio de Retiro: Calle San Juan 456, Domicilio de Entrega: Luján 789, Pagado: true
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 8303 hasta Ciudad Destino: 3000, con Fecha: 13/06/2023, Tipo de Documento Cliente: DNI, Número de Documento: 35654321, Bultos: 5, Espacio: 2.0m3, Domicilio de Retiro: Sarmiento 123, Domicilio de Entrega: Rosario 102, Pagado: false
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 9410 hasta Ciudad Destino: 9103, con Fecha: 17/06/2023, Tipo de Documento Cliente: PAS, Número de Documento: 35761234, Bultos: 8, Espacio: 4.0m3, Domicilio de Retiro: Av. Belgrano 2200, Domicilio de Entrega: Salta 1900, Pagado: true
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 8364 hasta Ciudad Destino: 8324, con Fecha: 19/06/2023, Tipo de Documento Cliente: DNI, Número de Documento: 34567891, Bultos: 18, Espacio: 6.0m3, Domicilio de Retiro: Avenida 1 987, Domicilio de Entrega: La Plata 233, Pagado: false
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 5000 hasta Ciudad Destino: 3300, con Fecha: 18/06/2023, Tipo de Documento Cliente: DNI, Número de Documento: 38471234, Bultos: 11, Espacio: 5.0m3, Domicilio de Retiro: Las Heras 876, Domicilio de Entrega: Villa Carlos Paz 400, Pagado: false
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 3560 hasta Ciudad Destino: 5700, con Fecha: 15/06/2023, Tipo de Documento Cliente: PAS, Número de Documento: 34567891, Bultos: 9, Espacio: 3.0m3, Domicilio de Retiro: La Boca 1010, Domicilio de Entrega: San Luis 870, Pagado: true
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 8364 hasta Ciudad Destino: 5700, con Fecha: 20/06/2023, Tipo de Documento Cliente: DNI, Número de Documento: 32987654, Bultos: 7, Espacio: 2.0m3, Domicilio de Retiro: Avellaneda 1234, Domicilio de Entrega: Comodoro Rivadavia 340, Pagado: true
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 7100 hasta Ciudad Destino: 9000, con Fecha: 17/06/2023, Tipo de Documento Cliente: PAS, Número de Documento: 35761234, Bultos: 10, Espacio: 4.0m3, Domicilio de Retiro: Calle Larga 2021, Domicilio de Entrega: Trelew 205, Pagado: false
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 2000 hasta Ciudad Destino: 1000, con Fecha: 13/06/2023, Tipo de Documento Cliente: DNI, Número de Documento: 28455678, Bultos: 10, Espacio: 4.0m3, Domicilio de Retiro: Avellaneda 850, Domicilio de Entrega: Plaza 1234, Pagado: true
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 3300 hasta Ciudad Destino: 5700, con Fecha: 15/06/2023, Tipo de Documento Cliente: PAS, Número de Documento: 32987654, Bultos: 7, Espacio: 3.0m3, Domicilio de Retiro: Las Heras 123, Domicilio de Entrega: San Juan 456, Pagado: false
+07/03/2025 11:25:50 - No se pudo cargar la solicitud desde Ciudad Origen: 4000 hasta Ciudad Destino: 3300, con Fecha: 12/06/2023, Tipo de Documento Cliente: DNI, Número de Documento: 37234567, Bultos: 15, Espacio: 6.0m3, Domicilio de Retiro: Constitución 789, Domicilio de Entrega: Calle 543, Pagado: true
+07/03/2025 11:25:50 - Estado de las Estructuras luego de carga inicial: 
+07/03/2025 11:25:50 - └── 5000
+    ├── I-3300
+    │   ├── I-2000
+    │   │   ├── I-1000
+    │   │   │   └── D-1900
+    │   │   └── D-3000
+    │   │       ├── I-2820
+    │   └── D-3560
+    │       ├── I-3450
+    │       │   ├── I-3400
+    │       │   └── D-3500
+    │       └── D-4000
+    │           ├── I-3561
+    │           └── D-4200
+    └── D-8300
+        ├── I-5700
+        │   ├── I-5152
+        │   │   └── D-5400
+        │   └── D-5710
+        └── D-8332
+            ├── I-8316
+            │   ├── I-8303
+            │   └── D-8324
+            └── D-9000
+                ├── I-8400
+                │   ├── I-8364
+                │   └── D-8500
+                └── D-9103
+                    ├── I-9100
+                    └── D-9410
+
+07/03/2025 11:25:50 - 1900<------>3400(975.1)
+2820<------>1000(849.0)
+3450<------>4200(869.0)<------>3500(243.3)
+8500<------>1000(913.4)
+3500<------>3450(243.3)<------>5400(1347.8)
+9000<------>9100(376.4)<------>9410(1351.7)
+8364<------>1000(992.9)<------>8332(133.5)<------>9103(567.6)
+3560<------>5710(936.8)<------>5700(958.5)<------>3300(417.1)
+8400<------>8300(438.5)
+9410<------>9000(1351.7)<------>9103(1734.7)
+5152<------>4000(599.5)<------>8303(1118.7)<------>8324(1131.5)
+8303<------>8300(20.6)<------>5152(1118.7)<------>8324(15.5)
+3300<------>3560(417.1)<------>4000(1116.9)<------>3561(557.6)
+5700<------>3560(958.5)<------>4200(789.6)
+3561<------>4200(551.6)<------>3300(557.6)<------>3000(330.2)
+9103<------>8364(567.6)<------>9410(1734.7)<------>8332(518.8)
+9100<------>9000(376.4)<------>8332(684.6)
+8332<------>8364(133.5)<------>8324(41.0)<------>9103(518.8)<------>9100(684.6)
+5400<------>3500(1347.8)<------>5710(328.7)
+5710<------>3560(936.8)<------>5400(328.7)
+4000<------>5152(599.5)<------>3300(1116.9)<------>5000(559.4)
+8316<------>8300(21.7)<------>2000(20.9)
+1000<------>2820(849.0)<------>8500(913.4)<------>8364(992.9)<------>2000(299.9)<------>8324(1136.1)<------>5000(696.4)
+3000<------>3561(330.2)<------>2000(173.0)
+2000<------>8316(20.9)<------>1000(299.9)<------>3000(173.0)<------>5000(401.0)
+5000<------>4000(559.4)<------>1000(696.4)<------>2000(401.0)
+4200<------>3450(869.0)<------>3561(551.6)<------>5700(789.6)<------>3400(634.2)
+3400<------>1900(975.1)<------>4200(634.2)
+8300<------>8303(20.6)<------>8316(21.7)<------>8400(438.5)<------>8324(6.7)
+8324<------>8332(41.0)<------>5152(1131.5)<------>8303(15.5)<------>1000(1136.1)<------>8300(6.7)
+
+07/03/2025 11:25:50 - Origen: 3300, Destino: 5700
+Solicitudes:
+Solicitud de Viaje ID = 19: Código Postal Origen = 3300, Código Postal Destino = 5700, Fecha = 15/06/2023, Tipo de Documento = PAS, ID Cliente = 32987654, Cantidad de Bultos = 7, Metros Cúbicos = 3.0, Domicilio de Retiro = Las Heras 123, Domicilio de Entrega = San Juan 456, Pagado = No
+Origen: 8324, Destino: 5000
+Solicitudes:
+Solicitud de Viaje ID = 1: Código Postal Origen = 8324, Código Postal Destino = 5000, Fecha = 14/06/2023, Tipo de Documento = PAS, ID Cliente = 21923847, Cantidad de Bultos = 8, Metros Cúbicos = 8.0, Domicilio de Retiro = Belgrano 134, Domicilio de Entrega = San Martín 752, Pagado = No
+Origen: 1000, Destino: 5000
+Solicitudes:
+Solicitud de Viaje ID = 6: Código Postal Origen = 1000, Código Postal Destino = 5000, Fecha = 20/06/2023, Tipo de Documento = PAS, ID Cliente = 35654321, Cantidad de Bultos = 12, Metros Cúbicos = 7.0, Domicilio de Retiro = San Fernando 345, Domicilio de Entrega = Plaza San Martín 102, Pagado = Sí
+Origen: 5000, Destino: 1000
+Solicitudes:
+Solicitud de Viaje ID = 7: Código Postal Origen = 5000, Código Postal Destino = 1000, Fecha = 17/06/2023, Tipo de Documento = PAS, ID Cliente = 35761234, Cantidad de Bultos = 6, Metros Cúbicos = 4.0, Domicilio de Retiro = San Martín 654, Domicilio de Entrega = Río Negro 120, Pagado = Sí
+Origen: 4000, Destino: 3300
+Solicitudes:
+Solicitud de Viaje ID = 20: Código Postal Origen = 4000, Código Postal Destino = 3300, Fecha = 12/06/2023, Tipo de Documento = DNI, ID Cliente = 37234567, Cantidad de Bultos = 15, Metros Cúbicos = 6.0, Domicilio de Retiro = Constitución 789, Domicilio de Entrega = Calle 543, Pagado = Sí
+Origen: 5000, Destino: 8300
+Solicitudes:
+Solicitud de Viaje ID = 5: Código Postal Origen = 5000, Código Postal Destino = 8300, Fecha = 15/06/2023, Tipo de Documento = DNI, ID Cliente = 35678965, Cantidad de Bultos = 13, Metros Cúbicos = 5.0, Domicilio de Retiro = Sarmiento 3400, Domicilio de Entrega = Roca 2100, Pagado = Sí
+Origen: 1000, Destino: 2000
+Solicitudes:
+Solicitud de Viaje ID = 3: Código Postal Origen = 1000, Código Postal Destino = 2000, Fecha = 16/06/2023, Tipo de Documento = PAS, ID Cliente = 39456789, Cantidad de Bultos = 9, Metros Cúbicos = 5.0, Domicilio de Retiro = Jujuy 456, Domicilio de Entrega = Córdoba 789, Pagado = Sí
+Origen: 8303, Destino: 3000
+Solicitudes:
+Solicitud de Viaje ID = 11: Código Postal Origen = 8303, Código Postal Destino = 3000, Fecha = 13/06/2023, Tipo de Documento = DNI, ID Cliente = 35654321, Cantidad de Bultos = 5, Metros Cúbicos = 2.0, Domicilio de Retiro = Sarmiento 123, Domicilio de Entrega = Rosario 102, Pagado = No
+Origen: 9410, Destino: 9103
+Solicitudes:
+Solicitud de Viaje ID = 12: Código Postal Origen = 9410, Código Postal Destino = 9103, Fecha = 17/06/2023, Tipo de Documento = PAS, ID Cliente = 35761234, Cantidad de Bultos = 8, Metros Cúbicos = 4.0, Domicilio de Retiro = Av. Belgrano 2200, Domicilio de Entrega = Salta 1900, Pagado = Sí
+Origen: 9000, Destino: 9103
+Solicitudes:
+Solicitud de Viaje ID = 4: Código Postal Origen = 9000, Código Postal Destino = 9103, Fecha = 11/06/2023, Tipo de Documento = DNI, ID Cliente = 36812345, Cantidad de Bultos = 20, Metros Cúbicos = 7.0, Domicilio de Retiro = Av. Rivadavia 1000, Domicilio de Entrega = Santiago 234, Pagado = No
+Origen: 7100, Destino: 9000
+Solicitudes:
+Solicitud de Viaje ID = 17: Código Postal Origen = 7100, Código Postal Destino = 9000, Fecha = 17/06/2023, Tipo de Documento = PAS, ID Cliente = 35761234, Cantidad de Bultos = 10, Metros Cúbicos = 4.0, Domicilio de Retiro = Calle Larga 2021, Domicilio de Entrega = Trelew 205, Pagado = No
+Origen: 2900, Destino: 5000
+Solicitudes:
+Solicitud de Viaje ID = 8: Código Postal Origen = 2900, Código Postal Destino = 5000, Fecha = 10/06/2023, Tipo de Documento = DNI, ID Cliente = 34567891, Cantidad de Bultos = 10, Metros Cúbicos = 3.0, Domicilio de Retiro = Calle Mendoza 890, Domicilio de Entrega = La Plata 456, Pagado = No
+Origen: 2000, Destino: 1000
+Solicitudes:
+Solicitud de Viaje ID = 18: Código Postal Origen = 2000, Código Postal Destino = 1000, Fecha = 13/06/2023, Tipo de Documento = DNI, ID Cliente = 28455678, Cantidad de Bultos = 10, Metros Cúbicos = 4.0, Domicilio de Retiro = Avellaneda 850, Domicilio de Entrega = Plaza 1234, Pagado = Sí
+Origen: 3500, Destino: 9000
+Solicitudes:
+Solicitud de Viaje ID = 9: Código Postal Origen = 3500, Código Postal Destino = 9000, Fecha = 18/06/2023, Tipo de Documento = PAS, ID Cliente = 37894561, Cantidad de Bultos = 12, Metros Cúbicos = 5.0, Domicilio de Retiro = Pueyrredón 1234, Domicilio de Entrega = Trelew 789, Pagado = Sí
+Origen: 3560, Destino: 5700
+Solicitudes:
+Solicitud de Viaje ID = 15: Código Postal Origen = 3560, Código Postal Destino = 5700, Fecha = 15/06/2023, Tipo de Documento = PAS, ID Cliente = 34567891, Cantidad de Bultos = 9, Metros Cúbicos = 3.0, Domicilio de Retiro = La Boca 1010, Domicilio de Entrega = San Luis 870, Pagado = Sí
+Origen: 8400, Destino: 9000
+Solicitudes:
+Solicitud de Viaje ID = 2: Código Postal Origen = 8400, Código Postal Destino = 9000, Fecha = 14/06/2023, Tipo de Documento = DNI, ID Cliente = 36987452, Cantidad de Bultos = 14, Metros Cúbicos = 6.0, Domicilio de Retiro = Rivadavia 567, Domicilio de Entrega = El Bolsón 345, Pagado = No
+Origen: 8364, Destino: 8324
+Solicitudes:
+Solicitud de Viaje ID = 13: Código Postal Origen = 8364, Código Postal Destino = 8324, Fecha = 19/06/2023, Tipo de Documento = DNI, ID Cliente = 34567891, Cantidad de Bultos = 18, Metros Cúbicos = 6.0, Domicilio de Retiro = Avenida 1 987, Domicilio de Entrega = La Plata 233, Pagado = No
+Origen: 8364, Destino: 5700
+Solicitudes:
+Solicitud de Viaje ID = 16: Código Postal Origen = 8364, Código Postal Destino = 5700, Fecha = 20/06/2023, Tipo de Documento = DNI, ID Cliente = 32987654, Cantidad de Bultos = 7, Metros Cúbicos = 2.0, Domicilio de Retiro = Avellaneda 1234, Domicilio de Entrega = Comodoro Rivadavia 340, Pagado = Sí
+Origen: 5700, Destino: 4000
+Solicitudes:
+Solicitud de Viaje ID = 10: Código Postal Origen = 5700, Código Postal Destino = 4000, Fecha = 16/06/2023, Tipo de Documento = PAS, ID Cliente = 34567891, Cantidad de Bultos = 9, Metros Cúbicos = 3.0, Domicilio de Retiro = Calle San Juan 456, Domicilio de Entrega = Luján 789, Pagado = Sí
+Origen: 5000, Destino: 3300
+Solicitudes:
+Solicitud de Viaje ID = 14: Código Postal Origen = 5000, Código Postal Destino = 3300, Fecha = 18/06/2023, Tipo de Documento = DNI, ID Cliente = 38471234, Cantidad de Bultos = 11, Metros Cúbicos = 5.0, Domicilio de Retiro = Las Heras 876, Domicilio de Entrega = Villa Carlos Paz 400, Pagado = No
+
+07/03/2025 11:25:50 - [DNI 34871234] -> [PAS 20765432] -> [DNI 36812345]
+[PAS 21876543] -> [PAS 21923847]
+----
+[DNI 39456789]
+----
+[DNI 34567891] -> [DNI 35761234] -> [PAS 21678943] -> [DNI 37894561]
+[PAS 20123456] -> [DNI 32987654] -> [PAS 19945678]
+[PAS 21456789] -> [PAS 21234567] -> [DNI 28455678]
+----
+[DNI 35654321]
+[DNI 36987452] -> [DNI 44847072]
+[DNI 37234567]
+
+07/03/2025 11:25:55 - Se elimino la ciudad con codigo Postal 8332

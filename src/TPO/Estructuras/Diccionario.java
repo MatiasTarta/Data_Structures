@@ -200,7 +200,7 @@ public class Diccionario {
                         tieneAmbosCandidato(n.getIzquierdo(), null, n);
                     }else {
                         // caso HI
-                        //reemplaza el nodo eliminado con su hijo izquierdo cuando no hay un subarbol derecho en ese hijo.
+                        //caso para cuando solo tiene 2 hijos que son hojas. Reemplaza el nodo con el hijo I
                         reemplazarConHijoIzquierdo(n);
                     }
                     exito = true;
